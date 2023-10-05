@@ -4,9 +4,25 @@
   "description": "Subjekt is a protocol-agnostic interface definition language and set of tools for generating clients, contracts, and documentation for multiple programming language.",
   "author": "subjektify",
   "license": "Apache-2.0",
-  "main": "index.js",
+  "main": "dist/index",
   "scripts": {
+    "clean": "rimraf dist/",
+    "build": "tsc",
+    "build:all": "npm run clean && npm run antlr && npm run build",
+    "antlr": "npm run antlr:clean && npm run antlr:generate",
+    "antlr:clean": "rimraf src/antlr/impl",
+    "antlr:generate": "antlr4ts -visitor src/grammar/subjekt.g4 -o src/antlr/impl",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "antlr4ts": "^0.5.0-alpha.4",
+    "colorts": "^0.1.63"
+  },
+  "devDependencies": {
+    "antlr4ts-cli": "^0.5.0-alpha.4",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.2.2"
+  }
 }

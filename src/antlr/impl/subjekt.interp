@@ -1,0 +1,50 @@
+token literal names:
+null
+'@'
+'('
+')'
+'['
+']'
+'{'
+'}'
+'='
+':'
+','
+'#'
+'$'
+';'
+null
+null
+null
+null
+null
+null
+
+token symbolic names:
+null
+AT_SIGN
+LPAREN
+RPAREN
+LBRACK
+RBRACK
+LCURLY
+RCURLY
+ASSIGNMENT
+COLON
+COMMA
+HASH_SIGN
+DOLLAR_SIGN
+SEMICOLON
+IdentifierChars
+SINGLE_STRING
+DOUBLE_STRING
+NUMBER
+WS
+COMMENT
+
+rule names:
+subjekts
+
+
+atn:
+[3, 51485, 51898, 1421, 44986, 20307, 1543, 60043, 49729, 3, 21, 7, 4, 2, 9, 2, 3, 2, 3, 2, 3, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 5, 2, 4, 3, 2, 2, 2, 4, 5, 7, 2, 2, 3, 5, 3, 3, 2, 2, 2, 2]
