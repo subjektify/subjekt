@@ -1,0 +1,12 @@
+{
+  "name": "subjekt",
+  "version": "0.0.1",
+  "description": "Subjekt is a protocol-agnostic interface definition language and set of tools for generating clients, contracts, and documentation for multiple programming language.",
+  "author": "subjektify",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": []
+}
