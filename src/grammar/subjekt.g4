@@ -4,10 +4,13 @@ grammar subjekt;
  * Parser Rules
  */
 
-subjekts: EOF;
+subjekts: metadataStatement* useStatement* EOF;
 
 // MetadataBlock
 metadataStatement: METADATA identifier ASSIGNMENT value;
+
+// `use` statement imports shapes from other namespaces.
+useStatement: USE absoluteRootShapeId;
 
 // ShapeID
 shapeId: rootShapeId shapeIdMember?;
