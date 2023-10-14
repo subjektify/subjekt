@@ -1,4 +1,4 @@
-// Generated from src/grammar/subjekt.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from src/grammar/Subjekt.g4 by ANTLR 4.9.0-SNAPSHOT
 
 
 import { ATN } from "antlr4ts/atn/ATN";
@@ -100,7 +100,7 @@ export class SubjektLexer extends Lexer {
 	}
 
 	// @Override
-	public get grammarFileName(): string { return "subjekt.g4"; }
+	public get grammarFileName(): string { return "Subjekt.g4"; }
 
 	// @Override
 	public get ruleNames(): string[] { return SubjektLexer.ruleNames; }

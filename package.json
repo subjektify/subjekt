@@ -11,7 +11,7 @@
     "build:all": "npm run clean && npm run antlr && npm run build",
     "antlr": "npm run antlr:clean && npm run antlr:generate",
     "antlr:clean": "rimraf src/antlr/impl",
-    "antlr:generate": "antlr4ts -visitor src/grammar/subjekt.g4 -o src/antlr/impl",
+    "antlr:generate": "antlr4ts -visitor src/grammar/Subjekt.g4 -o src/antlr/impl",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
