@@ -1,6 +1,6 @@
-import { SemanticModel } from "./SemanticModel";
+import { SubjektModel } from "./SubjektModel";
 
-export class Prelude implements SemanticModel {
+export class Prelude implements SubjektModel {
     prelude: Prelude;
 
     constructor() {

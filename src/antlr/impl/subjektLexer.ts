@@ -15,7 +15,7 @@ import { VocabularyImpl } from "antlr4ts/VocabularyImpl";
 import * as Utils from "antlr4ts/misc/Utils";
 
 
-export class subjektLexer extends Lexer {
+export class SubjektLexer extends Lexer {
 	public static readonly T__0 = 1;
 	public static readonly METADATA = 2;
 	public static readonly USE = 3;
@@ -84,35 +84,35 @@ export class subjektLexer extends Lexer {
 		"DOLLAR_SIGN", "COMMA", "SEMICOLON", "IdentifierChars", "SINGLE_STRING", 
 		"DOUBLE_STRING", "NUMBER", "WS", "COMMENT",
 	];
-	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(subjektLexer._LITERAL_NAMES, subjektLexer._SYMBOLIC_NAMES, []);
+	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(SubjektLexer._LITERAL_NAMES, SubjektLexer._SYMBOLIC_NAMES, []);
 
 	// @Override
 	// @NotNull
 	public get vocabulary(): Vocabulary {
-		return subjektLexer.VOCABULARY;
+		return SubjektLexer.VOCABULARY;
 	}
 	// tslint:enable:no-trailing-whitespace
 
 
 	constructor(input: CharStream) {
 		super(input);
-		this._interp = new LexerATNSimulator(subjektLexer._ATN, this);
+		this._interp = new LexerATNSimulator(SubjektLexer._ATN, this);
 	}
 
 	// @Override
 	public get grammarFileName(): string { return "subjekt.g4"; }
 
 	// @Override
-	public get ruleNames(): string[] { return subjektLexer.ruleNames; }
+	public get ruleNames(): string[] { return SubjektLexer.ruleNames; }
 
 	// @Override
-	public get serializedATN(): string { return subjektLexer._serializedATN; }
+	public get serializedATN(): string { return SubjektLexer._serializedATN; }
 
 	// @Override
-	public get channelNames(): string[] { return subjektLexer.channelNames; }
+	public get channelNames(): string[] { return SubjektLexer.channelNames; }
 
 	// @Override
-	public get modeNames(): string[] { return subjektLexer.modeNames; }
+	public get modeNames(): string[] { return SubjektLexer.modeNames; }
 
 	public static readonly _serializedATN: string =
 		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x02$\u01F5\b\x01" +
@@ -357,11 +357,11 @@ export class subjektLexer extends Lexer {
 		"\u01E1\u01E6\u01F0\x03\b\x02\x02";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
-		if (!subjektLexer.__ATN) {
-			subjektLexer.__ATN = new ATNDeserializer().deserialize(Utils.toCharArray(subjektLexer._serializedATN));
+		if (!SubjektLexer.__ATN) {
+			SubjektLexer.__ATN = new ATNDeserializer().deserialize(Utils.toCharArray(SubjektLexer._serializedATN));
 		}
 
-		return subjektLexer.__ATN;
+		return SubjektLexer.__ATN;
 	}
 
 }

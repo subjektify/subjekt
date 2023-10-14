@@ -1,4 +1,4 @@
-grammar subjekt;
+grammar Subjekt;
 
 /*
  * Parser Rules
@@ -11,6 +11,9 @@ metadataStatement: METADATA identifier ASSIGNMENT value;
 
 // `use` statement imports shapes from other namespaces.
 useStatement: USE absoluteRootShapeId;
+
+// ShapeBlock
+
 
 // ShapeID
 shapeId: rootShapeId shapeIdMember?;

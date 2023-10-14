@@ -1,6 +1,6 @@
 import { Prelude } from "./Prelude";
 
-export interface SemanticModel {
+export interface SubjektModel {
     metadata?: object;
     prelude: Prelude;
     uses?: ShapeID[];
