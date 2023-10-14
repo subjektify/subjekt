@@ -1,2 +1,9 @@
 # subjekt
-Subjekt is a protocol-agnostic interface definition language and set of tools for generating clients, contracts, and documentation for multiple programming language.
+
+[![NPM Version](http://img.shields.io/npm/v/subjekt.svg?style=flat)](https://www.npmjs.org/package/subjekt)
+[![NPM Downloads](https://img.shields.io/npm/dm/subjektify.svg?style=flat)](https://npmcharts.com/compare/subjekt?minimal=true)
+[![Install Size](https://packagephobia.now.sh/badge?p=subjekt)](https://packagephobia.now.sh/result?p=subjekt)
+
+Subjekt is a protocol-agnostic, declarative language for defining subjects, smart contracts, and SDKs.
+
+## [Learn More](https://subjektify.dev/docs/subjekt)
