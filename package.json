@@ -1,10 +1,13 @@
 {
   "name": "subjekt",
   "version": "0.0.1",
-  "description": "Subjekt is a protocol-agnostic interface definition language and set of tools for generating clients, contracts, and documentation for multiple programming language.",
+  "description": "Subjekt is a protocol-agnostic, declarative language for defining subjects, smart contracts, and SDKs.",
   "author": "subjektify",
   "license": "Apache-2.0",
   "main": "dist/index",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "clean": "rimraf dist/",
     "build": "tsc",
