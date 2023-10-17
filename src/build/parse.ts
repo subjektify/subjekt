@@ -4,7 +4,7 @@ import { ASTModel, SubjektModel } from "../types";
 import { ASTVisitor, SubjektModelVisitor } from '../visitor';
 
 // Parse the SubjektModel from the SubjektModelVisitor
-export const parseSubjekt = (content: string): SubjektModel => {
+export const parseSubjekt = (namespace: string, content: string): SubjektModel => {
 
     const visitor = new SubjektModelVisitor();
     let parser = getParser(content);
