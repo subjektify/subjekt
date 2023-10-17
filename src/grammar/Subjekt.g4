@@ -4,7 +4,7 @@ grammar Subjekt;
  * Parser Rules
  */
 
-subjekts: metadataStatement* useStatement* EOF;
+subjekts: metadataStatement* useStatement* shapeStatement* EOF;
 
 // MetadataBlock
 metadataStatement: METADATA identifier ASSIGNMENT value;
@@ -12,14 +12,74 @@ metadataStatement: METADATA identifier ASSIGNMENT value;
 // `use` statement imports shapes from other namespaces.
 useStatement: USE absoluteRootShapeId;
 
-// ShapeBlock
+// Shapes
+shapeStatement: trait* shapeDefinition;
+shapeDefinition: shapeType identifier shapeTypeDefinition?;
 
+shapeType:
+	AGGREGATE_SHAPE_TYPE
+	| SIMPLE_SHAPE_TYPE
+	| SUBJECT_SHAPE_TYPE;
+shapeTypeDefinition: LCURLY members? RCURLY;
+
+// Shape members
+members:
+	enumMembers
+	| listMembers
+	| mapMembers
+	| subjectMembers+
+	| member+;
+
+enumMembers: enumMember (COMMA enumMember)* COMMA?;
+enumMember: identifier (ASSIGNMENT (string | NUMBER))?;
+listMembers: MEMBER COLON (shapeType | identifier) COMMA?;
+mapMembers: keyValuePair (COMMA keyValuePair)* COMMA?;
+keyValuePair:
+	KEY COLON (shapeType | identifier)
+	| VALUE COLON (shapeType | identifier);
+
+subjectMembers:
+	stateReference
+	| behaviorReference
+	| subscriptionReference;
+stateReference:
+	STATES COLON LBRACK identifier (COMMA identifier)* COMMA? RBRACK;
+behaviorReference:
+	BEHAVIORS COLON LBRACK identifier (COMMA identifier)* COMMA? RBRACK;
+subscriptionReference:
+	SUBSCRIPTIONS COLON LBRACK identifier (COMMA identifier)* COMMA? RBRACK;
+
+behaviorMembers:
+	triggerReference
+	| inputReference
+	| outputReference;
+inputReference:
+	INPUTS COLON LBRACK (shapeType | identifier) (
+		COMMA (shapeType | identifier)
+	)* COMMA? RBRACK;
+outputReference:
+	OUTPUTS COLON LBRACK (shapeType | identifier) (
+		COMMA (shapeType | identifier)
+	)* COMMA? RBRACK;
+triggerReference:
+	TRIGGERS COLON LBRACK (shapeType | identifier) (
+		COMMA (shapeType | identifier)
+	)* COMMA? RBRACK;
+member:
+	identifier COLON (shapeType | identifier) (ASSIGNMENT value)? COMMA?;
 
 // ShapeID
 shapeId: rootShapeId shapeIdMember?;
 rootShapeId: absoluteRootShapeId | identifier;
 absoluteRootShapeId: namespaceIdentifier HASH_SIGN identifier;
 shapeIdMember: DOLLAR_SIGN identifier;
+
+// Traits
+trait: AT_SIGN identifier traitBody?;
+traitBody: LPAREN (traitStructureList | traitNode)? RPAREN;
+traitStructureList: traitStructure (COMMA traitStructure)*;
+traitStructure: identifier ASSIGNMENT value;
+traitNode: value;
 
 // Values
 value:
@@ -51,7 +111,6 @@ INPUTS: 'inputs';
 OUTPUTS: 'outputs';
 AGGREGATE_SHAPE_TYPE:
 	'enum'
-	| 'contract'
 	| 'list'
 	| 'map'
 	| 'structure'
@@ -91,6 +150,7 @@ SUBJECT_SHAPE_TYPE:
 	'subject'
 	| 'state'
 	| 'behavior'
+	| 'composition'
 	| 'trigger'
 	| 'subscription'
 	| 'input'
