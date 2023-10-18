@@ -1,2 +1,2 @@
-export * from './ASTVisitor';
+export * from './ast';
 export * from './model';
