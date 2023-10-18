@@ -56,7 +56,7 @@ export class SubjektParser extends Parser {
 	public static readonly DOLLAR_SIGN = 26;
 	public static readonly COMMA = 27;
 	public static readonly SEMICOLON = 28;
-	public static readonly IdentifierChars = 29;
+	public static readonly IDENTIFIER_CHARS = 29;
 	public static readonly SINGLE_STRING = 30;
 	public static readonly DOUBLE_STRING = 31;
 	public static readonly NUMBER = 32;
@@ -120,7 +120,7 @@ export class SubjektParser extends Parser {
 		"STATES", "BEHAVIORS", "TRIGGERS", "INPUTS", "OUTPUTS", "AGGREGATE_SHAPE_TYPE", 
 		"SIMPLE_SHAPE_TYPE", "SUBJECT_SHAPE_TYPE", "AT_SIGN", "LPAREN", "RPAREN", 
 		"LBRACK", "RBRACK", "LCURLY", "RCURLY", "ASSIGNMENT", "COLON", "HASH_SIGN", 
-		"DOLLAR_SIGN", "COMMA", "SEMICOLON", "IdentifierChars", "SINGLE_STRING", 
+		"DOLLAR_SIGN", "COMMA", "SEMICOLON", "IDENTIFIER_CHARS", "SINGLE_STRING", 
 		"DOUBLE_STRING", "NUMBER", "WS", "COMMENT",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(SubjektParser._LITERAL_NAMES, SubjektParser._SYMBOLIC_NAMES, []);
@@ -402,7 +402,7 @@ export class SubjektParser extends Parser {
 			this.state = 115;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << SubjektParser.MEMBER) | (1 << SubjektParser.KEY) | (1 << SubjektParser.VALUE) | (1 << SubjektParser.SUBSCRIPTIONS) | (1 << SubjektParser.STATES) | (1 << SubjektParser.BEHAVIORS) | (1 << SubjektParser.IdentifierChars))) !== 0)) {
+			if ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << SubjektParser.MEMBER) | (1 << SubjektParser.KEY) | (1 << SubjektParser.VALUE) | (1 << SubjektParser.SUBSCRIPTIONS) | (1 << SubjektParser.STATES) | (1 << SubjektParser.BEHAVIORS) | (1 << SubjektParser.IDENTIFIER_CHARS))) !== 0)) {
 				{
 				this.state = 114;
 				this.members();
@@ -496,7 +496,7 @@ export class SubjektParser extends Parser {
 					this.state = 130;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
-				} while (_la === SubjektParser.IdentifierChars);
+				} while (_la === SubjektParser.IDENTIFIER_CHARS);
 				}
 				break;
 			}
@@ -648,7 +648,7 @@ export class SubjektParser extends Parser {
 				this.shapeType();
 				}
 				break;
-			case SubjektParser.IdentifierChars:
+			case SubjektParser.IDENTIFIER_CHARS:
 				{
 				this.state = 156;
 				this.identifier();
@@ -764,7 +764,7 @@ export class SubjektParser extends Parser {
 					this.shapeType();
 					}
 					break;
-				case SubjektParser.IdentifierChars:
+				case SubjektParser.IDENTIFIER_CHARS:
 					{
 					this.state = 176;
 					this.identifier();
@@ -793,7 +793,7 @@ export class SubjektParser extends Parser {
 					this.shapeType();
 					}
 					break;
-				case SubjektParser.IdentifierChars:
+				case SubjektParser.IDENTIFIER_CHARS:
 					{
 					this.state = 182;
 					this.identifier();
@@ -1131,7 +1131,7 @@ export class SubjektParser extends Parser {
 				this.shapeType();
 				}
 				break;
-			case SubjektParser.IdentifierChars:
+			case SubjektParser.IDENTIFIER_CHARS:
 				{
 				this.state = 249;
 				this.identifier();
@@ -1160,7 +1160,7 @@ export class SubjektParser extends Parser {
 						this.shapeType();
 						}
 						break;
-					case SubjektParser.IdentifierChars:
+					case SubjektParser.IDENTIFIER_CHARS:
 						{
 						this.state = 254;
 						this.identifier();
@@ -1230,7 +1230,7 @@ export class SubjektParser extends Parser {
 				this.shapeType();
 				}
 				break;
-			case SubjektParser.IdentifierChars:
+			case SubjektParser.IDENTIFIER_CHARS:
 				{
 				this.state = 271;
 				this.identifier();
@@ -1259,7 +1259,7 @@ export class SubjektParser extends Parser {
 						this.shapeType();
 						}
 						break;
-					case SubjektParser.IdentifierChars:
+					case SubjektParser.IDENTIFIER_CHARS:
 						{
 						this.state = 276;
 						this.identifier();
@@ -1329,7 +1329,7 @@ export class SubjektParser extends Parser {
 				this.shapeType();
 				}
 				break;
-			case SubjektParser.IdentifierChars:
+			case SubjektParser.IDENTIFIER_CHARS:
 				{
 				this.state = 293;
 				this.identifier();
@@ -1358,7 +1358,7 @@ export class SubjektParser extends Parser {
 						this.shapeType();
 						}
 						break;
-					case SubjektParser.IdentifierChars:
+					case SubjektParser.IDENTIFIER_CHARS:
 						{
 						this.state = 298;
 						this.identifier();
@@ -1425,7 +1425,7 @@ export class SubjektParser extends Parser {
 				this.shapeType();
 				}
 				break;
-			case SubjektParser.IdentifierChars:
+			case SubjektParser.IDENTIFIER_CHARS:
 				{
 				this.state = 314;
 				this.identifier();
@@ -1653,7 +1653,7 @@ export class SubjektParser extends Parser {
 			this.state = 347;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case SubjektParser.IdentifierChars:
+			case SubjektParser.IDENTIFIER_CHARS:
 				{
 				this.state = 345;
 				this.traitStructureList();
@@ -1954,7 +1954,7 @@ export class SubjektParser extends Parser {
 			this.enterOuterAlt(_localctx, 1);
 			{
 			this.state = 393;
-			this.match(SubjektParser.IdentifierChars);
+			this.match(SubjektParser.IDENTIFIER_CHARS);
 			}
 		}
 		catch (re) {
@@ -3612,7 +3612,7 @@ export class NamespaceIdentifierContext extends ParserRuleContext {
 
 
 export class IdentifierContext extends ParserRuleContext {
-	public IdentifierChars(): TerminalNode { return this.getToken(SubjektParser.IdentifierChars, 0); }
+	public IDENTIFIER_CHARS(): TerminalNode { return this.getToken(SubjektParser.IDENTIFIER_CHARS, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}

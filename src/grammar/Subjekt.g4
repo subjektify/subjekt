@@ -91,7 +91,7 @@ value:
 string: SINGLE_STRING | DOUBLE_STRING;
 
 namespaceIdentifier: identifier ('.' identifier)*;
-identifier: IdentifierChars;
+identifier: IDENTIFIER_CHARS;
 
 /*
  * Lexer Rules
@@ -172,7 +172,7 @@ COMMA: ',' -> skip;
 SEMICOLON: ';' -> skip;
 
 // Literals
-IdentifierChars: [a-zA-Z_]+ [a-zA-Z_0-9]*;
+IDENTIFIER_CHARS: [a-zA-Z_]+ [a-zA-Z_0-9]*;
 SINGLE_STRING: '\'' ~('\'')+ '\'';
 DOUBLE_STRING: '"' ~('"')+ '"';
 NUMBER: [0-9]+;

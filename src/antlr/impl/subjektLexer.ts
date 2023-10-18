@@ -44,7 +44,7 @@ export class SubjektLexer extends Lexer {
 	public static readonly DOLLAR_SIGN = 26;
 	public static readonly COMMA = 27;
 	public static readonly SEMICOLON = 28;
-	public static readonly IdentifierChars = 29;
+	public static readonly IDENTIFIER_CHARS = 29;
 	public static readonly SINGLE_STRING = 30;
 	public static readonly DOUBLE_STRING = 31;
 	public static readonly NUMBER = 32;
@@ -66,7 +66,7 @@ export class SubjektLexer extends Lexer {
 		"STATES", "BEHAVIORS", "TRIGGERS", "INPUTS", "OUTPUTS", "AGGREGATE_SHAPE_TYPE", 
 		"SIMPLE_SHAPE_TYPE", "SUBJECT_SHAPE_TYPE", "AT_SIGN", "LPAREN", "RPAREN", 
 		"LBRACK", "RBRACK", "LCURLY", "RCURLY", "ASSIGNMENT", "COLON", "HASH_SIGN", 
-		"DOLLAR_SIGN", "COMMA", "SEMICOLON", "IdentifierChars", "SINGLE_STRING", 
+		"DOLLAR_SIGN", "COMMA", "SEMICOLON", "IDENTIFIER_CHARS", "SINGLE_STRING", 
 		"DOUBLE_STRING", "NUMBER", "WS", "COMMENT",
 	];
 
@@ -81,7 +81,7 @@ export class SubjektLexer extends Lexer {
 		"STATES", "BEHAVIORS", "TRIGGERS", "INPUTS", "OUTPUTS", "AGGREGATE_SHAPE_TYPE", 
 		"SIMPLE_SHAPE_TYPE", "SUBJECT_SHAPE_TYPE", "AT_SIGN", "LPAREN", "RPAREN", 
 		"LBRACK", "RBRACK", "LCURLY", "RCURLY", "ASSIGNMENT", "COLON", "HASH_SIGN", 
-		"DOLLAR_SIGN", "COMMA", "SEMICOLON", "IdentifierChars", "SINGLE_STRING", 
+		"DOLLAR_SIGN", "COMMA", "SEMICOLON", "IDENTIFIER_CHARS", "SINGLE_STRING", 
 		"DOUBLE_STRING", "NUMBER", "WS", "COMMENT",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(SubjektLexer._LITERAL_NAMES, SubjektLexer._SYMBOLIC_NAMES, []);
