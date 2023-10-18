@@ -1,21 +1,21 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
-import { SubjektVisitor } from "../../antlr";
-import { Shape } from '../../types';
+import { ShapeBlockContext, SubjektVisitor } from "../../antlr";
+import { Shapes } from '../../types';
 
 export class ShapesVisitor
-    extends AbstractParseTreeVisitor<Shape>
-    implements SubjektVisitor<Shape> {
+    extends AbstractParseTreeVisitor<Shapes>
+    implements SubjektVisitor<Shapes> {
 
     constructor() {
         super();
     }
 
-    protected defaultResult(): Shape {
+    protected defaultResult(): Shapes {
+        return { };
+    }
+
+    public visitShapeBlock(ctx: ShapeBlockContext): Shapes {
         return {
-            type: {
-                namespace: "",
-                shapeName: "",
-            }
         };
     }
 }

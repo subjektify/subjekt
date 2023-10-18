@@ -4,8 +4,11 @@
 import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
 import { SubjektsContext } from "./SubjektParser";
+import { MetadataBlockContext } from "./SubjektParser";
 import { MetadataStatementContext } from "./SubjektParser";
+import { UseBlockContext } from "./SubjektParser";
 import { UseStatementContext } from "./SubjektParser";
+import { ShapeBlockContext } from "./SubjektParser";
 import { ShapeStatementContext } from "./SubjektParser";
 import { ShapeDefinitionContext } from "./SubjektParser";
 import { ShapeTypeContext } from "./SubjektParser";
@@ -56,6 +59,13 @@ export interface SubjektVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitSubjekts?: (ctx: SubjektsContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by `SubjektParser.metadataBlock`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitMetadataBlock?: (ctx: MetadataBlockContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by `SubjektParser.metadataStatement`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -63,11 +73,25 @@ export interface SubjektVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitMetadataStatement?: (ctx: MetadataStatementContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by `SubjektParser.useBlock`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitUseBlock?: (ctx: UseBlockContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by `SubjektParser.useStatement`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	visitUseStatement?: (ctx: UseStatementContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SubjektParser.shapeBlock`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitShapeBlock?: (ctx: ShapeBlockContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SubjektParser.shapeStatement`.

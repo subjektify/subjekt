@@ -4,15 +4,18 @@ grammar Subjekt;
  * Parser Rules
  */
 
-subjekts: metadataStatement* useStatement* shapeStatement* EOF;
+subjekts: metadataBlock useBlock shapeBlock EOF;
 
 // MetadataBlock
+metadataBlock: metadataStatement*;
 metadataStatement: METADATA identifier ASSIGNMENT value;
 
 // `use` statement imports shapes from other namespaces.
+useBlock: useStatement*;
 useStatement: USE absoluteRootShapeId;
 
 // Shapes
+shapeBlock: shapeStatement*;
 shapeStatement: trait* shapeDefinition;
 shapeDefinition: shapeType identifier shapeTypeDefinition?;
 

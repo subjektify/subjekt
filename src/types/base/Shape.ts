@@ -1,3 +1,4 @@
+import { type } from "os";
 import { AppliedTraits } from "./Trait";
 
 export interface Shapes {
@@ -5,7 +6,7 @@ export interface Shapes {
 }
 
 export interface Shape {
-    type: ShapeID
+    type: ShapeType
     traits?: AppliedTraits
 }
 
@@ -14,3 +15,37 @@ export interface ShapeID {
     shapeName: string;
     memberName?: string;
 }
+
+export type  ShapeType = 
+    SimpleShapeType
+    | AggregateShapeType
+    | SubjectShapeType;
+
+export type SimpleShapeType =
+    'address'
+    | 'blob'
+    | 'boolean'
+    | 'bytes'
+    | 'document'
+    | 'double'
+    | 'int'
+    | 'integer'
+    | 'string'
+    | 'timestamp'
+    | 'uint';
+
+export type AggregateShapeType =
+    'enum'
+    | 'list'
+    | 'map'
+    | 'structure'
+    | 'union'
+    | 'trait';
+
+export type SubjectShapeType =
+    'subject'
+    | 'state'
+    | 'behavior'
+    | 'event'
+    | 'input'
+    | 'output';

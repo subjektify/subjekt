@@ -4,8 +4,11 @@
 import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
 import { SubjektsContext } from "./SubjektParser";
+import { MetadataBlockContext } from "./SubjektParser";
 import { MetadataStatementContext } from "./SubjektParser";
+import { UseBlockContext } from "./SubjektParser";
 import { UseStatementContext } from "./SubjektParser";
+import { ShapeBlockContext } from "./SubjektParser";
 import { ShapeStatementContext } from "./SubjektParser";
 import { ShapeDefinitionContext } from "./SubjektParser";
 import { ShapeTypeContext } from "./SubjektParser";
@@ -57,6 +60,17 @@ export interface SubjektListener extends ParseTreeListener {
 	exitSubjekts?: (ctx: SubjektsContext) => void;
 
 	/**
+	 * Enter a parse tree produced by `SubjektParser.metadataBlock`.
+	 * @param ctx the parse tree
+	 */
+	enterMetadataBlock?: (ctx: MetadataBlockContext) => void;
+	/**
+	 * Exit a parse tree produced by `SubjektParser.metadataBlock`.
+	 * @param ctx the parse tree
+	 */
+	exitMetadataBlock?: (ctx: MetadataBlockContext) => void;
+
+	/**
 	 * Enter a parse tree produced by `SubjektParser.metadataStatement`.
 	 * @param ctx the parse tree
 	 */
@@ -68,6 +82,17 @@ export interface SubjektListener extends ParseTreeListener {
 	exitMetadataStatement?: (ctx: MetadataStatementContext) => void;
 
 	/**
+	 * Enter a parse tree produced by `SubjektParser.useBlock`.
+	 * @param ctx the parse tree
+	 */
+	enterUseBlock?: (ctx: UseBlockContext) => void;
+	/**
+	 * Exit a parse tree produced by `SubjektParser.useBlock`.
+	 * @param ctx the parse tree
+	 */
+	exitUseBlock?: (ctx: UseBlockContext) => void;
+
+	/**
 	 * Enter a parse tree produced by `SubjektParser.useStatement`.
 	 * @param ctx the parse tree
 	 */
@@ -77,6 +102,17 @@ export interface SubjektListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitUseStatement?: (ctx: UseStatementContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SubjektParser.shapeBlock`.
+	 * @param ctx the parse tree
+	 */
+	enterShapeBlock?: (ctx: ShapeBlockContext) => void;
+	/**
+	 * Exit a parse tree produced by `SubjektParser.shapeBlock`.
+	 * @param ctx the parse tree
+	 */
+	exitShapeBlock?: (ctx: ShapeBlockContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SubjektParser.shapeStatement`.
