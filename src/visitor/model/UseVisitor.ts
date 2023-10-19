@@ -7,11 +7,13 @@ export class UseVisitor
     extends AbstractParseTreeVisitor<ShapeID[]>
     implements SubjektVisitor<ShapeID[]> {
 
-        private useStatementVisitor: UseStatementVisitor;
+    namespace: string;
+    private useStatementVisitor: UseStatementVisitor;
 
-    constructor() {
+    constructor(namespace: string) {
         super();
-        this.useStatementVisitor = new UseStatementVisitor();
+        this.namespace = namespace;
+        this.useStatementVisitor = new UseStatementVisitor(namespace);
     }
 
     protected defaultResult(): ShapeID[] {
@@ -27,11 +29,13 @@ export class UseStatementVisitor
     extends AbstractParseTreeVisitor<ShapeID>
     implements SubjektVisitor<ShapeID> {
 
-        private shapeIdVisitor: ShapeIDVisitor;
+    namespace: string;
+    private shapeIdVisitor: ShapeIDVisitor;
 
-    constructor() {
+    constructor(namespace: string) {
         super();
-        this.shapeIdVisitor = new ShapeIDVisitor();
+        this.namespace = namespace;
+        this.shapeIdVisitor = new ShapeIDVisitor(namespace);
     }
 
     protected defaultResult(): ShapeID {

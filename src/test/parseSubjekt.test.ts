@@ -8,7 +8,12 @@ describe('parseSubjekt', () => {
     const source =`string MyString`;
     const expected: SubjektModel = {
       prelude: new Prelude(),
-      uses: []
+      uses: [],
+      shapes: {
+        'myNamespace#MyString': {
+          type: 'string',
+        }
+      }
     };
 
     // Execute
@@ -33,12 +38,16 @@ string MyString
           namespace: 'other.namespace',
           identifier: 'OtherShape',
         },
-      ]
+      ],
+      shapes: {
+        'myNamespace#MyString': {
+          type: 'string',
+        }
+      }
     };
 
     // Execute
     const result = parseSubjekt(namespace, source);
-    console.log('result', result);
 
     // Verify
     expect(result).toEqual(expected);

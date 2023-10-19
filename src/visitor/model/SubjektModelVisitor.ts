@@ -1,20 +1,25 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
-import { MetadataStatementContext, SubjektVisitor, SubjektsContext } from "../../antlr";
+import { SubjektVisitor, SubjektsContext } from "../../antlr";
 import { Prelude, SubjektModel } from "../../types";
 import { UseVisitor } from './UseVisitor';
+import { ShapesVisitor } from './ShapesVisitor';
 
 export class SubjektModelVisitor
     extends AbstractParseTreeVisitor<SubjektModel>
     implements SubjektVisitor<SubjektModel> {
 
+    namespace: string;
     prelude: Prelude;
 
-    useVisitor: UseVisitor
+    useVisitor: UseVisitor;
+    shapesVisitor: ShapesVisitor;
 
-    constructor() {
+    constructor(namespace: string) {
         super();
+        this.namespace = namespace;
         this.prelude = new Prelude();
-        this.useVisitor = new UseVisitor();
+        this.useVisitor = new UseVisitor(namespace);
+        this.shapesVisitor = new ShapesVisitor(namespace);
     }
 
     protected defaultResult(): SubjektModel {
@@ -26,14 +31,9 @@ export class SubjektModelVisitor
     visitSubjekts(ctx: SubjektsContext): SubjektModel {
         const model: SubjektModel = {
             prelude: this.prelude,
-            uses: this.useVisitor.visit(ctx.useBlock())
+            uses: this.useVisitor.visit(ctx.useBlock()),
+            shapes: this.shapesVisitor.visit(ctx.shapeBlock())
         };
         return model;
-    }
-
-    visitMetadata(ctx: MetadataStatementContext): object {
-        const identifier = ctx.identifier()?.text;
-        const value = ctx.value()?.text; //TODO: Move to value visitor
-        return { [identifier]: value };
     }
 }

@@ -6,7 +6,7 @@ import { ASTVisitor, SubjektModelVisitor } from '../visitor';
 // Parse the SubjektModel from the SubjektModelVisitor
 export const parseSubjekt = (namespace: string, content: string): SubjektModel => {
 
-    const visitor = new SubjektModelVisitor();
+    const visitor = new SubjektModelVisitor(namespace);
     let parser = getParser(content);
 
     let tree = parser.subjekts();
@@ -16,7 +16,7 @@ export const parseSubjekt = (namespace: string, content: string): SubjektModel =
 }
 
 // Parse the AST from the ASTVisitor
-export const parseAST = (content: string): ASTModel => {
+export const parseAST = (namespace: string, content: string): ASTModel => {
 
     const visitor = new ASTVisitor();
     let parser = getParser(content);

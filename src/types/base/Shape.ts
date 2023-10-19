@@ -1,13 +1,11 @@
 import { AppliedTraits } from "./Trait";
 
-export interface Shapes {
-    [key: string]: Shape
-}
+export type Shapes = Record<string, Shape>;
 
 export interface Shape {
     type: ShapeType
     traits?: AppliedTraits
-}
+};
 
 export type  ShapeType = 
     SimpleShapeType
@@ -49,7 +47,7 @@ export type ShapeID = {
     namespace: NamespaceIdentifier;
     identifier: Identifier;
     member?: Identifier;
-}
+};
 
 export type RootShapeID =
     AbsoluteRootShapeID
@@ -58,7 +56,7 @@ export type RootShapeID =
 export interface AbsoluteRootShapeID {
     namespace: NamespaceIdentifier;
     identifier: Identifier;
-}
+};
 
 export type NamespaceIdentifier = string;
 export type Identifier = string;
