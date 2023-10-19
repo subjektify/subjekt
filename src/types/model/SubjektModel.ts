@@ -3,7 +3,7 @@ import { Prelude } from "./Prelude";
 
 export interface SubjektModel {
     metadata?: object;
-    prelude: Prelude;
+    prelude?: Prelude;
     uses?: ShapeID[];
     shapes?: Shapes;
 }

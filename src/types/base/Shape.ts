@@ -1,4 +1,3 @@
-import { type } from "os";
 import { AppliedTraits } from "./Trait";
 
 export interface Shapes {
@@ -8,12 +7,6 @@ export interface Shapes {
 export interface Shape {
     type: ShapeType
     traits?: AppliedTraits
-}
-
-export interface ShapeID {
-    namespace: string;
-    shapeName: string;
-    memberName?: string;
 }
 
 export type  ShapeType = 
@@ -39,8 +32,7 @@ export type AggregateShapeType =
     | 'list'
     | 'map'
     | 'structure'
-    | 'union'
-    | 'trait';
+    | 'union';
 
 export type SubjectShapeType =
     'subject'
@@ -49,3 +41,24 @@ export type SubjectShapeType =
     | 'event'
     | 'input'
     | 'output';
+
+/**
+ * ShapeID
+ */
+export type ShapeID = {
+    namespace: NamespaceIdentifier;
+    identifier: Identifier;
+    member?: Identifier;
+}
+
+export type RootShapeID =
+    AbsoluteRootShapeID
+    | Identifier;
+
+export interface AbsoluteRootShapeID {
+    namespace: NamespaceIdentifier;
+    identifier: Identifier;
+}
+
+export type NamespaceIdentifier = string;
+export type Identifier = string;

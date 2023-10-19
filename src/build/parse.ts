@@ -22,6 +22,7 @@ export const parseAST = (content: string): ASTModel => {
     let parser = getParser(content);
 
     let tree = parser.subjekts();
+    console.log('tree', tree);
     const model = visitor.visit(tree);
 
     return model;
