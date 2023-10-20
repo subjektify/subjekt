@@ -15,6 +15,7 @@
     "antlr": "npm run antlr:clean && npm run antlr:generate",
     "antlr:clean": "rimraf src/antlr/impl",
     "antlr:generate": "antlr4ts -visitor src/grammar/Subjekt.g4 -o src/antlr/impl",
+    "patch": "npm version patch && npm publish",
     "prepublishOnly": "npm run build",
     "test": "jest",
     "test:watch": "jest --watch",
