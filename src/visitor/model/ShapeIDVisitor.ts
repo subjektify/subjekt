@@ -1,21 +1,21 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { AbsoluteRootShapeIdContext, IdentifierContext, SubjektVisitor } from "../../antlr";
-import { ShapeID } from '../../types';
+import { ShapeID, SubjektModelContext } from '../../types';
 
 export class ShapeIDVisitor
     extends AbstractParseTreeVisitor<ShapeID>
     implements SubjektVisitor<ShapeID> {
 
-        namespace: string;
+        modelContext: SubjektModelContext;
 
-    constructor(namespace: string) {
+    constructor(modelContext: SubjektModelContext) {
         super();
-        this.namespace = namespace;
+        this.modelContext = modelContext;
     }
 
     protected defaultResult(): ShapeID {
         return {
-            namespace: this.namespace,
+            namespace: this.modelContext.namespace,
             identifier: ''
         };
     }
@@ -29,7 +29,7 @@ export class ShapeIDVisitor
 
     public visitIdentifier(ctx: IdentifierContext): ShapeID {
         return {
-            namespace: this.namespace,
+            namespace: this.modelContext.namespace,
             identifier: ctx.text
         };
     }

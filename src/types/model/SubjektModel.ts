@@ -7,3 +7,8 @@ export interface SubjektModel {
     uses?: ShapeID[];
     shapes?: Shapes;
 }
+
+export interface SubjektModelContext {
+    namespace: string;
+    prelude: Prelude;
+}

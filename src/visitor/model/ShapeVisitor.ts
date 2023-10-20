@@ -1,6 +1,6 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { ShapeDefinitionContext, ShapeStatementContext, SubjektVisitor } from "../../antlr";
-import { Shape, ShapeType } from '../../types';
+import { Shape, ShapeType, SubjektModelContext } from '../../types';
 import { ShapeIDVisitor } from './ShapeIDVisitor';
 import { ShapeIDUtil } from '../../util';
 
@@ -8,13 +8,13 @@ export class ShapeVisitor
     extends AbstractParseTreeVisitor<Record<string, Shape>>
     implements SubjektVisitor<Record<string, Shape>> {
 
-        namespace: string;
+        modelContext: SubjektModelContext;
         shapeIdVisitor: ShapeIDVisitor;
 
-    constructor(namespace: string) {
+    constructor(modelContext: SubjektModelContext) {
         super();
-        this.namespace = namespace;
-        this.shapeIdVisitor = new ShapeIDVisitor(namespace);
+        this.modelContext = modelContext;
+        this.shapeIdVisitor = new ShapeIDVisitor(modelContext);
     }
 
     protected defaultResult(): Record<string, Shape> {

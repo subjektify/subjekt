@@ -1,19 +1,19 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { SubjektVisitor, UseBlockContext, UseStatementContext } from "../../antlr";
-import { ShapeID } from "../../types";
+import { ShapeID, SubjektModelContext } from "../../types";
 import { ShapeIDVisitor } from './ShapeIDVisitor';
 
 export class UseVisitor
     extends AbstractParseTreeVisitor<ShapeID[]>
     implements SubjektVisitor<ShapeID[]> {
 
-    namespace: string;
+    modelContext: SubjektModelContext;
     private useStatementVisitor: UseStatementVisitor;
 
-    constructor(namespace: string) {
+    constructor(modelContext: SubjektModelContext) {
         super();
-        this.namespace = namespace;
-        this.useStatementVisitor = new UseStatementVisitor(namespace);
+        this.modelContext = modelContext;
+        this.useStatementVisitor = new UseStatementVisitor(modelContext);
     }
 
     protected defaultResult(): ShapeID[] {
@@ -29,18 +29,18 @@ export class UseStatementVisitor
     extends AbstractParseTreeVisitor<ShapeID>
     implements SubjektVisitor<ShapeID> {
 
-    namespace: string;
+    modelContext: SubjektModelContext;
     private shapeIdVisitor: ShapeIDVisitor;
 
-    constructor(namespace: string) {
+    constructor(modelContext: SubjektModelContext) {
         super();
-        this.namespace = namespace;
-        this.shapeIdVisitor = new ShapeIDVisitor(namespace);
+        this.modelContext = modelContext;
+        this.shapeIdVisitor = new ShapeIDVisitor(modelContext);
     }
 
     protected defaultResult(): ShapeID {
         return {
-            namespace: '',
+            namespace: this.modelContext.namespace,
             identifier: ''
         };
     }

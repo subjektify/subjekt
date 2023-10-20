@@ -1,6 +1,6 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { SubjektVisitor, SubjektsContext } from "../../antlr";
-import { Prelude, SubjektModel } from "../../types";
+import { Prelude, SubjektModel, SubjektModelContext } from "../../types";
 import { UseVisitor } from './UseVisitor';
 import { ShapesVisitor } from './ShapesVisitor';
 
@@ -8,7 +8,7 @@ export class SubjektModelVisitor
     extends AbstractParseTreeVisitor<SubjektModel>
     implements SubjektVisitor<SubjektModel> {
 
-    namespace: string;
+    modelContext: SubjektModelContext;
     prelude: Prelude;
 
     useVisitor: UseVisitor;
@@ -16,10 +16,13 @@ export class SubjektModelVisitor
 
     constructor(namespace: string) {
         super();
-        this.namespace = namespace;
         this.prelude = new Prelude();
-        this.useVisitor = new UseVisitor(namespace);
-        this.shapesVisitor = new ShapesVisitor(namespace);
+        this.modelContext = {
+            namespace,
+            prelude: this.prelude
+        };
+        this.useVisitor = new UseVisitor(this.modelContext);
+        this.shapesVisitor = new ShapesVisitor(this.modelContext);
     }
 
     protected defaultResult(): SubjektModel {
