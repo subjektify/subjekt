@@ -7,6 +7,9 @@ export interface Shape {
     traits?: AppliedTraits
 };
 
+/**
+ * Shape Types
+ */
 export type  ShapeType = 
     SimpleShapeType
     | AggregateShapeType
@@ -38,7 +41,8 @@ export type SubjectShapeType =
     | 'behavior'
     | 'event'
     | 'input'
-    | 'output';
+    | 'output'
+    | 'composition';
 
 /**
  * ShapeID

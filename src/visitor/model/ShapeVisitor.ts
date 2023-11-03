@@ -1,12 +1,12 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { ShapeDefinitionContext, ShapeStatementContext, SubjektVisitor } from "../../antlr";
-import { Shape, ShapeType, SubjektModelContext } from '../../types';
+import { Shape, ShapeType, Shapes, SubjektModelContext } from '../../types';
 import { ShapeIDVisitor } from './ShapeIDVisitor';
 import { ShapeIDUtil } from '../../util';
 
 export class ShapeVisitor
-    extends AbstractParseTreeVisitor<Record<string, Shape>>
-    implements SubjektVisitor<Record<string, Shape>> {
+    extends AbstractParseTreeVisitor<Shapes>
+    implements SubjektVisitor<Shapes> {
 
         modelContext: SubjektModelContext;
         shapeIdVisitor: ShapeIDVisitor;
@@ -17,22 +17,22 @@ export class ShapeVisitor
         this.shapeIdVisitor = new ShapeIDVisitor(modelContext);
     }
 
-    protected defaultResult(): Record<string, Shape> {
+    protected defaultResult(): Shapes {
         return {
         };
     }
 
-    public visitShapeStatement(ctx: ShapeStatementContext): Record<string, Shape> {
-        const result: Record<string, Shape> = this.visit(ctx.shapeDefinition());
+    public visitShapeStatement(ctx: ShapeStatementContext): Shapes {
+        const result: Shapes = this.visit(ctx.shapeDefinition());
         return result;
     }
     
-    public visitShapeDefinition(ctx: ShapeDefinitionContext): Record<string, Shape> {
+    public visitShapeDefinition(ctx: ShapeDefinitionContext): Shapes {
         const shapeId = this.shapeIdVisitor.visit(ctx.identifier());
         const shape: Shape = {
             type: ctx.shapeType().text as ShapeType,
         };
-        const result: Record<string, Shape> = {
+        const result: Shapes = {
             [ShapeIDUtil.toStr(shapeId)]: shape
         };
 
