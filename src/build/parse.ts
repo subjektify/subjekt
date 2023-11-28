@@ -9,7 +9,7 @@ export const parseSubjekt = (namespace: string, content: string): SubjektModel =
     const visitor = new SubjektModelVisitor(namespace);
     let parser = getParser(content);
 
-    let tree = parser.subjekts();
+    let tree = parser.idl();
     const model = visitor.visit(tree);
 
     return model;
@@ -21,8 +21,7 @@ export const parseAST = (namespace: string, content: string): ASTModel => {
     const visitor = new ASTVisitor();
     let parser = getParser(content);
 
-    let tree = parser.subjekts();
-    console.log('tree', tree);
+    let tree = parser.idl();
     const model = visitor.visit(tree);
 
     return model;

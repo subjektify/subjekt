@@ -10,7 +10,7 @@
  * 
  * ------------------------------------------------------------------------------
  */
-export * from './impl/src/grammar/SubjektLexer';
-export * from './impl/src/grammar/SubjektListener';
-export * from './impl/src/grammar/SubjektParser';
-export * from './impl/src/grammar/SubjektVisitor';
+export * from './impl/SubjektLexer';
+export * from './impl/SubjektListener';
+export * from './impl/SubjektParser';
+export * from './impl/SubjektVisitor';

@@ -62,7 +62,7 @@ export class SubjektParser extends Parser {
 	public static readonly NUMBER = 32;
 	public static readonly WS = 33;
 	public static readonly COMMENT = 34;
-	public static readonly RULE_subjekts = 0;
+	public static readonly RULE_idl = 0;
 	public static readonly RULE_metadataBlock = 1;
 	public static readonly RULE_metadataStatement = 2;
 	public static readonly RULE_useBlock = 3;
@@ -102,7 +102,7 @@ export class SubjektParser extends Parser {
 	public static readonly RULE_identifier = 37;
 	// tslint:disable:no-trailing-whitespace
 	public static readonly ruleNames: string[] = [
-		"subjekts", "metadataBlock", "metadataStatement", "useBlock", "useStatement", 
+		"idl", "metadataBlock", "metadataStatement", "useBlock", "useStatement", 
 		"shapeBlock", "shapeStatement", "shapeDefinition", "shapeType", "shapeTypeDefinition", 
 		"members", "enumMembers", "enumMember", "listMembers", "mapMembers", "keyValuePair", 
 		"subjectMembers", "stateReference", "behaviorReference", "subscriptionReference", 
@@ -153,9 +153,9 @@ export class SubjektParser extends Parser {
 		this._interp = new ParserATNSimulator(SubjektParser._ATN, this);
 	}
 	// @RuleVersion(0)
-	public subjekts(): SubjektsContext {
-		let _localctx: SubjektsContext = new SubjektsContext(this._ctx, this.state);
-		this.enterRule(_localctx, 0, SubjektParser.RULE_subjekts);
+	public idl(): IdlContext {
+		let _localctx: IdlContext = new IdlContext(this._ctx, this.state);
+		this.enterRule(_localctx, 0, SubjektParser.RULE_idl);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
@@ -2258,7 +2258,7 @@ export class SubjektParser extends Parser {
 
 }
 
-export class SubjektsContext extends ParserRuleContext {
+export class IdlContext extends ParserRuleContext {
 	public metadataBlock(): MetadataBlockContext {
 		return this.getRuleContext(0, MetadataBlockContext);
 	}
@@ -2273,23 +2273,23 @@ export class SubjektsContext extends ParserRuleContext {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return SubjektParser.RULE_subjekts; }
+	public get ruleIndex(): number { return SubjektParser.RULE_idl; }
 	// @Override
 	public enterRule(listener: SubjektListener): void {
-		if (listener.enterSubjekts) {
-			listener.enterSubjekts(this);
+		if (listener.enterIdl) {
+			listener.enterIdl(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: SubjektListener): void {
-		if (listener.exitSubjekts) {
-			listener.exitSubjekts(this);
+		if (listener.exitIdl) {
+			listener.exitIdl(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: SubjektVisitor<Result>): Result {
-		if (visitor.visitSubjekts) {
-			return visitor.visitSubjekts(this);
+		if (visitor.visitIdl) {
+			return visitor.visitIdl(this);
 		} else {
 			return visitor.visitChildren(this);
 		}

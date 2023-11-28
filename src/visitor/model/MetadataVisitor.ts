@@ -1,13 +1,16 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { MetadataBlockContext, SubjektVisitor } from "../../antlr";
-import { Shape } from '../../types';
+import { Shape, SubjektModelContext } from '../../types';
 
 export class MetadataVisitor
     extends AbstractParseTreeVisitor<object>
     implements SubjektVisitor<object> {
 
-    constructor() {
+    modelContext: SubjektModelContext;
+
+    constructor(modelContext: SubjektModelContext) {
         super();
+        this.modelContext = modelContext;
     }
 
     protected defaultResult(): object {

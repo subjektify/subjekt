@@ -3,7 +3,7 @@
 
 import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
-import { SubjektsContext } from "./SubjektParser";
+import { IdlContext } from "./SubjektParser";
 import { MetadataBlockContext } from "./SubjektParser";
 import { MetadataStatementContext } from "./SubjektParser";
 import { UseBlockContext } from "./SubjektParser";
@@ -52,11 +52,11 @@ import { IdentifierContext } from "./SubjektParser";
  */
 export interface SubjektVisitor<Result> extends ParseTreeVisitor<Result> {
 	/**
-	 * Visit a parse tree produced by `SubjektParser.subjekts`.
+	 * Visit a parse tree produced by `SubjektParser.idl`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitSubjekts?: (ctx: SubjektsContext) => Result;
+	visitIdl?: (ctx: IdlContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SubjektParser.metadataBlock`.

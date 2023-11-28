@@ -73,7 +73,7 @@ WS
 COMMENT
 
 rule names:
-subjekts
+idl
 metadataBlock
 metadataStatement
 useBlock

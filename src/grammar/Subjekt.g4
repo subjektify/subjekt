@@ -4,7 +4,7 @@ grammar Subjekt;
  * Parser Rules
  */
 
-subjekts: metadataBlock useBlock shapeBlock EOF;
+idl: metadataBlock useBlock shapeBlock EOF;
 
 // MetadataBlock
 metadataBlock: metadataStatement*;

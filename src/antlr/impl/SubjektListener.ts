@@ -3,7 +3,7 @@
 
 import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
-import { SubjektsContext } from "./SubjektParser";
+import { IdlContext } from "./SubjektParser";
 import { MetadataBlockContext } from "./SubjektParser";
 import { MetadataStatementContext } from "./SubjektParser";
 import { UseBlockContext } from "./SubjektParser";
@@ -49,15 +49,15 @@ import { IdentifierContext } from "./SubjektParser";
  */
 export interface SubjektListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by `SubjektParser.subjekts`.
+	 * Enter a parse tree produced by `SubjektParser.idl`.
 	 * @param ctx the parse tree
 	 */
-	enterSubjekts?: (ctx: SubjektsContext) => void;
+	enterIdl?: (ctx: IdlContext) => void;
 	/**
-	 * Exit a parse tree produced by `SubjektParser.subjekts`.
+	 * Exit a parse tree produced by `SubjektParser.idl`.
 	 * @param ctx the parse tree
 	 */
-	exitSubjekts?: (ctx: SubjektsContext) => void;
+	exitIdl?: (ctx: IdlContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SubjektParser.metadataBlock`.
