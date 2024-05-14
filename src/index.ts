@@ -1,2 +1,2 @@
-export * from './build';
+export * from './parse';
 export * from './types';
