@@ -6,4 +6,4 @@
 
 Subjekt is a protocol-agnostic, declarative language for defining subjects, smart contracts, and SDKs.
 
-## [Learn More](https://subjektify.dev/docs/subjekt)
+## [Learn More](https://subjektify.dev/docs/learn/subjekt)
