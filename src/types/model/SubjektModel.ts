@@ -1,7 +1,7 @@
 import { ShapeID, Shapes } from "../base";
 import { Prelude } from "./Prelude";
 
-export interface SubjektModel {
+export type SubjektModel = {
     metadata?: object;
     prelude?: Prelude;
     uses?: ShapeID[];
