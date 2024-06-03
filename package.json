@@ -1,8 +1,8 @@
 {
   "name": "subjekt",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Subjekt is a protocol-agnostic, declarative language for defining subjects, smart contracts, and SDKs.",
-  "author": "subjektify",
+  "author": "Subjektify Labs",
   "license": "Apache-2.0",
   "main": "dist/index",
   "files": [

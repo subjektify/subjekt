@@ -62,6 +62,7 @@ export class SubjektParser extends Parser {
 	public static readonly NUMBER = 32;
 	public static readonly WS = 33;
 	public static readonly COMMENT = 34;
+	public static readonly DOCUMENTATION_COMMENT = 35;
 	public static readonly RULE_idl = 0;
 	public static readonly RULE_metadataBlock = 1;
 	public static readonly RULE_metadataStatement = 2;
@@ -124,7 +125,7 @@ export class SubjektParser extends Parser {
 		"SIMPLE_SHAPE_TYPE", "SUBJECT_SHAPE_TYPE", "AT_SIGN", "LPAREN", "RPAREN", 
 		"LBRACK", "RBRACK", "LCURLY", "RCURLY", "ASSIGNMENT", "COLON", "HASH_SIGN", 
 		"DOLLAR_SIGN", "COMMA", "SEMICOLON", "IDENTIFIER_CHARS", "SINGLE_STRING", 
-		"DOUBLE_STRING", "NUMBER", "WS", "COMMENT",
+		"DOUBLE_STRING", "NUMBER", "WS", "COMMENT", "DOCUMENTATION_COMMENT",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(SubjektParser._LITERAL_NAMES, SubjektParser._SYMBOLIC_NAMES, []);
 
@@ -2053,7 +2054,7 @@ export class SubjektParser extends Parser {
 	}
 
 	public static readonly _serializedATN: string =
-		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03$\u0197\x04\x02" +
+		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03%\u0197\x04\x02" +
 		"\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04\x07" +
 		"\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04\f\t\f\x04\r\t\r\x04" +
 		"\x0E\t\x0E\x04\x0F\t\x0F\x04\x10\t\x10\x04\x11\t\x11\x04\x12\t\x12\x04" +

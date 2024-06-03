@@ -7,3 +7,8 @@
 Subjekt is a protocol-agnostic, declarative language for defining subjects, smart contracts, and SDKs.
 
 ## [Learn More](https://subjektify.dev/docs/learn/subjekt)
+
+## Requirements
+
+- Java Runtime Environment (1.8.0)
+- TypeScript 2.0+

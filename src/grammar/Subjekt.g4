@@ -181,3 +181,4 @@ DOUBLE_STRING: '"' ~('"')+ '"';
 NUMBER: [0-9]+;
 WS: [ \t\r\n]+ -> skip;
 COMMENT: '//' ~[\r\n]* -> skip;
+DOCUMENTATION_COMMENT: '///' ~[\r\n]* -> skip;
