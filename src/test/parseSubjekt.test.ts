@@ -1,5 +1,5 @@
 import { parseSubjekt } from '../build';
-import { Prelude, SubjektModel } from '../types';
+import { SubjektModel } from '../types';
 
 describe('parseSubjekt', () => {
   it('should parse a valid Subjekt basic string', () => {
@@ -7,7 +7,6 @@ describe('parseSubjekt', () => {
     const namespace = 'myNamespace';
     const source =`string MyString`;
     const expected: SubjektModel = {
-      prelude: new Prelude(),
       uses: [],
       shapes: {
         'myNamespace#MyString': {
@@ -32,7 +31,6 @@ use other.namespace#OtherShape
 string MyString
 `;
     const expected: SubjektModel = {
-      prelude: new Prelude(),
       uses: [
         {
           namespace: 'other.namespace',
