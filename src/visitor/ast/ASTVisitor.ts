@@ -1,5 +1,5 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
-import { SubjektVisitor } from "../../antlr";
+import { IdlContext, SubjektVisitor } from "../../antlr";
 import { ASTModel } from "../../types";
 
 export class ASTVisitor
@@ -12,5 +12,11 @@ export class ASTVisitor
 
     protected defaultResult(): ASTModel {
         return { }
+    }
+
+    visitIdl(ctx: IdlContext): ASTModel {
+        return {
+            metadata: {}
+        }
     }
 }

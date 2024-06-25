@@ -30,7 +30,7 @@ export class SubjektModelVisitor
         };
     }
 
-    visitSubjekts(ctx: IdlContext): SubjektModel {
+    visitIdl(ctx: IdlContext): SubjektModel {
         const model: SubjektModel = {
             metadata: this.metadataVisitor.visit(ctx.metadataBlock()),
             uses: this.useVisitor.visit(ctx.useBlock()),
