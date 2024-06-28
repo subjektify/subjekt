@@ -33,7 +33,7 @@ export class ShapeVisitor
             type: ctx.shapeType().text as ShapeType,
         };
         const result: Shapes = {
-            [ShapeIDUtil.toStr(shapeId)]: shape
+            [ShapeIDUtil.toString(shapeId)]: shape
         };
 
         return result;
