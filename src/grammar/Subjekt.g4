@@ -112,14 +112,21 @@ BEHAVIORS: 'behaviors';
 TRIGGERS: 'triggers';
 INPUTS: 'inputs';
 OUTPUTS: 'outputs';
-AGGREGATE_SHAPE_TYPE:
-	'enum'
-	| 'list'
+AGGREGATE_SHAPE_TYPE: 'list'
 	| 'map'
 	| 'structure'
 	| 'trait';
 SIMPLE_SHAPE_TYPE:
 	'address'
+	| 'bigDecimal'
+	| 'bigInteger'
+	| 'blob'
+	| 'boolean'
+	| 'byte'
+	| 'document'
+	| 'double'
+	| 'enum'
+	| 'float'
 	| 'uint'
 	| 'uint8'
 	| 'uint16'
@@ -134,16 +141,9 @@ SIMPLE_SHAPE_TYPE:
 	| 'int64'
 	| 'int128'
 	| 'int256'
-	| 'byte'
-	| 'bytes'
-	| 'blob'
-	| 'boolean'
-	| 'document'
+	| 'long'
+	| 'short'
 	| 'string'
-	| 'float'
-	| 'double'
-	| 'bigInteger'
-	| 'bigDecimal'
 	| 'timestamp'
 	| 'hash256'
 	| 'hash512'
