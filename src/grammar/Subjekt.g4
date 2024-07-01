@@ -46,11 +46,11 @@ subjectMembers:
 	| behaviorReference
 	| subscriptionReference;
 stateReference:
-	STATES COLON LBRACK identifier (COMMA identifier)* COMMA? RBRACK;
+	STATE COLON LCURLY keyValuePair (COMMA? keyValuePair)* COMMA? RCURLY;
 behaviorReference:
-	BEHAVIORS COLON LBRACK identifier (COMMA identifier)* COMMA? RBRACK;
+	BEHAVIORS COLON LBRACK identifier (COMMA? identifier)* COMMA? RBRACK;
 subscriptionReference:
-	SUBSCRIPTIONS COLON LBRACK identifier (COMMA identifier)* COMMA? RBRACK;
+	SUBSCRIPTIONS COLON LBRACK identifier (COMMA? identifier)* COMMA? RBRACK;
 
 behaviorMembers:
 	triggerReference
@@ -107,7 +107,7 @@ MEMBER: 'member';
 KEY: 'key';
 VALUE: 'value';
 SUBSCRIPTIONS: 'subscriptions';
-STATES: 'states';
+STATE: 'state';
 BEHAVIORS: 'behaviors';
 TRIGGERS: 'triggers';
 INPUTS: 'inputs';
@@ -118,8 +118,6 @@ AGGREGATE_SHAPE_TYPE: 'list'
 	| 'trait';
 SIMPLE_SHAPE_TYPE:
 	'address'
-	| 'bigDecimal'
-	| 'bigInteger'
 	| 'blob'
 	| 'boolean'
 	| 'byte'
@@ -141,8 +139,6 @@ SIMPLE_SHAPE_TYPE:
 	| 'int64'
 	| 'int128'
 	| 'int256'
-	| 'long'
-	| 'short'
 	| 'string'
 	| 'timestamp'
 	| 'hash256'
@@ -151,7 +147,6 @@ SIMPLE_SHAPE_TYPE:
 
 SUBJECT_SHAPE_TYPE:
 	'subject'
-	| 'state'
 	| 'behavior'
 	| 'composition'
 	| 'trigger'
