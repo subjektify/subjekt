@@ -2,9 +2,11 @@
  * This file represents the JSON Abstract Syntax Tree (AST) model for a Subjekt model.
  */
 
+import { NodeValue } from "../base";
+
 export interface ASTModel {
-    metadata?: object;
-    shapes?: Map<string, ASTShape>;
+    metadata?: Record<string, NodeValue>;
+    shapes?: Record<string, ASTShape>;
 }
 
 // Use Statements

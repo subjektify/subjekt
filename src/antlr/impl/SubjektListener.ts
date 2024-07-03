@@ -13,20 +13,23 @@ import { ShapeStatementContext } from "./SubjektParser";
 import { ShapeDefinitionContext } from "./SubjektParser";
 import { ShapeTypeContext } from "./SubjektParser";
 import { ShapeTypeDefinitionContext } from "./SubjektParser";
-import { MembersContext } from "./SubjektParser";
+import { SimpleShapeTypeDefinitionContext } from "./SubjektParser";
+import { AggregateShapeTypeDefinitionContext } from "./SubjektParser";
+import { SubjectShapeTypeDefinitionContext } from "./SubjektParser";
+import { AggregateShapeMembersContext } from "./SubjektParser";
+import { SubjectShapeMembersContext } from "./SubjektParser";
 import { EnumMembersContext } from "./SubjektParser";
 import { EnumMemberContext } from "./SubjektParser";
 import { ListMembersContext } from "./SubjektParser";
 import { MapMembersContext } from "./SubjektParser";
 import { KeyValuePairContext } from "./SubjektParser";
-import { SubjectMembersContext } from "./SubjektParser";
 import { StateReferenceContext } from "./SubjektParser";
 import { BehaviorReferenceContext } from "./SubjektParser";
-import { SubscriptionReferenceContext } from "./SubjektParser";
+import { EventReferenceContext } from "./SubjektParser";
 import { BehaviorMembersContext } from "./SubjektParser";
 import { InputReferenceContext } from "./SubjektParser";
 import { OutputReferenceContext } from "./SubjektParser";
-import { TriggerReferenceContext } from "./SubjektParser";
+import { ErrorReferenceContext } from "./SubjektParser";
 import { MemberContext } from "./SubjektParser";
 import { ShapeIdContext } from "./SubjektParser";
 import { RootShapeIdContext } from "./SubjektParser";
@@ -38,7 +41,11 @@ import { TraitStructureListContext } from "./SubjektParser";
 import { TraitStructureContext } from "./SubjektParser";
 import { TraitNodeContext } from "./SubjektParser";
 import { ValueContext } from "./SubjektParser";
+import { ListValueContext } from "./SubjektParser";
+import { ObjectValueContext } from "./SubjektParser";
+import { KvpContext } from "./SubjektParser";
 import { StringContext } from "./SubjektParser";
+import { NumberContext } from "./SubjektParser";
 import { NamespaceIdentifierContext } from "./SubjektParser";
 import { IdentifierContext } from "./SubjektParser";
 
@@ -159,15 +166,59 @@ export interface SubjektListener extends ParseTreeListener {
 	exitShapeTypeDefinition?: (ctx: ShapeTypeDefinitionContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `SubjektParser.members`.
+	 * Enter a parse tree produced by `SubjektParser.simpleShapeTypeDefinition`.
 	 * @param ctx the parse tree
 	 */
-	enterMembers?: (ctx: MembersContext) => void;
+	enterSimpleShapeTypeDefinition?: (ctx: SimpleShapeTypeDefinitionContext) => void;
 	/**
-	 * Exit a parse tree produced by `SubjektParser.members`.
+	 * Exit a parse tree produced by `SubjektParser.simpleShapeTypeDefinition`.
 	 * @param ctx the parse tree
 	 */
-	exitMembers?: (ctx: MembersContext) => void;
+	exitSimpleShapeTypeDefinition?: (ctx: SimpleShapeTypeDefinitionContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SubjektParser.aggregateShapeTypeDefinition`.
+	 * @param ctx the parse tree
+	 */
+	enterAggregateShapeTypeDefinition?: (ctx: AggregateShapeTypeDefinitionContext) => void;
+	/**
+	 * Exit a parse tree produced by `SubjektParser.aggregateShapeTypeDefinition`.
+	 * @param ctx the parse tree
+	 */
+	exitAggregateShapeTypeDefinition?: (ctx: AggregateShapeTypeDefinitionContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SubjektParser.subjectShapeTypeDefinition`.
+	 * @param ctx the parse tree
+	 */
+	enterSubjectShapeTypeDefinition?: (ctx: SubjectShapeTypeDefinitionContext) => void;
+	/**
+	 * Exit a parse tree produced by `SubjektParser.subjectShapeTypeDefinition`.
+	 * @param ctx the parse tree
+	 */
+	exitSubjectShapeTypeDefinition?: (ctx: SubjectShapeTypeDefinitionContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SubjektParser.aggregateShapeMembers`.
+	 * @param ctx the parse tree
+	 */
+	enterAggregateShapeMembers?: (ctx: AggregateShapeMembersContext) => void;
+	/**
+	 * Exit a parse tree produced by `SubjektParser.aggregateShapeMembers`.
+	 * @param ctx the parse tree
+	 */
+	exitAggregateShapeMembers?: (ctx: AggregateShapeMembersContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SubjektParser.subjectShapeMembers`.
+	 * @param ctx the parse tree
+	 */
+	enterSubjectShapeMembers?: (ctx: SubjectShapeMembersContext) => void;
+	/**
+	 * Exit a parse tree produced by `SubjektParser.subjectShapeMembers`.
+	 * @param ctx the parse tree
+	 */
+	exitSubjectShapeMembers?: (ctx: SubjectShapeMembersContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SubjektParser.enumMembers`.
@@ -225,17 +276,6 @@ export interface SubjektListener extends ParseTreeListener {
 	exitKeyValuePair?: (ctx: KeyValuePairContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `SubjektParser.subjectMembers`.
-	 * @param ctx the parse tree
-	 */
-	enterSubjectMembers?: (ctx: SubjectMembersContext) => void;
-	/**
-	 * Exit a parse tree produced by `SubjektParser.subjectMembers`.
-	 * @param ctx the parse tree
-	 */
-	exitSubjectMembers?: (ctx: SubjectMembersContext) => void;
-
-	/**
 	 * Enter a parse tree produced by `SubjektParser.stateReference`.
 	 * @param ctx the parse tree
 	 */
@@ -258,15 +298,15 @@ export interface SubjektListener extends ParseTreeListener {
 	exitBehaviorReference?: (ctx: BehaviorReferenceContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `SubjektParser.subscriptionReference`.
+	 * Enter a parse tree produced by `SubjektParser.eventReference`.
 	 * @param ctx the parse tree
 	 */
-	enterSubscriptionReference?: (ctx: SubscriptionReferenceContext) => void;
+	enterEventReference?: (ctx: EventReferenceContext) => void;
 	/**
-	 * Exit a parse tree produced by `SubjektParser.subscriptionReference`.
+	 * Exit a parse tree produced by `SubjektParser.eventReference`.
 	 * @param ctx the parse tree
 	 */
-	exitSubscriptionReference?: (ctx: SubscriptionReferenceContext) => void;
+	exitEventReference?: (ctx: EventReferenceContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SubjektParser.behaviorMembers`.
@@ -302,15 +342,15 @@ export interface SubjektListener extends ParseTreeListener {
 	exitOutputReference?: (ctx: OutputReferenceContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `SubjektParser.triggerReference`.
+	 * Enter a parse tree produced by `SubjektParser.errorReference`.
 	 * @param ctx the parse tree
 	 */
-	enterTriggerReference?: (ctx: TriggerReferenceContext) => void;
+	enterErrorReference?: (ctx: ErrorReferenceContext) => void;
 	/**
-	 * Exit a parse tree produced by `SubjektParser.triggerReference`.
+	 * Exit a parse tree produced by `SubjektParser.errorReference`.
 	 * @param ctx the parse tree
 	 */
-	exitTriggerReference?: (ctx: TriggerReferenceContext) => void;
+	exitErrorReference?: (ctx: ErrorReferenceContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SubjektParser.member`.
@@ -434,6 +474,39 @@ export interface SubjektListener extends ParseTreeListener {
 	exitValue?: (ctx: ValueContext) => void;
 
 	/**
+	 * Enter a parse tree produced by `SubjektParser.listValue`.
+	 * @param ctx the parse tree
+	 */
+	enterListValue?: (ctx: ListValueContext) => void;
+	/**
+	 * Exit a parse tree produced by `SubjektParser.listValue`.
+	 * @param ctx the parse tree
+	 */
+	exitListValue?: (ctx: ListValueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SubjektParser.objectValue`.
+	 * @param ctx the parse tree
+	 */
+	enterObjectValue?: (ctx: ObjectValueContext) => void;
+	/**
+	 * Exit a parse tree produced by `SubjektParser.objectValue`.
+	 * @param ctx the parse tree
+	 */
+	exitObjectValue?: (ctx: ObjectValueContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SubjektParser.kvp`.
+	 * @param ctx the parse tree
+	 */
+	enterKvp?: (ctx: KvpContext) => void;
+	/**
+	 * Exit a parse tree produced by `SubjektParser.kvp`.
+	 * @param ctx the parse tree
+	 */
+	exitKvp?: (ctx: KvpContext) => void;
+
+	/**
 	 * Enter a parse tree produced by `SubjektParser.string`.
 	 * @param ctx the parse tree
 	 */
@@ -443,6 +516,17 @@ export interface SubjektListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitString?: (ctx: StringContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SubjektParser.number`.
+	 * @param ctx the parse tree
+	 */
+	enterNumber?: (ctx: NumberContext) => void;
+	/**
+	 * Exit a parse tree produced by `SubjektParser.number`.
+	 * @param ctx the parse tree
+	 */
+	exitNumber?: (ctx: NumberContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SubjektParser.namespaceIdentifier`.

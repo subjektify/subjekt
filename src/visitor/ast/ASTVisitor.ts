@@ -1,13 +1,21 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { IdlContext, SubjektVisitor } from "../../antlr";
-import { ASTModel } from "../../types";
+import { ASTModel, SubjektModelContext } from "../../types";
+import { MetadataVisitor } from '../base';
 
 export class ASTVisitor
     extends AbstractParseTreeVisitor<ASTModel>
     implements SubjektVisitor<ASTModel> {
 
-    constructor() {
+        modelContext: SubjektModelContext;
+        metadataVisitor: MetadataVisitor;
+
+    constructor(namespace: string) {
         super();
+        this.modelContext = {
+            namespace
+        };
+        this.metadataVisitor = new MetadataVisitor(this.modelContext);
     }
 
     protected defaultResult(): ASTModel {
@@ -16,7 +24,7 @@ export class ASTVisitor
 
     visitIdl(ctx: IdlContext): ASTModel {
         return {
-            metadata: {}
+            metadata: this.metadataVisitor.visit(ctx.metadataBlock())
         }
     }
 }

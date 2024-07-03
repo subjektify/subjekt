@@ -1,7 +1,7 @@
-import { ShapeID, Shapes } from "../base";
+import { NodeValue, ShapeID, Shapes } from "../base";
 
 export type SubjektModel = {
-    metadata?: object;
+    metadata?: Record<string, NodeValue>;
     uses?: ShapeID[];
     shapes?: Shapes;
 }

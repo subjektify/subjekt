@@ -13,20 +13,23 @@ import { ShapeStatementContext } from "./SubjektParser";
 import { ShapeDefinitionContext } from "./SubjektParser";
 import { ShapeTypeContext } from "./SubjektParser";
 import { ShapeTypeDefinitionContext } from "./SubjektParser";
-import { MembersContext } from "./SubjektParser";
+import { SimpleShapeTypeDefinitionContext } from "./SubjektParser";
+import { AggregateShapeTypeDefinitionContext } from "./SubjektParser";
+import { SubjectShapeTypeDefinitionContext } from "./SubjektParser";
+import { AggregateShapeMembersContext } from "./SubjektParser";
+import { SubjectShapeMembersContext } from "./SubjektParser";
 import { EnumMembersContext } from "./SubjektParser";
 import { EnumMemberContext } from "./SubjektParser";
 import { ListMembersContext } from "./SubjektParser";
 import { MapMembersContext } from "./SubjektParser";
 import { KeyValuePairContext } from "./SubjektParser";
-import { SubjectMembersContext } from "./SubjektParser";
 import { StateReferenceContext } from "./SubjektParser";
 import { BehaviorReferenceContext } from "./SubjektParser";
-import { SubscriptionReferenceContext } from "./SubjektParser";
+import { EventReferenceContext } from "./SubjektParser";
 import { BehaviorMembersContext } from "./SubjektParser";
 import { InputReferenceContext } from "./SubjektParser";
 import { OutputReferenceContext } from "./SubjektParser";
-import { TriggerReferenceContext } from "./SubjektParser";
+import { ErrorReferenceContext } from "./SubjektParser";
 import { MemberContext } from "./SubjektParser";
 import { ShapeIdContext } from "./SubjektParser";
 import { RootShapeIdContext } from "./SubjektParser";
@@ -38,7 +41,11 @@ import { TraitStructureListContext } from "./SubjektParser";
 import { TraitStructureContext } from "./SubjektParser";
 import { TraitNodeContext } from "./SubjektParser";
 import { ValueContext } from "./SubjektParser";
+import { ListValueContext } from "./SubjektParser";
+import { ObjectValueContext } from "./SubjektParser";
+import { KvpContext } from "./SubjektParser";
 import { StringContext } from "./SubjektParser";
+import { NumberContext } from "./SubjektParser";
 import { NamespaceIdentifierContext } from "./SubjektParser";
 import { IdentifierContext } from "./SubjektParser";
 
@@ -122,11 +129,39 @@ export interface SubjektVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitShapeTypeDefinition?: (ctx: ShapeTypeDefinitionContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `SubjektParser.members`.
+	 * Visit a parse tree produced by `SubjektParser.simpleShapeTypeDefinition`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitMembers?: (ctx: MembersContext) => Result;
+	visitSimpleShapeTypeDefinition?: (ctx: SimpleShapeTypeDefinitionContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SubjektParser.aggregateShapeTypeDefinition`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitAggregateShapeTypeDefinition?: (ctx: AggregateShapeTypeDefinitionContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SubjektParser.subjectShapeTypeDefinition`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitSubjectShapeTypeDefinition?: (ctx: SubjectShapeTypeDefinitionContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SubjektParser.aggregateShapeMembers`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitAggregateShapeMembers?: (ctx: AggregateShapeMembersContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SubjektParser.subjectShapeMembers`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitSubjectShapeMembers?: (ctx: SubjectShapeMembersContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SubjektParser.enumMembers`.
@@ -164,13 +199,6 @@ export interface SubjektVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitKeyValuePair?: (ctx: KeyValuePairContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `SubjektParser.subjectMembers`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitSubjectMembers?: (ctx: SubjectMembersContext) => Result;
-
-	/**
 	 * Visit a parse tree produced by `SubjektParser.stateReference`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -185,11 +213,11 @@ export interface SubjektVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitBehaviorReference?: (ctx: BehaviorReferenceContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `SubjektParser.subscriptionReference`.
+	 * Visit a parse tree produced by `SubjektParser.eventReference`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitSubscriptionReference?: (ctx: SubscriptionReferenceContext) => Result;
+	visitEventReference?: (ctx: EventReferenceContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SubjektParser.behaviorMembers`.
@@ -213,11 +241,11 @@ export interface SubjektVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitOutputReference?: (ctx: OutputReferenceContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `SubjektParser.triggerReference`.
+	 * Visit a parse tree produced by `SubjektParser.errorReference`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitTriggerReference?: (ctx: TriggerReferenceContext) => Result;
+	visitErrorReference?: (ctx: ErrorReferenceContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SubjektParser.member`.
@@ -297,11 +325,39 @@ export interface SubjektVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitValue?: (ctx: ValueContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by `SubjektParser.listValue`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitListValue?: (ctx: ListValueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SubjektParser.objectValue`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitObjectValue?: (ctx: ObjectValueContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SubjektParser.kvp`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitKvp?: (ctx: KvpContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by `SubjektParser.string`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	visitString?: (ctx: StringContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SubjektParser.number`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitNumber?: (ctx: NumberContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SubjektParser.namespaceIdentifier`.

@@ -1,7 +1,7 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { SubjektVisitor, IdlContext } from "../../antlr";
 import { SubjektModel, SubjektModelContext } from "../../types";
-import { MetadataVisitor } from './MetadataVisitor';
+import { MetadataVisitor } from '../base';
 import { UseVisitor } from './UseVisitor';
 import { ShapesVisitor } from './ShapesVisitor';
 
@@ -26,8 +26,7 @@ export class SubjektModelVisitor
     }
 
     protected defaultResult(): SubjektModel {
-        return {
-        };
+        return { };
     }
 
     visitIdl(ctx: IdlContext): SubjektModel {
