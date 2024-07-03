@@ -4,6 +4,7 @@ grammar Subjekt;
  * Parser Rules
  */
 
+// Entry point
 idl: metadataBlock useBlock shapeBlock EOF;
 
 // MetadataBlock
@@ -23,53 +24,50 @@ shapeType:
 	AGGREGATE_SHAPE_TYPE
 	| SIMPLE_SHAPE_TYPE
 	| SUBJECT_SHAPE_TYPE;
-shapeTypeDefinition: LCURLY members? RCURLY;
+shapeTypeDefinition:
+	aggregateShapeTypeDefinition
+	| simpleShapeTypeDefinition
+	| subjectShapeTypeDefinition;
+
+// Shape type definitions
+simpleShapeTypeDefinition: (ASSIGNMENT value)?;
+aggregateShapeTypeDefinition: LCURLY aggregateShapeMembers? RCURLY;
+subjectShapeTypeDefinition: LCURLY subjectShapeMembers? RCURLY;
 
 // Shape members
-members:
-	enumMembers
-	| listMembers
-	| mapMembers
-	| subjectMembers+
-	| member+;
+aggregateShapeMembers: enumMembers | listMembers | mapMembers | member*;
+subjectShapeMembers: subjectMembers* | behaviorMembers | member*;
 
-enumMembers: enumMember (COMMA enumMember)* COMMA?;
+// Aggregate shape members
+enumMembers: enumMember (COMMA? enumMember)*;
 enumMember: identifier (ASSIGNMENT (string | NUMBER))?;
-listMembers: MEMBER COLON (shapeType | identifier) COMMA?;
-mapMembers: keyValuePair (COMMA keyValuePair)* COMMA?;
+listMembers: MEMBER COLON (shapeType | identifier);
+mapMembers: keyValuePair*;
 keyValuePair:
 	KEY COLON (shapeType | identifier)
 	| VALUE COLON (shapeType | identifier);
 
-subjectMembers:
-	stateReference
-	| behaviorReference
-	| subscriptionReference;
+// Subject shape members
+subjectMembers: stateReference | behaviorReference | eventReference;
 stateReference:
-	STATE COLON LCURLY keyValuePair (COMMA? keyValuePair)* COMMA? RCURLY;
+	STATE COLON LCURLY (identifier COLON (shapeType | identifier))* RCURLY;
 behaviorReference:
-	BEHAVIORS COLON LBRACK identifier (COMMA? identifier)* COMMA? RBRACK;
-subscriptionReference:
-	SUBSCRIPTIONS COLON LBRACK identifier (COMMA? identifier)* COMMA? RBRACK;
+	BEHAVIORS COLON LBRACK identifier* RBRACK;
+eventReference:
+	EVENTS COLON LBRACK identifier* RBRACK;
 
 behaviorMembers:
-	triggerReference
-	| inputReference
-	| outputReference;
+	inputReference
+	| outputReference
+	| errorReference;
 inputReference:
-	INPUTS COLON LBRACK (shapeType | identifier) (
-		COMMA (shapeType | identifier)
-	)* COMMA? RBRACK;
+	INPUT COLON (shapeType | identifier)+;
 outputReference:
-	OUTPUTS COLON LBRACK (shapeType | identifier) (
-		COMMA (shapeType | identifier)
-	)* COMMA? RBRACK;
-triggerReference:
-	TRIGGERS COLON LBRACK (shapeType | identifier) (
-		COMMA (shapeType | identifier)
-	)* COMMA? RBRACK;
+	OUTPUT COLON (shapeType | identifier)+;
+errorReference:
+	ERRORS COLON LBRACK identifier* RBRACK;
 member:
-	identifier COLON (shapeType | identifier) (ASSIGNMENT value)? COMMA?;
+	identifier COLON (shapeType | identifier) (ASSIGNMENT value)?;
 
 // ShapeID
 shapeId: rootShapeId shapeIdMember?;
@@ -93,7 +91,7 @@ value:
 
 string: SINGLE_STRING | DOUBLE_STRING;
 
-namespaceIdentifier: identifier ('.' identifier)*;
+namespaceIdentifier: NAMESPACE_IDENTIFIER_CHARS;
 identifier: IDENTIFIER_CHARS;
 
 /*
@@ -106,24 +104,25 @@ USE: 'use';
 MEMBER: 'member';
 KEY: 'key';
 VALUE: 'value';
-SUBSCRIPTIONS: 'subscriptions';
 STATE: 'state';
 BEHAVIORS: 'behaviors';
-TRIGGERS: 'triggers';
-INPUTS: 'inputs';
-OUTPUTS: 'outputs';
-AGGREGATE_SHAPE_TYPE: 'list'
+EVENTS: 'events';
+ERRORS: 'errors';
+INPUT: 'input';
+OUTPUT: 'output';
+AGGREGATE_SHAPE_TYPE: 
+	'enum'
+	| 'list'
 	| 'map'
-	| 'structure'
-	| 'trait';
+	| 'structure';
 SIMPLE_SHAPE_TYPE:
 	'address'
 	| 'blob'
 	| 'boolean'
 	| 'byte'
+	| 'bytes'
 	| 'document'
 	| 'double'
-	| 'enum'
 	| 'float'
 	| 'uint'
 	| 'uint8'
@@ -148,11 +147,8 @@ SIMPLE_SHAPE_TYPE:
 SUBJECT_SHAPE_TYPE:
 	'subject'
 	| 'behavior'
-	| 'composition'
-	| 'trigger'
-	| 'subscription'
-	| 'input'
-	| 'output';
+	| 'event'
+	| 'error';
 
 // Symbols
 AT_SIGN: '@';
@@ -170,6 +166,7 @@ COMMA: ',' -> skip;
 SEMICOLON: ';' -> skip;
 
 // Literals
+NAMESPACE_IDENTIFIER_CHARS: [a-z] [a-z0-9._-]*;
 IDENTIFIER_CHARS: [a-zA-Z_]+ [a-zA-Z_0-9]*;
 SINGLE_STRING: '\'' ~('\'')+ '\'';
 DOUBLE_STRING: '"' ~('"')+ '"';
