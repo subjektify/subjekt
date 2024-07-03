@@ -13,7 +13,6 @@ import { ShapeStatementContext } from "./SubjektParser";
 import { ShapeDefinitionContext } from "./SubjektParser";
 import { ShapeTypeContext } from "./SubjektParser";
 import { ShapeTypeDefinitionContext } from "./SubjektParser";
-import { SimpleShapeTypeDefinitionContext } from "./SubjektParser";
 import { AggregateShapeTypeDefinitionContext } from "./SubjektParser";
 import { SubjectShapeTypeDefinitionContext } from "./SubjektParser";
 import { AggregateShapeMembersContext } from "./SubjektParser";
@@ -127,13 +126,6 @@ export interface SubjektVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitShapeTypeDefinition?: (ctx: ShapeTypeDefinitionContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `SubjektParser.simpleShapeTypeDefinition`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitSimpleShapeTypeDefinition?: (ctx: SimpleShapeTypeDefinitionContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SubjektParser.aggregateShapeTypeDefinition`.

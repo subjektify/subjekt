@@ -24,7 +24,8 @@ export class ASTVisitor
 
     visitIdl(ctx: IdlContext): ASTModel {
         return {
-            metadata: this.metadataVisitor.visit(ctx.metadataBlock())
+            metadata: this.metadataVisitor.visit(ctx.metadataBlock()),
+            shapes: {}
         }
     }
 }

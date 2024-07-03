@@ -26,11 +26,9 @@ shapeType:
 	| SUBJECT_SHAPE_TYPE;
 shapeTypeDefinition:
 	aggregateShapeTypeDefinition
-	| simpleShapeTypeDefinition
 	| subjectShapeTypeDefinition;
 
 // Shape type definitions
-simpleShapeTypeDefinition: (ASSIGNMENT value)?;
 aggregateShapeTypeDefinition:
 	LCURLY aggregateShapeMembers? RCURLY;
 subjectShapeTypeDefinition: LCURLY subjectShapeMembers? RCURLY;
@@ -126,13 +124,6 @@ SIMPLE_SHAPE_TYPE:
 	| 'document'
 	| 'double'
 	| 'float'
-	| 'uint'
-	| 'uint8'
-	| 'uint16'
-	| 'uint32'
-	| 'uint64'
-	| 'uint128'
-	| 'uint256'
 	| 'int'
 	| 'int8'
 	| 'int16'
@@ -140,11 +131,16 @@ SIMPLE_SHAPE_TYPE:
 	| 'int64'
 	| 'int128'
 	| 'int256'
+	| 'none'
 	| 'string'
 	| 'timestamp'
-	| 'hash256'
-	| 'hash512'
-	| 'none';
+	| 'uint'
+	| 'uint8'
+	| 'uint16'
+	| 'uint32'
+	| 'uint64'
+	| 'uint128'
+	| 'uint256';
 
 SUBJECT_SHAPE_TYPE: 'subject' | 'behavior' | 'event' | 'error';
 
@@ -168,7 +164,7 @@ SEMICOLON: ';' -> skip;
 fragment INT: '0' | [1-9][0-9]*;
 INTEGER: '-'? INT;
 FLOAT: '-'? INT DOT [0-9]*;
-IDENTIFIER_CHARS: [a-zA-Z_]+;
+IDENTIFIER_CHARS: [a-zA-Z0-9_]+;
 NAMESPACE_IDENTIFIER_CHARS: [a-z0-9._-]+;
 SINGLE_STRING: '\'' (ESC | SAFECODEPOINT)* '\'';
 DOUBLE_STRING: '"' (ESC | SAFECODEPOINT)* '"';

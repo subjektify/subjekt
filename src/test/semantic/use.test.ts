@@ -3,12 +3,12 @@ import { SubjektParser } from "../../parse";
 
 describe('parseUse', () => {
 
-    const namespace = 'myNamespace';
+    const namespace = 'my-namespace';
     const parser = new SubjektParser();
 
     it('should parse valid use statement', () => {
         // Setup
-        const source = `use myNamespace#myShape`;
+        const source = `use ${namespace}#myShape`;
         const expected: SubjektModel = {
             metadata: {},
             uses: [{
@@ -27,8 +27,8 @@ describe('parseUse', () => {
 
     it('should parse valid multiple use statements', () => {
         // Setup
-        const source = `use myNamespace#myShape
-use myNamespace#myOtherShape`;
+        const source = `use ${namespace}#myShape
+use ${namespace}#myOtherShape`;
         const expected: SubjektModel = {
             metadata: {},
             uses: [{

@@ -13,7 +13,6 @@ import { ShapeStatementContext } from "./SubjektParser";
 import { ShapeDefinitionContext } from "./SubjektParser";
 import { ShapeTypeContext } from "./SubjektParser";
 import { ShapeTypeDefinitionContext } from "./SubjektParser";
-import { SimpleShapeTypeDefinitionContext } from "./SubjektParser";
 import { AggregateShapeTypeDefinitionContext } from "./SubjektParser";
 import { SubjectShapeTypeDefinitionContext } from "./SubjektParser";
 import { AggregateShapeMembersContext } from "./SubjektParser";
@@ -164,17 +163,6 @@ export interface SubjektListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitShapeTypeDefinition?: (ctx: ShapeTypeDefinitionContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `SubjektParser.simpleShapeTypeDefinition`.
-	 * @param ctx the parse tree
-	 */
-	enterSimpleShapeTypeDefinition?: (ctx: SimpleShapeTypeDefinitionContext) => void;
-	/**
-	 * Exit a parse tree produced by `SubjektParser.simpleShapeTypeDefinition`.
-	 * @param ctx the parse tree
-	 */
-	exitSimpleShapeTypeDefinition?: (ctx: SimpleShapeTypeDefinitionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SubjektParser.aggregateShapeTypeDefinition`.

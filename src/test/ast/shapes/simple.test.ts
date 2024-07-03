@@ -1,10 +1,10 @@
-import { SimpleShapeType, SubjektModel } from "../../../types";
-import { SubjektParser } from "../../../parse";
+import { SimpleShapeType, ASTModel } from "../../../types";
+import { ASTParser } from "../../../parse";
 
 describe('parseSimpleShapes', () => {
 
     const namespace = 'my-namespace';
-    const parser = new SubjektParser();
+    const parser = new ASTParser();
 
     const simpleShapes: { type: SimpleShapeType, source: string }[] = [
         { type: 'address', source: 'address myAddress' },
@@ -37,13 +37,9 @@ describe('parseSimpleShapes', () => {
     simpleShapes.forEach(({ type, source }) => {
         it(`should parse valid ${type} shape`, () => {
             // Setup
-            const expected: SubjektModel = {
+            const expected: ASTModel = {
                 metadata: {},
-                uses: [],
                 shapes: {
-                    [`${namespace}#${source.split(' ')[1]}`]: {
-                        type
-                    }
                 }
             };
 

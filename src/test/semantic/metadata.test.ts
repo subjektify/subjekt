@@ -3,7 +3,7 @@ import { SubjektParser } from "../../parse";
 
 describe('parseMetadata', () => {
 
-    const namespace = 'myNamespace';
+    const namespace = 'my-namespace';
     const parser = new SubjektParser();
     
     it('should parse valid string metadata', () => {

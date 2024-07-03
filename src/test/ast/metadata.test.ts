@@ -3,7 +3,7 @@ import { ASTParser } from "../../parse";
 
 describe('parseMetadata', () => {
 
-    const namespace = 'myNamespace';
+    const namespace = 'my-namespace';
     const parser = new ASTParser();
     
     it('should parse valid string metadata', () => {
@@ -12,7 +12,8 @@ describe('parseMetadata', () => {
         const expected: ASTModel = {
             metadata: {
                 myMetadata: 'myValue'
-            }
+            },
+            shapes: {}
         };
 
         // Execute
@@ -28,7 +29,8 @@ describe('parseMetadata', () => {
         const expected: ASTModel = {
             metadata: {
                 myMetadata: 123
-            }
+            },
+            shapes: {}
         };
 
         // Execute
@@ -44,7 +46,8 @@ describe('parseMetadata', () => {
         const expected: ASTModel = {
             metadata: {
                 myMetadata: [1, 2, 3]
-            }
+            },
+            shapes: {}
         };
 
         // Execute
@@ -62,7 +65,8 @@ describe('parseMetadata', () => {
                 myMetadata: {
                     id: 'value'
                 }
-            }
+            },
+            shapes: {}
         };
 
         // Execute
