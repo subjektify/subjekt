@@ -19,7 +19,7 @@ import { AggregateShapeMembersContext } from "./SubjektParser";
 import { SubjectShapeMembersContext } from "./SubjektParser";
 import { EnumMembersContext } from "./SubjektParser";
 import { EnumMemberContext } from "./SubjektParser";
-import { ListMembersContext } from "./SubjektParser";
+import { ListMemberContext } from "./SubjektParser";
 import { MapMembersContext } from "./SubjektParser";
 import { KeyValuePairContext } from "./SubjektParser";
 import { StateReferenceContext } from "./SubjektParser";
@@ -231,15 +231,15 @@ export interface SubjektListener extends ParseTreeListener {
 	exitEnumMember?: (ctx: EnumMemberContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `SubjektParser.listMembers`.
+	 * Enter a parse tree produced by `SubjektParser.listMember`.
 	 * @param ctx the parse tree
 	 */
-	enterListMembers?: (ctx: ListMembersContext) => void;
+	enterListMember?: (ctx: ListMemberContext) => void;
 	/**
-	 * Exit a parse tree produced by `SubjektParser.listMembers`.
+	 * Exit a parse tree produced by `SubjektParser.listMember`.
 	 * @param ctx the parse tree
 	 */
-	exitListMembers?: (ctx: ListMembersContext) => void;
+	exitListMember?: (ctx: ListMemberContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SubjektParser.mapMembers`.

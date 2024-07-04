@@ -19,7 +19,7 @@ import { AggregateShapeMembersContext } from "./SubjektParser";
 import { SubjectShapeMembersContext } from "./SubjektParser";
 import { EnumMembersContext } from "./SubjektParser";
 import { EnumMemberContext } from "./SubjektParser";
-import { ListMembersContext } from "./SubjektParser";
+import { ListMemberContext } from "./SubjektParser";
 import { MapMembersContext } from "./SubjektParser";
 import { KeyValuePairContext } from "./SubjektParser";
 import { StateReferenceContext } from "./SubjektParser";
@@ -170,11 +170,11 @@ export interface SubjektVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitEnumMember?: (ctx: EnumMemberContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `SubjektParser.listMembers`.
+	 * Visit a parse tree produced by `SubjektParser.listMember`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitListMembers?: (ctx: ListMembersContext) => Result;
+	visitListMember?: (ctx: ListMemberContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SubjektParser.mapMembers`.

@@ -2,6 +2,7 @@ import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor
 import { IdlContext, SubjektVisitor } from "../../antlr";
 import { ASTModel, SubjektModelContext } from "../../types";
 import { MetadataVisitor } from '../base';
+import { ShapesVisitor } from '../model/ShapesVisitor';
 
 export class ASTVisitor
     extends AbstractParseTreeVisitor<ASTModel>
@@ -9,6 +10,7 @@ export class ASTVisitor
 
         modelContext: SubjektModelContext;
         metadataVisitor: MetadataVisitor;
+        shapesVisitor: ShapesVisitor;
 
     constructor(namespace: string) {
         super();
@@ -16,6 +18,7 @@ export class ASTVisitor
             namespace
         };
         this.metadataVisitor = new MetadataVisitor(this.modelContext);
+        this.shapesVisitor = new ShapesVisitor(this.modelContext);
     }
 
     protected defaultResult(): ASTModel {
@@ -25,7 +28,7 @@ export class ASTVisitor
     visitIdl(ctx: IdlContext): ASTModel {
         return {
             metadata: this.metadataVisitor.visit(ctx.metadataBlock()),
-            shapes: {}
+            shapes: this.shapesVisitor.visit(ctx.shapeBlock())
         }
     }
 }

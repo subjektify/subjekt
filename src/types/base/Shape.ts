@@ -1,10 +1,36 @@
 import { AppliedTraits } from "./Trait";
 
+/**
+ * Shapes
+ */
 export type Shapes = Record<string, Shape>;
 
 export interface Shape {
     type: ShapeType
     traits?: AppliedTraits
+};
+
+export interface AggregateShape extends Shape {
+};
+
+export interface ListShape extends AggregateShape {
+    member: Target
+};
+
+export interface MapShape extends AggregateShape {
+    key: Target;
+    value: Target;
+};
+
+export interface StructureShape extends AggregateShape {
+    members: Record<string, Target>;
+};
+
+export interface SubjectShape extends Shape {
+};
+
+export interface Target {
+    target: ShapeID;
 };
 
 /**
@@ -51,12 +77,9 @@ export type AggregateShapeType =
 
 export type SubjectShapeType =
     'subject'
-    | 'state'
     | 'behavior'
     | 'event'
-    | 'input'
-    | 'output'
-    | 'composition';
+    | 'error';
 
 /**
  * ShapeID

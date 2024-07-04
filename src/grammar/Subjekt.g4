@@ -36,7 +36,7 @@ subjectShapeTypeDefinition: LCURLY subjectShapeMembers? RCURLY;
 // Shape members
 aggregateShapeMembers:
 	enumMembers
-	| listMembers
+	| listMember
 	| mapMembers
 	| member*;
 subjectShapeMembers:
@@ -48,7 +48,7 @@ subjectShapeMembers:
 // Aggregate shape members
 enumMembers: enumMember (COMMA? enumMember)*;
 enumMember: identifier (ASSIGNMENT (string | INTEGER))?;
-listMembers: MEMBER COLON (shapeType | identifier);
+listMember: MEMBER COLON (shapeType | identifier);
 mapMembers: keyValuePair*;
 keyValuePair:
 	KEY COLON (shapeType | identifier)

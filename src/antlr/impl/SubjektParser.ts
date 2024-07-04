@@ -81,7 +81,7 @@ export class SubjektParser extends Parser {
 	public static readonly RULE_subjectShapeMembers = 13;
 	public static readonly RULE_enumMembers = 14;
 	public static readonly RULE_enumMember = 15;
-	public static readonly RULE_listMembers = 16;
+	public static readonly RULE_listMember = 16;
 	public static readonly RULE_mapMembers = 17;
 	public static readonly RULE_keyValuePair = 18;
 	public static readonly RULE_stateReference = 19;
@@ -114,7 +114,7 @@ export class SubjektParser extends Parser {
 		"idl", "metadataBlock", "metadataStatement", "useBlock", "useStatement", 
 		"shapeBlock", "shapeStatement", "shapeDefinition", "shapeType", "shapeTypeDefinition", 
 		"aggregateShapeTypeDefinition", "subjectShapeTypeDefinition", "aggregateShapeMembers", 
-		"subjectShapeMembers", "enumMembers", "enumMember", "listMembers", "mapMembers", 
+		"subjectShapeMembers", "enumMembers", "enumMember", "listMember", "mapMembers", 
 		"keyValuePair", "stateReference", "behaviorReference", "eventReference", 
 		"behaviorMembers", "inputReference", "outputReference", "errorReference", 
 		"member", "shapeId", "rootShapeId", "absoluteRootShapeId", "shapeIdMember", 
@@ -614,7 +614,7 @@ export class SubjektParser extends Parser {
 				this.enterOuterAlt(_localctx, 2);
 				{
 				this.state = 151;
-				this.listMembers();
+				this.listMember();
 				}
 				break;
 
@@ -835,9 +835,9 @@ export class SubjektParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public listMembers(): ListMembersContext {
-		let _localctx: ListMembersContext = new ListMembersContext(this._ctx, this.state);
-		this.enterRule(_localctx, 32, SubjektParser.RULE_listMembers);
+	public listMember(): ListMemberContext {
+		let _localctx: ListMemberContext = new ListMemberContext(this._ctx, this.state);
+		this.enterRule(_localctx, 32, SubjektParser.RULE_listMember);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
@@ -2661,8 +2661,8 @@ export class AggregateShapeMembersContext extends ParserRuleContext {
 	public enumMembers(): EnumMembersContext | undefined {
 		return this.tryGetRuleContext(0, EnumMembersContext);
 	}
-	public listMembers(): ListMembersContext | undefined {
-		return this.tryGetRuleContext(0, ListMembersContext);
+	public listMember(): ListMemberContext | undefined {
+		return this.tryGetRuleContext(0, ListMemberContext);
 	}
 	public mapMembers(): MapMembersContext | undefined {
 		return this.tryGetRuleContext(0, MapMembersContext);
@@ -2835,7 +2835,7 @@ export class EnumMemberContext extends ParserRuleContext {
 }
 
 
-export class ListMembersContext extends ParserRuleContext {
+export class ListMemberContext extends ParserRuleContext {
 	public MEMBER(): TerminalNode { return this.getToken(SubjektParser.MEMBER, 0); }
 	public COLON(): TerminalNode { return this.getToken(SubjektParser.COLON, 0); }
 	public shapeType(): ShapeTypeContext | undefined {
@@ -2848,23 +2848,23 @@ export class ListMembersContext extends ParserRuleContext {
 		super(parent, invokingState);
 	}
 	// @Override
-	public get ruleIndex(): number { return SubjektParser.RULE_listMembers; }
+	public get ruleIndex(): number { return SubjektParser.RULE_listMember; }
 	// @Override
 	public enterRule(listener: SubjektListener): void {
-		if (listener.enterListMembers) {
-			listener.enterListMembers(this);
+		if (listener.enterListMember) {
+			listener.enterListMember(this);
 		}
 	}
 	// @Override
 	public exitRule(listener: SubjektListener): void {
-		if (listener.exitListMembers) {
-			listener.exitListMembers(this);
+		if (listener.exitListMember) {
+			listener.exitListMember(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: SubjektVisitor<Result>): Result {
-		if (visitor.visitListMembers) {
-			return visitor.visitListMembers(this);
+		if (visitor.visitListMember) {
+			return visitor.visitListMember(this);
 		} else {
 			return visitor.visitChildren(this);
 		}

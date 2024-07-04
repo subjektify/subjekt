@@ -95,7 +95,7 @@ aggregateShapeMembers
 subjectShapeMembers
 enumMembers
 enumMember
-listMembers
+listMember
 mapMembers
 keyValuePair
 stateReference

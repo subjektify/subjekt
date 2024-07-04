@@ -7,10 +7,17 @@ export class ShapeIDUtil {
     public static fromString(shapeIDStr: string): ShapeID {
         const [namespace, identifier] = shapeIDStr.split('#');
         const [identifierStr, memberStr] = identifier.split('$');
-        return {
-            namespace,
-            identifier: identifierStr,
-            member: memberStr
-        };
+        if (memberStr) {
+            return {
+                namespace,
+                identifier: identifierStr,
+                member: memberStr
+            };
+        } else {
+            return {
+                namespace,
+                identifier: identifierStr
+            };
+        }
     }
 }

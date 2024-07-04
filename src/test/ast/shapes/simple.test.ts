@@ -40,6 +40,9 @@ describe('parseSimpleShapes', () => {
             const expected: ASTModel = {
                 metadata: {},
                 shapes: {
+                    [`${namespace}#${source.split(' ')[1]}`]: {
+                        type
+                    }
                 }
             };
 
