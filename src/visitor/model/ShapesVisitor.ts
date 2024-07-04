@@ -1,6 +1,6 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { ShapeBlockContext, SubjektVisitor } from "../../antlr";
-import { Shapes, SubjektModelContext } from '../../types';
+import { ShapeID, Shapes, SubjektModelContext } from '../../types';
 import { ShapeVisitor } from './ShapeVisitor';
 
 export class ShapesVisitor
@@ -18,6 +18,10 @@ export class ShapesVisitor
 
     protected defaultResult(): Shapes {
         return {};
+    }
+
+    public uses(_uses: ShapeID[]): void {
+        this.shapeVisitor.uses(_uses);
     }
 
     public visitShapeBlock(ctx: ShapeBlockContext): Shapes {

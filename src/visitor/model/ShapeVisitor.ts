@@ -1,6 +1,6 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { ShapeDefinitionContext, ShapeStatementContext, ShapeTypeDefinitionContext, SubjektVisitor } from "../../antlr";
-import { AggregateShape, ListShape, MapShape, Shape, ShapeID, ShapeType, Shapes, StructureShape, SubjektModelContext, Target } from '../../types';
+import { AggregateShape, EnumMember, EnumShape, ListShape, MapShape, Shape, ShapeID, ShapeType, Shapes, StructureShape, SubjektModelContext, Target } from '../../types';
 import { ShapeIDVisitor } from './ShapeIDVisitor';
 import { ShapeIDUtil, ShapeTypeUtil } from '../../util';
 
@@ -66,6 +66,8 @@ export class ShapeVisitor
         const shapeType = ctx.shapeType().text;
 
         switch (shapeType) {
+            case 'enum':
+                return this._visitEnumShapeDefinition(ctx.shapeTypeDefinition());
             case 'list':
                 return this._visitListShapeDefinition(ctx.shapeTypeDefinition());
             case 'map':
@@ -75,6 +77,40 @@ export class ShapeVisitor
             default:
                 throw new Error(`Unsupported aggregate shape type: ${shapeType}`);
         }
+    }
+
+    private _visitEnumShapeDefinition(ctx?: ShapeTypeDefinitionContext): AggregateShape {
+        const intTarget = {
+            namespace: 'subjekt',
+            identifier: 'int'
+        }
+        const stringTarget = {
+            namespace: 'subjekt',
+            identifier: 'string'
+        }
+        const enumMembers = ctx?.aggregateShapeTypeDefinition()?.aggregateShapeMembers()?.enumMembers()?.enumMember();
+        if (!enumMembers) {
+            throw new Error('Enum shape must have members');
+        }
+        let members: Record<string, EnumMember> = {};
+        enumMembers.forEach((enumMember) => {
+            const memberName = enumMember.identifier()?.text;
+            const memberValue = enumMember.INTEGER()?.text || enumMember.string()?.text || memberName;
+            const target = isNaN(+Number(memberValue)) ? stringTarget : intTarget;
+            if (!memberName) {
+                throw new Error('Enum shape member must have a name');
+            }
+            members[memberName] = {
+                value: isNaN(+Number(memberValue)) ? memberValue : Number(memberValue),
+                target
+            };
+        });
+        const shape: EnumShape = {
+            type: 'enum',
+            members
+        };
+
+        return shape;
     }
 
     private _visitListShapeDefinition(ctx?: ShapeTypeDefinitionContext): AggregateShape {

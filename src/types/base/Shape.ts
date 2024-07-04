@@ -13,6 +13,16 @@ export interface Shape {
 export interface AggregateShape extends Shape {
 };
 
+export interface EnumShape extends AggregateShape {
+    members: Record<string, EnumMember>;
+};
+
+export interface EnumMember {
+    value: string | number;
+    target: ShapeID;
+    traits?: AppliedTraits;
+};
+
 export interface ListShape extends AggregateShape {
     member: Target
 };
