@@ -1,6 +1,6 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { ShapeDefinitionContext, ShapeStatementContext, ShapeTypeDefinitionContext, SubjektVisitor } from "../../antlr";
-import { AggregateShape, EnumMember, EnumShape, ListShape, MapShape, Shape, ShapeID, ShapeType, Shapes, StructureShape, SubjektModelContext, Target } from '../../types';
+import { AggregateShape, BehaviorShape, EnumMember, EnumShape, EventShape, ListShape, MapShape, Shape, ShapeID, ShapeType, Shapes, StructureShape, SubjectShape, SubjektModelContext, Target } from '../../types';
 import { ShapeIDVisitor } from './ShapeIDVisitor';
 import { ShapeIDUtil, ShapeTypeUtil } from '../../util';
 
@@ -179,8 +179,55 @@ export class ShapeVisitor
     }
 
     private _visitSubjectShapeDefinition(ctx: ShapeDefinitionContext): Shape {
+        const shapeType = ctx.shapeType().text;
+        switch (shapeType) {
+            case 'subject':
+                return this._visitSubjectShape(ctx);
+            case 'behavior':
+                return this._visitBehaviorShape(ctx);
+            case 'event':
+                return this._visitEventShape(ctx);
+            case 'error':
+                return this._visitErrorShape(ctx);
+            default:
+                throw new Error(`Unsupported subject shape type: ${shapeType}`);
+        }
+    }
+
+    private _visitSubjectShape(ctx?: ShapeDefinitionContext): Shape {
+        const subjectShapeMembers = ctx?.shapeTypeDefinition()?.subjectShapeTypeDefinition()?.subjectShapeMembers();
+        let state: Record<string, Target> = {};
+        let behaviors: BehaviorShape[] = [];
+        let events: EventShape[] = [];
+        const shape: SubjectShape = {
+            type: 'subject',
+            state,
+            behaviors,
+            events
+        };
+
+        return shape;
+    }
+
+    private _visitBehaviorShape(ctx: ShapeDefinitionContext): Shape {
         const shape: Shape = {
-            type: ctx.shapeType().text as ShapeType,
+            type: 'behavior'
+        };
+
+        return shape;
+    }
+
+    private _visitEventShape(ctx: ShapeDefinitionContext): Shape {
+        const shape: Shape = {
+            type: 'event'
+        };
+
+        return shape;
+    }
+
+    private _visitErrorShape(ctx: ShapeDefinitionContext): Shape {
+        const shape: Shape = {
+            type: 'error'
         };
 
         return shape;

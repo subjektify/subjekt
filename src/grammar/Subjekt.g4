@@ -40,9 +40,8 @@ aggregateShapeMembers:
 	| mapMembers
 	| member*;
 subjectShapeMembers:
-	stateReference
-	| behaviorReference
-	| eventReference
+	subjectMembers
+	| behaviorMembers
 	| member*;
 
 // Aggregate shape members
@@ -62,6 +61,11 @@ stateReference:
 behaviorReference: BEHAVIORS COLON LBRACK identifier* RBRACK;
 eventReference: EVENTS COLON LBRACK identifier* RBRACK;
 
+subjectMembers:
+	stateReference
+	| behaviorReference
+	| eventReference
+	| member*;
 behaviorMembers:
 	inputReference
 	| outputReference
