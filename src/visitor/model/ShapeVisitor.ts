@@ -333,16 +333,13 @@ export class ShapeVisitor
                 }
             };
         }
-        this._uses.forEach((use) => {
+        for (const use of this._uses) {
             if (use.identifier === value) {
                 return {
-                    target: {
-                        namespace: use.namespace,
-                        identifier: value
-                    }
+                    target: use
                 };
             }
-        });
+        }
         return {
             target: {
                 namespace: this.modelContext.namespace,

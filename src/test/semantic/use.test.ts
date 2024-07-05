@@ -8,12 +8,12 @@ describe('parseUse', () => {
 
     it('should parse valid use statement', () => {
         // Setup
-        const source = `use ${namespace}#myShape`;
+        const source = `use ${namespace}#OtherShape`;
         const expected: SubjektModel = {
             metadata: {},
             uses: [{
                 namespace,
-                identifier: 'myShape'
+                identifier: 'OtherShape'
             }],
             shapes: {}
         };
@@ -27,16 +27,16 @@ describe('parseUse', () => {
 
     it('should parse valid multiple use statements', () => {
         // Setup
-        const source = `use ${namespace}#myShape
-use ${namespace}#myOtherShape`;
+        const source = `use ${namespace}#OtherShape
+use ${namespace}#MyOtherShape`;
         const expected: SubjektModel = {
             metadata: {},
             uses: [{
                 namespace,
-                identifier: 'myShape'
+                identifier: 'OtherShape'
             }, {
                 namespace,
-                identifier: 'myOtherShape'
+                identifier: 'MyOtherShape'
             }],
             shapes: {}
         };
