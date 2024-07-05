@@ -1,6 +1,6 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { ShapeDefinitionContext, ShapeStatementContext, ShapeTypeDefinitionContext, SubjektVisitor } from "../../antlr";
-import { AggregateShape, BehaviorShape, EnumMember, EnumShape, EventShape, ListShape, MapShape, Shape, ShapeID, ShapeType, Shapes, StructureShape, SubjectShape, SubjektModelContext, Target } from '../../types';
+import { AggregateShape, BehaviorShape, EnumMember, EnumShape, ErrorShape, EventShape, ListShape, MapShape, Shape, ShapeID, ShapeType, Shapes, StructureShape, SubjectShape, SubjektModelContext, Target } from '../../types';
 import { ShapeIDVisitor } from './ShapeIDVisitor';
 import { ShapeIDUtil, ShapeTypeUtil } from '../../util';
 
@@ -195,10 +195,45 @@ export class ShapeVisitor
     }
 
     private _visitSubjectShape(ctx?: ShapeDefinitionContext): Shape {
-        const subjectShapeMembers = ctx?.shapeTypeDefinition()?.subjectShapeTypeDefinition()?.subjectShapeMembers();
         let state: Record<string, Target> = {};
-        let behaviors: BehaviorShape[] = [];
-        let events: EventShape[] = [];
+        let behaviors: Target[] = [];
+        let events: Target[] = [];
+        const subjectShapeMembers = ctx?.shapeTypeDefinition()?.subjectShapeTypeDefinition()?.subjectShapeMembers();
+        subjectShapeMembers?.forEach((member) => {
+            const subjectMember = member.subjectMembers();
+            if (subjectMember) {
+                const stateReference = subjectMember.stateReference();
+                const behaviorReference = subjectMember.behaviorReference();
+                const eventReference = subjectMember.eventReference();
+                if (stateReference) {
+                    const stateMembers = stateReference.member();
+                    stateMembers?.forEach((stateMember) => {
+                        const memberName = stateMember.identifier()[0]?.text;
+                        const memberType = stateMember.shapeType()?.text || stateMember.identifier()[1]?.text;
+                        if (!memberName || !memberType) {
+                            throw new Error('Subject shape state member must have a name and type');
+                        }
+                        state[memberName] = this._visitTarget(memberType);
+                    });
+                } else if (behaviorReference) {
+                    const identifiers = behaviorReference.identifier();
+                    identifiers?.forEach((identifier) => {
+                        const behaviorId = this.shapeIdVisitor.visit(identifier);
+                        behaviors.push({
+                            target: behaviorId
+                        });
+                    });
+                } else if (eventReference) {
+                    const identifiers = eventReference.identifier();
+                    identifiers?.forEach((identifier) => {
+                        const eventId = this.shapeIdVisitor.visit(identifier);
+                        events.push({
+                            target: eventId
+                        });
+                    });
+                }
+            }
+        });
         const shape: SubjectShape = {
             type: 'subject',
             state,
@@ -209,25 +244,81 @@ export class ShapeVisitor
         return shape;
     }
 
-    private _visitBehaviorShape(ctx: ShapeDefinitionContext): Shape {
-        const shape: Shape = {
-            type: 'behavior'
+    private _visitBehaviorShape(ctx?: ShapeDefinitionContext): BehaviorShape {
+        const subjectMembers = ctx?.shapeTypeDefinition()?.subjectShapeTypeDefinition()?.subjectShapeMembers();
+        let input: Target = { target: { namespace: 'subjekt', identifier: 'none' } };
+        let output: Target = { target: { namespace: 'subjekt', identifier: 'none' } };
+        let errors: Target[] = [];
+        subjectMembers?.forEach((member) => {
+            const inputReference = member.behaviorMembers()?.inputReference();
+            const outputReference = member.behaviorMembers()?.outputReference();
+            const errorReference = member.behaviorMembers()?.errorReference();
+            if (inputReference) {
+                const inputIdentifier = inputReference.shapeType()?.text || inputReference.identifier()?.text;
+                if (!inputIdentifier) {
+                    throw new Error('Behavior shape input must have a type');
+                }
+                input = this._visitTarget(inputIdentifier);
+            } else if (outputReference) {
+                const outputIdentifier = outputReference.shapeType()?.text || outputReference.identifier()?.text;
+                if (!outputIdentifier) {
+                    throw new Error('Behavior shape output must have a type');
+                }
+                output = this._visitTarget(outputIdentifier);
+            } else if (errorReference) {
+                const errorIdentifiers = errorReference.identifier();
+                errorIdentifiers?.forEach((identifier) => {
+                    const errorId = this.shapeIdVisitor.visit(identifier);
+                    errors.push({
+                        target: errorId
+                    });
+                });
+            }
+            
+        });
+        const shape: BehaviorShape = {
+            type: 'behavior',
+            input,
+            output,
+            errors
         };
 
         return shape;
     }
 
     private _visitEventShape(ctx: ShapeDefinitionContext): Shape {
-        const shape: Shape = {
-            type: 'event'
+        const subjectMembers = ctx?.shapeTypeDefinition()?.aggregateShapeTypeDefinition()?.aggregateShapeMembers()?.member();
+        let members: Record<string, Target> = {};
+        subjectMembers?.forEach((member) => {
+            const memberName = member?.identifier()[0]?.text;
+            const memberType = member?.shapeType()?.text || member?.identifier()[1]?.text;
+            if (!memberName || !memberType) {
+                throw new Error('Event shape member must have a name and type');
+            }
+            members[memberName] = this._visitTarget(memberType);
+        });
+        const shape: EventShape = {
+            type: 'event',
+            members
         };
 
         return shape;
     }
 
     private _visitErrorShape(ctx: ShapeDefinitionContext): Shape {
-        const shape: Shape = {
-            type: 'error'
+        const subjectMembers = ctx?.shapeTypeDefinition()?.aggregateShapeTypeDefinition()?.aggregateShapeMembers()?.member();
+        let members: Record<string, Target> = {};
+        subjectMembers?.forEach((member) => {
+            const memberName = member?.identifier()[0]?.text;
+            const memberType = member?.shapeType()?.text || member?.identifier()[1]?.text;
+            if (!memberName || !memberType) {
+                throw new Error('Event shape member must have a name and type');
+            }
+            members[memberName] = this._visitTarget(memberType);
+        });
+        const shape: ErrorShape = {
+            type: 'error',
+            members
         };
 
         return shape;

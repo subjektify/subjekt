@@ -1,10 +1,10 @@
-import { BehaviorShape, ErrorShape, EventShape, SubjectShape, SubjektModel } from "../../../types";
-import { SubjektParser } from "../../../parse";
+import { BehaviorShape, ErrorShape, EventShape, SubjectShape, ASTModel } from "../../../types";
+import { ASTParser } from "../../../parse";
 
-describe('parseSubjectShapes', () => {
+describe('parseAstSubjectShapes', () => {
 
     const namespace = 'my-namespace';
-    const parser = new SubjektParser();
+    const parser = new ASTParser();
 
     it('should parse valid subject shape', () => {
         // Setup
@@ -29,9 +29,8 @@ describe('parseSubjectShapes', () => {
             behaviors: [ { target: { namespace: namespace, identifier: 'MyBehavior' } } ],
             events: [ { target: { namespace: namespace, identifier: 'MyEvent' } } ]
         };
-        const expected: SubjektModel = {
+        const expected: ASTModel = {
             metadata: {},
-            uses: [],
             shapes: {
                 [`${namespace}#MySubject`]: expectedMember
             }
@@ -68,9 +67,8 @@ describe('parseSubjectShapes', () => {
             },
             errors: [ { target: { namespace: namespace, identifier: 'MyError' } } ]
         };
-        const expected: SubjektModel = {
+        const expected: ASTModel = {
             metadata: {},
-            uses: [],
             shapes: {
                 [`${namespace}#MyBehavior`]: expectedMember
             }
@@ -98,9 +96,8 @@ describe('parseSubjectShapes', () => {
                 }
             }
         };
-        const expected: SubjektModel = {
+        const expected: ASTModel = {
             metadata: {},
-            uses: [],
             shapes: {
                 [`${namespace}#MyEvent`]: expectedMember
             }
@@ -137,9 +134,8 @@ describe('parseSubjectShapes', () => {
                 }
             }
         };
-        const expected: SubjektModel = {
+        const expected: ASTModel = {
             metadata: {},
-            uses: [],
             shapes: {
                 [`${namespace}#MyError`]: expectedMember
             }

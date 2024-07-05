@@ -84,11 +84,11 @@ export class SubjektParser extends Parser {
 	public static readonly RULE_listMember = 16;
 	public static readonly RULE_mapMembers = 17;
 	public static readonly RULE_keyValuePair = 18;
-	public static readonly RULE_stateReference = 19;
-	public static readonly RULE_behaviorReference = 20;
-	public static readonly RULE_eventReference = 21;
-	public static readonly RULE_subjectMembers = 22;
-	public static readonly RULE_behaviorMembers = 23;
+	public static readonly RULE_subjectMembers = 19;
+	public static readonly RULE_behaviorMembers = 20;
+	public static readonly RULE_stateReference = 21;
+	public static readonly RULE_behaviorReference = 22;
+	public static readonly RULE_eventReference = 23;
 	public static readonly RULE_inputReference = 24;
 	public static readonly RULE_outputReference = 25;
 	public static readonly RULE_errorReference = 26;
@@ -116,8 +116,8 @@ export class SubjektParser extends Parser {
 		"shapeBlock", "shapeStatement", "shapeDefinition", "shapeType", "shapeTypeDefinition", 
 		"aggregateShapeTypeDefinition", "subjectShapeTypeDefinition", "aggregateShapeMembers", 
 		"subjectShapeMembers", "enumMembers", "enumMember", "listMember", "mapMembers", 
-		"keyValuePair", "stateReference", "behaviorReference", "eventReference", 
-		"subjectMembers", "behaviorMembers", "inputReference", "outputReference", 
+		"keyValuePair", "subjectMembers", "behaviorMembers", "stateReference", 
+		"behaviorReference", "eventReference", "inputReference", "outputReference", 
 		"errorReference", "member", "shapeId", "rootShapeId", "absoluteRootShapeId", 
 		"shapeIdMember", "trait", "traitBody", "traitStructureList", "traitStructure", 
 		"traitNode", "value", "listValue", "objectValue", "kvp", "string", "number", 
@@ -561,6 +561,7 @@ export class SubjektParser extends Parser {
 	public subjectShapeTypeDefinition(): SubjectShapeTypeDefinitionContext {
 		let _localctx: SubjectShapeTypeDefinitionContext = new SubjectShapeTypeDefinitionContext(this._ctx, this.state);
 		this.enterRule(_localctx, 22, SubjektParser.RULE_subjectShapeTypeDefinition);
+		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
@@ -568,15 +569,19 @@ export class SubjektParser extends Parser {
 			this.match(SubjektParser.LCURLY);
 			this.state = 148;
 			this._errHandler.sync(this);
-			switch ( this.interpreter.adaptivePredict(this._input, 7, this._ctx) ) {
-			case 1:
+			_la = this._input.LA(1);
+			do {
+				{
 				{
 				this.state = 147;
 				this.subjectShapeMembers();
 				}
-				break;
-			}
-			this.state = 150;
+				}
+				this.state = 150;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+			} while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << SubjektParser.STATE) | (1 << SubjektParser.BEHAVIORS) | (1 << SubjektParser.EVENTS) | (1 << SubjektParser.ERRORS) | (1 << SubjektParser.INPUT) | (1 << SubjektParser.OUTPUT))) !== 0));
+			this.state = 152;
 			this.match(SubjektParser.RCURLY);
 			}
 		}
@@ -600,13 +605,13 @@ export class SubjektParser extends Parser {
 		this.enterRule(_localctx, 24, SubjektParser.RULE_aggregateShapeMembers);
 		let _la: number;
 		try {
-			this.state = 161;
+			this.state = 163;
 			this._errHandler.sync(this);
 			switch ( this.interpreter.adaptivePredict(this._input, 9, this._ctx) ) {
 			case 1:
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 152;
+				this.state = 154;
 				this.enumMembers();
 				}
 				break;
@@ -614,7 +619,7 @@ export class SubjektParser extends Parser {
 			case 2:
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 153;
+				this.state = 155;
 				this.listMember();
 				}
 				break;
@@ -622,7 +627,7 @@ export class SubjektParser extends Parser {
 			case 3:
 				this.enterOuterAlt(_localctx, 3);
 				{
-				this.state = 154;
+				this.state = 156;
 				this.mapMembers();
 				}
 				break;
@@ -630,17 +635,17 @@ export class SubjektParser extends Parser {
 			case 4:
 				this.enterOuterAlt(_localctx, 4);
 				{
-				this.state = 158;
+				this.state = 160;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 				while (_la === SubjektParser.IDENTIFIER_CHARS) {
 					{
 					{
-					this.state = 155;
+					this.state = 157;
 					this.member();
 					}
 					}
-					this.state = 160;
+					this.state = 162;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
 				}
@@ -666,46 +671,30 @@ export class SubjektParser extends Parser {
 	public subjectShapeMembers(): SubjectShapeMembersContext {
 		let _localctx: SubjectShapeMembersContext = new SubjectShapeMembersContext(this._ctx, this.state);
 		this.enterRule(_localctx, 26, SubjektParser.RULE_subjectShapeMembers);
-		let _la: number;
 		try {
-			this.state = 171;
+			this.state = 167;
 			this._errHandler.sync(this);
-			switch ( this.interpreter.adaptivePredict(this._input, 11, this._ctx) ) {
-			case 1:
+			switch (this._input.LA(1)) {
+			case SubjektParser.STATE:
+			case SubjektParser.BEHAVIORS:
+			case SubjektParser.EVENTS:
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 163;
+				this.state = 165;
 				this.subjectMembers();
 				}
 				break;
-
-			case 2:
+			case SubjektParser.ERRORS:
+			case SubjektParser.INPUT:
+			case SubjektParser.OUTPUT:
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 164;
+				this.state = 166;
 				this.behaviorMembers();
 				}
 				break;
-
-			case 3:
-				this.enterOuterAlt(_localctx, 3);
-				{
-				this.state = 168;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-				while (_la === SubjektParser.IDENTIFIER_CHARS) {
-					{
-					{
-					this.state = 165;
-					this.member();
-					}
-					}
-					this.state = 170;
-					this._errHandler.sync(this);
-					_la = this._input.LA(1);
-				}
-				}
-				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (re) {
@@ -730,29 +719,29 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 173;
+			this.state = 169;
 			this.enumMember();
-			this.state = 180;
+			this.state = 176;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			while (_la === SubjektParser.COMMA || _la === SubjektParser.IDENTIFIER_CHARS) {
 				{
 				{
-				this.state = 175;
+				this.state = 171;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 				if (_la === SubjektParser.COMMA) {
 					{
-					this.state = 174;
+					this.state = 170;
 					this.match(SubjektParser.COMMA);
 					}
 				}
 
-				this.state = 177;
+				this.state = 173;
 				this.enumMember();
 				}
 				}
-				this.state = 182;
+				this.state = 178;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
@@ -780,28 +769,28 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 183;
+			this.state = 179;
 			this.identifier();
-			this.state = 189;
+			this.state = 185;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === SubjektParser.ASSIGNMENT) {
 				{
-				this.state = 184;
+				this.state = 180;
 				this.match(SubjektParser.ASSIGNMENT);
-				this.state = 187;
+				this.state = 183;
 				this._errHandler.sync(this);
 				switch (this._input.LA(1)) {
 				case SubjektParser.SINGLE_STRING:
 				case SubjektParser.DOUBLE_STRING:
 					{
-					this.state = 185;
+					this.state = 181;
 					this.string();
 					}
 					break;
 				case SubjektParser.INTEGER:
 					{
-					this.state = 186;
+					this.state = 182;
 					this.match(SubjektParser.INTEGER);
 					}
 					break;
@@ -834,24 +823,24 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 191;
+			this.state = 187;
 			this.match(SubjektParser.MEMBER);
-			this.state = 192;
+			this.state = 188;
 			this.match(SubjektParser.COLON);
-			this.state = 195;
+			this.state = 191;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case SubjektParser.AGGREGATE_SHAPE_TYPE:
 			case SubjektParser.SIMPLE_SHAPE_TYPE:
 			case SubjektParser.SUBJECT_SHAPE_TYPE:
 				{
-				this.state = 193;
+				this.state = 189;
 				this.shapeType();
 				}
 				break;
 			case SubjektParser.IDENTIFIER_CHARS:
 				{
-				this.state = 194;
+				this.state = 190;
 				this.identifier();
 				}
 				break;
@@ -882,17 +871,17 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 200;
+			this.state = 196;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			while (_la === SubjektParser.KEY || _la === SubjektParser.VALUE) {
 				{
 				{
-				this.state = 197;
+				this.state = 193;
 				this.keyValuePair();
 				}
 				}
-				this.state = 202;
+				this.state = 198;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
@@ -917,30 +906,30 @@ export class SubjektParser extends Parser {
 		let _localctx: KeyValuePairContext = new KeyValuePairContext(this._ctx, this.state);
 		this.enterRule(_localctx, 36, SubjektParser.RULE_keyValuePair);
 		try {
-			this.state = 215;
+			this.state = 211;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case SubjektParser.KEY:
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 203;
+				this.state = 199;
 				this.match(SubjektParser.KEY);
-				this.state = 204;
+				this.state = 200;
 				this.match(SubjektParser.COLON);
-				this.state = 207;
+				this.state = 203;
 				this._errHandler.sync(this);
 				switch (this._input.LA(1)) {
 				case SubjektParser.AGGREGATE_SHAPE_TYPE:
 				case SubjektParser.SIMPLE_SHAPE_TYPE:
 				case SubjektParser.SUBJECT_SHAPE_TYPE:
 					{
-					this.state = 205;
+					this.state = 201;
 					this.shapeType();
 					}
 					break;
 				case SubjektParser.IDENTIFIER_CHARS:
 					{
-					this.state = 206;
+					this.state = 202;
 					this.identifier();
 					}
 					break;
@@ -952,24 +941,24 @@ export class SubjektParser extends Parser {
 			case SubjektParser.VALUE:
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 209;
+				this.state = 205;
 				this.match(SubjektParser.VALUE);
-				this.state = 210;
+				this.state = 206;
 				this.match(SubjektParser.COLON);
-				this.state = 213;
+				this.state = 209;
 				this._errHandler.sync(this);
 				switch (this._input.LA(1)) {
 				case SubjektParser.AGGREGATE_SHAPE_TYPE:
 				case SubjektParser.SIMPLE_SHAPE_TYPE:
 				case SubjektParser.SUBJECT_SHAPE_TYPE:
 					{
-					this.state = 211;
+					this.state = 207;
 					this.shapeType();
 					}
 					break;
 				case SubjektParser.IDENTIFIER_CHARS:
 					{
-					this.state = 212;
+					this.state = 208;
 					this.identifier();
 					}
 					break;
@@ -997,55 +986,127 @@ export class SubjektParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
+	public subjectMembers(): SubjectMembersContext {
+		let _localctx: SubjectMembersContext = new SubjectMembersContext(this._ctx, this.state);
+		this.enterRule(_localctx, 38, SubjektParser.RULE_subjectMembers);
+		try {
+			this.state = 216;
+			this._errHandler.sync(this);
+			switch (this._input.LA(1)) {
+			case SubjektParser.STATE:
+				this.enterOuterAlt(_localctx, 1);
+				{
+				this.state = 213;
+				this.stateReference();
+				}
+				break;
+			case SubjektParser.BEHAVIORS:
+				this.enterOuterAlt(_localctx, 2);
+				{
+				this.state = 214;
+				this.behaviorReference();
+				}
+				break;
+			case SubjektParser.EVENTS:
+				this.enterOuterAlt(_localctx, 3);
+				{
+				this.state = 215;
+				this.eventReference();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public behaviorMembers(): BehaviorMembersContext {
+		let _localctx: BehaviorMembersContext = new BehaviorMembersContext(this._ctx, this.state);
+		this.enterRule(_localctx, 40, SubjektParser.RULE_behaviorMembers);
+		try {
+			this.state = 221;
+			this._errHandler.sync(this);
+			switch (this._input.LA(1)) {
+			case SubjektParser.INPUT:
+				this.enterOuterAlt(_localctx, 1);
+				{
+				this.state = 218;
+				this.inputReference();
+				}
+				break;
+			case SubjektParser.OUTPUT:
+				this.enterOuterAlt(_localctx, 2);
+				{
+				this.state = 219;
+				this.outputReference();
+				}
+				break;
+			case SubjektParser.ERRORS:
+				this.enterOuterAlt(_localctx, 3);
+				{
+				this.state = 220;
+				this.errorReference();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
 	public stateReference(): StateReferenceContext {
 		let _localctx: StateReferenceContext = new StateReferenceContext(this._ctx, this.state);
-		this.enterRule(_localctx, 38, SubjektParser.RULE_stateReference);
+		this.enterRule(_localctx, 42, SubjektParser.RULE_stateReference);
 		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 217;
+			this.state = 223;
 			this.match(SubjektParser.STATE);
-			this.state = 218;
+			this.state = 224;
 			this.match(SubjektParser.COLON);
-			this.state = 219;
+			this.state = 225;
 			this.match(SubjektParser.LCURLY);
-			this.state = 228;
+			this.state = 227;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la === SubjektParser.IDENTIFIER_CHARS) {
+			do {
 				{
 				{
-				this.state = 220;
-				this.identifier();
-				this.state = 221;
-				this.match(SubjektParser.COLON);
-				this.state = 224;
-				this._errHandler.sync(this);
-				switch (this._input.LA(1)) {
-				case SubjektParser.AGGREGATE_SHAPE_TYPE:
-				case SubjektParser.SIMPLE_SHAPE_TYPE:
-				case SubjektParser.SUBJECT_SHAPE_TYPE:
-					{
-					this.state = 222;
-					this.shapeType();
-					}
-					break;
-				case SubjektParser.IDENTIFIER_CHARS:
-					{
-					this.state = 223;
-					this.identifier();
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
+				this.state = 226;
+				this.member();
 				}
 				}
-				}
-				this.state = 230;
+				this.state = 229;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-			}
+			} while (_la === SubjektParser.IDENTIFIER_CHARS);
 			this.state = 231;
 			this.match(SubjektParser.RCURLY);
 			}
@@ -1067,7 +1128,7 @@ export class SubjektParser extends Parser {
 	// @RuleVersion(0)
 	public behaviorReference(): BehaviorReferenceContext {
 		let _localctx: BehaviorReferenceContext = new BehaviorReferenceContext(this._ctx, this.state);
-		this.enterRule(_localctx, 40, SubjektParser.RULE_behaviorReference);
+		this.enterRule(_localctx, 44, SubjektParser.RULE_behaviorReference);
 		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
@@ -1113,7 +1174,7 @@ export class SubjektParser extends Parser {
 	// @RuleVersion(0)
 	public eventReference(): EventReferenceContext {
 		let _localctx: EventReferenceContext = new EventReferenceContext(this._ctx, this.state);
-		this.enterRule(_localctx, 42, SubjektParser.RULE_eventReference);
+		this.enterRule(_localctx, 46, SubjektParser.RULE_eventReference);
 		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
@@ -1157,162 +1218,36 @@ export class SubjektParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public subjectMembers(): SubjectMembersContext {
-		let _localctx: SubjectMembersContext = new SubjectMembersContext(this._ctx, this.state);
-		this.enterRule(_localctx, 44, SubjektParser.RULE_subjectMembers);
-		let _la: number;
-		try {
-			this.state = 264;
-			this._errHandler.sync(this);
-			switch (this._input.LA(1)) {
-			case SubjektParser.STATE:
-				this.enterOuterAlt(_localctx, 1);
-				{
-				this.state = 255;
-				this.stateReference();
-				}
-				break;
-			case SubjektParser.BEHAVIORS:
-				this.enterOuterAlt(_localctx, 2);
-				{
-				this.state = 256;
-				this.behaviorReference();
-				}
-				break;
-			case SubjektParser.EVENTS:
-				this.enterOuterAlt(_localctx, 3);
-				{
-				this.state = 257;
-				this.eventReference();
-				}
-				break;
-			case SubjektParser.RCURLY:
-			case SubjektParser.IDENTIFIER_CHARS:
-				this.enterOuterAlt(_localctx, 4);
-				{
-				this.state = 261;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-				while (_la === SubjektParser.IDENTIFIER_CHARS) {
-					{
-					{
-					this.state = 258;
-					this.member();
-					}
-					}
-					this.state = 263;
-					this._errHandler.sync(this);
-					_la = this._input.LA(1);
-				}
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
-	public behaviorMembers(): BehaviorMembersContext {
-		let _localctx: BehaviorMembersContext = new BehaviorMembersContext(this._ctx, this.state);
-		this.enterRule(_localctx, 46, SubjektParser.RULE_behaviorMembers);
-		try {
-			this.state = 269;
-			this._errHandler.sync(this);
-			switch (this._input.LA(1)) {
-			case SubjektParser.INPUT:
-				this.enterOuterAlt(_localctx, 1);
-				{
-				this.state = 266;
-				this.inputReference();
-				}
-				break;
-			case SubjektParser.OUTPUT:
-				this.enterOuterAlt(_localctx, 2);
-				{
-				this.state = 267;
-				this.outputReference();
-				}
-				break;
-			case SubjektParser.ERRORS:
-				this.enterOuterAlt(_localctx, 3);
-				{
-				this.state = 268;
-				this.errorReference();
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	// @RuleVersion(0)
 	public inputReference(): InputReferenceContext {
 		let _localctx: InputReferenceContext = new InputReferenceContext(this._ctx, this.state);
 		this.enterRule(_localctx, 48, SubjektParser.RULE_inputReference);
-		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 271;
+			this.state = 255;
 			this.match(SubjektParser.INPUT);
-			this.state = 272;
+			this.state = 256;
 			this.match(SubjektParser.COLON);
-			this.state = 275;
+			this.state = 259;
 			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			do {
+			switch (this._input.LA(1)) {
+			case SubjektParser.AGGREGATE_SHAPE_TYPE:
+			case SubjektParser.SIMPLE_SHAPE_TYPE:
+			case SubjektParser.SUBJECT_SHAPE_TYPE:
 				{
-				this.state = 275;
-				this._errHandler.sync(this);
-				switch (this._input.LA(1)) {
-				case SubjektParser.AGGREGATE_SHAPE_TYPE:
-				case SubjektParser.SIMPLE_SHAPE_TYPE:
-				case SubjektParser.SUBJECT_SHAPE_TYPE:
-					{
-					this.state = 273;
-					this.shapeType();
-					}
-					break;
-				case SubjektParser.IDENTIFIER_CHARS:
-					{
-					this.state = 274;
-					this.identifier();
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
+				this.state = 257;
+				this.shapeType();
 				}
+				break;
+			case SubjektParser.IDENTIFIER_CHARS:
+				{
+				this.state = 258;
+				this.identifier();
 				}
-				this.state = 277;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			} while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << SubjektParser.AGGREGATE_SHAPE_TYPE) | (1 << SubjektParser.SIMPLE_SHAPE_TYPE) | (1 << SubjektParser.SUBJECT_SHAPE_TYPE) | (1 << SubjektParser.IDENTIFIER_CHARS))) !== 0));
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
 			}
 		}
 		catch (re) {
@@ -1333,44 +1268,33 @@ export class SubjektParser extends Parser {
 	public outputReference(): OutputReferenceContext {
 		let _localctx: OutputReferenceContext = new OutputReferenceContext(this._ctx, this.state);
 		this.enterRule(_localctx, 50, SubjektParser.RULE_outputReference);
-		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 279;
+			this.state = 261;
 			this.match(SubjektParser.OUTPUT);
-			this.state = 280;
+			this.state = 262;
 			this.match(SubjektParser.COLON);
-			this.state = 283;
+			this.state = 265;
 			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			do {
+			switch (this._input.LA(1)) {
+			case SubjektParser.AGGREGATE_SHAPE_TYPE:
+			case SubjektParser.SIMPLE_SHAPE_TYPE:
+			case SubjektParser.SUBJECT_SHAPE_TYPE:
 				{
-				this.state = 283;
-				this._errHandler.sync(this);
-				switch (this._input.LA(1)) {
-				case SubjektParser.AGGREGATE_SHAPE_TYPE:
-				case SubjektParser.SIMPLE_SHAPE_TYPE:
-				case SubjektParser.SUBJECT_SHAPE_TYPE:
-					{
-					this.state = 281;
-					this.shapeType();
-					}
-					break;
-				case SubjektParser.IDENTIFIER_CHARS:
-					{
-					this.state = 282;
-					this.identifier();
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
+				this.state = 263;
+				this.shapeType();
 				}
+				break;
+			case SubjektParser.IDENTIFIER_CHARS:
+				{
+				this.state = 264;
+				this.identifier();
 				}
-				this.state = 285;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			} while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << SubjektParser.AGGREGATE_SHAPE_TYPE) | (1 << SubjektParser.SIMPLE_SHAPE_TYPE) | (1 << SubjektParser.SUBJECT_SHAPE_TYPE) | (1 << SubjektParser.IDENTIFIER_CHARS))) !== 0));
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
 			}
 		}
 		catch (re) {
@@ -1395,27 +1319,27 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 287;
+			this.state = 267;
 			this.match(SubjektParser.ERRORS);
-			this.state = 288;
+			this.state = 268;
 			this.match(SubjektParser.COLON);
-			this.state = 289;
+			this.state = 269;
 			this.match(SubjektParser.LBRACK);
-			this.state = 293;
+			this.state = 273;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			while (_la === SubjektParser.IDENTIFIER_CHARS) {
 				{
 				{
-				this.state = 290;
+				this.state = 270;
 				this.identifier();
 				}
 				}
-				this.state = 295;
+				this.state = 275;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 296;
+			this.state = 276;
 			this.match(SubjektParser.RBRACK);
 			}
 		}
@@ -1437,46 +1361,33 @@ export class SubjektParser extends Parser {
 	public member(): MemberContext {
 		let _localctx: MemberContext = new MemberContext(this._ctx, this.state);
 		this.enterRule(_localctx, 54, SubjektParser.RULE_member);
-		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 298;
+			this.state = 278;
 			this.identifier();
-			this.state = 299;
+			this.state = 279;
 			this.match(SubjektParser.COLON);
-			this.state = 302;
+			this.state = 282;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case SubjektParser.AGGREGATE_SHAPE_TYPE:
 			case SubjektParser.SIMPLE_SHAPE_TYPE:
 			case SubjektParser.SUBJECT_SHAPE_TYPE:
 				{
-				this.state = 300;
+				this.state = 280;
 				this.shapeType();
 				}
 				break;
 			case SubjektParser.IDENTIFIER_CHARS:
 				{
-				this.state = 301;
+				this.state = 281;
 				this.identifier();
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			this.state = 306;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			if (_la === SubjektParser.ASSIGNMENT) {
-				{
-				this.state = 304;
-				this.match(SubjektParser.ASSIGNMENT);
-				this.state = 305;
-				this.value();
-				}
-			}
-
 			}
 		}
 		catch (re) {
@@ -1501,14 +1412,14 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 308;
+			this.state = 284;
 			this.rootShapeId();
-			this.state = 310;
+			this.state = 286;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === SubjektParser.DOLLAR_SIGN) {
 				{
-				this.state = 309;
+				this.state = 285;
 				this.shapeIdMember();
 				}
 			}
@@ -1534,20 +1445,20 @@ export class SubjektParser extends Parser {
 		let _localctx: RootShapeIdContext = new RootShapeIdContext(this._ctx, this.state);
 		this.enterRule(_localctx, 58, SubjektParser.RULE_rootShapeId);
 		try {
-			this.state = 314;
+			this.state = 290;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case SubjektParser.NAMESPACE_IDENTIFIER_CHARS:
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 312;
+				this.state = 288;
 				this.absoluteRootShapeId();
 				}
 				break;
 			case SubjektParser.IDENTIFIER_CHARS:
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 313;
+				this.state = 289;
 				this.identifier();
 				}
 				break;
@@ -1576,11 +1487,11 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 316;
+			this.state = 292;
 			this.namespaceIdentifier();
-			this.state = 317;
+			this.state = 293;
 			this.match(SubjektParser.HASH_SIGN);
-			this.state = 318;
+			this.state = 294;
 			this.identifier();
 			}
 		}
@@ -1605,9 +1516,9 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 320;
+			this.state = 296;
 			this.match(SubjektParser.DOLLAR_SIGN);
-			this.state = 321;
+			this.state = 297;
 			this.identifier();
 			}
 		}
@@ -1633,16 +1544,16 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 323;
+			this.state = 299;
 			this.match(SubjektParser.AT_SIGN);
-			this.state = 324;
+			this.state = 300;
 			this.identifier();
-			this.state = 326;
+			this.state = 302;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === SubjektParser.LPAREN) {
 				{
-				this.state = 325;
+				this.state = 301;
 				this.traitBody();
 				}
 			}
@@ -1670,14 +1581,14 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 328;
+			this.state = 304;
 			this.match(SubjektParser.LPAREN);
-			this.state = 331;
+			this.state = 307;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case SubjektParser.IDENTIFIER_CHARS:
 				{
-				this.state = 329;
+				this.state = 305;
 				this.traitStructureList();
 				}
 				break;
@@ -1688,7 +1599,7 @@ export class SubjektParser extends Parser {
 			case SubjektParser.SINGLE_STRING:
 			case SubjektParser.DOUBLE_STRING:
 				{
-				this.state = 330;
+				this.state = 306;
 				this.traitNode();
 				}
 				break;
@@ -1697,7 +1608,7 @@ export class SubjektParser extends Parser {
 			default:
 				break;
 			}
-			this.state = 333;
+			this.state = 309;
 			this.match(SubjektParser.RPAREN);
 			}
 		}
@@ -1723,17 +1634,17 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 336;
+			this.state = 312;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			do {
 				{
 				{
-				this.state = 335;
+				this.state = 311;
 				this.traitStructure();
 				}
 				}
-				this.state = 338;
+				this.state = 314;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			} while (_la === SubjektParser.IDENTIFIER_CHARS);
@@ -1760,11 +1671,11 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 340;
+			this.state = 316;
 			this.identifier();
-			this.state = 341;
+			this.state = 317;
 			this.match(SubjektParser.ASSIGNMENT);
-			this.state = 342;
+			this.state = 318;
 			this.value();
 			}
 		}
@@ -1789,7 +1700,7 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 344;
+			this.state = 320;
 			this.value();
 			}
 		}
@@ -1812,14 +1723,14 @@ export class SubjektParser extends Parser {
 		let _localctx: ValueContext = new ValueContext(this._ctx, this.state);
 		this.enterRule(_localctx, 74, SubjektParser.RULE_value);
 		try {
-			this.state = 350;
+			this.state = 326;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case SubjektParser.SINGLE_STRING:
 			case SubjektParser.DOUBLE_STRING:
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 346;
+				this.state = 322;
 				this.string();
 				}
 				break;
@@ -1827,21 +1738,21 @@ export class SubjektParser extends Parser {
 			case SubjektParser.FLOAT:
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 347;
+				this.state = 323;
 				this.number();
 				}
 				break;
 			case SubjektParser.LBRACK:
 				this.enterOuterAlt(_localctx, 3);
 				{
-				this.state = 348;
+				this.state = 324;
 				this.listValue();
 				}
 				break;
 			case SubjektParser.LCURLY:
 				this.enterOuterAlt(_localctx, 4);
 				{
-				this.state = 349;
+				this.state = 325;
 				this.objectValue();
 				}
 				break;
@@ -1871,23 +1782,23 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 352;
+			this.state = 328;
 			this.match(SubjektParser.LBRACK);
-			this.state = 356;
+			this.state = 332;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			while (((((_la - 18)) & ~0x1F) === 0 && ((1 << (_la - 18)) & ((1 << (SubjektParser.LBRACK - 18)) | (1 << (SubjektParser.LCURLY - 18)) | (1 << (SubjektParser.INTEGER - 18)) | (1 << (SubjektParser.FLOAT - 18)) | (1 << (SubjektParser.SINGLE_STRING - 18)) | (1 << (SubjektParser.DOUBLE_STRING - 18)))) !== 0)) {
 				{
 				{
-				this.state = 353;
+				this.state = 329;
 				this.value();
 				}
 				}
-				this.state = 358;
+				this.state = 334;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 359;
+			this.state = 335;
 			this.match(SubjektParser.RBRACK);
 			}
 		}
@@ -1913,23 +1824,23 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 361;
+			this.state = 337;
 			this.match(SubjektParser.LCURLY);
-			this.state = 365;
+			this.state = 341;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			while (_la === SubjektParser.IDENTIFIER_CHARS) {
 				{
 				{
-				this.state = 362;
+				this.state = 338;
 				this.kvp();
 				}
 				}
-				this.state = 367;
+				this.state = 343;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 368;
+			this.state = 344;
 			this.match(SubjektParser.RCURLY);
 			}
 		}
@@ -1954,11 +1865,11 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 370;
+			this.state = 346;
 			this.identifier();
-			this.state = 371;
+			this.state = 347;
 			this.match(SubjektParser.COLON);
-			this.state = 372;
+			this.state = 348;
 			this.value();
 			}
 		}
@@ -1984,7 +1895,7 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 374;
+			this.state = 350;
 			_la = this._input.LA(1);
 			if (!(_la === SubjektParser.SINGLE_STRING || _la === SubjektParser.DOUBLE_STRING)) {
 			this._errHandler.recoverInline(this);
@@ -2020,7 +1931,7 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 376;
+			this.state = 352;
 			_la = this._input.LA(1);
 			if (!(_la === SubjektParser.INTEGER || _la === SubjektParser.FLOAT)) {
 			this._errHandler.recoverInline(this);
@@ -2055,7 +1966,7 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 378;
+			this.state = 354;
 			this.match(SubjektParser.NAMESPACE_IDENTIFIER_CHARS);
 			}
 		}
@@ -2080,7 +1991,7 @@ export class SubjektParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 380;
+			this.state = 356;
 			this.match(SubjektParser.IDENTIFIER_CHARS);
 			}
 		}
@@ -2100,7 +2011,7 @@ export class SubjektParser extends Parser {
 	}
 
 	public static readonly _serializedATN: string =
-		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03\'\u0181\x04\x02" +
+		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03\'\u0169\x04\x02" +
 		"\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04\x07" +
 		"\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04\f\t\f\x04\r\t\r\x04" +
 		"\x0E\t\x0E\x04\x0F\t\x0F\x04\x10\t\x10\x04\x11\t\x11\x04\x12\t\x12\x04" +
@@ -2114,169 +2025,153 @@ export class SubjektParser extends Parser {
 		"\x03\x07\x07\x07w\n\x07\f\x07\x0E\x07z\v\x07\x03\b\x07\b}\n\b\f\b\x0E" +
 		"\b\x80\v\b\x03\b\x03\b\x03\t\x03\t\x03\t\x05\t\x87\n\t\x03\n\x03\n\x03" +
 		"\v\x03\v\x05\v\x8D\n\v\x03\f\x03\f\x05\f\x91\n\f\x03\f\x03\f\x03\r\x03" +
-		"\r\x05\r\x97\n\r\x03\r\x03\r\x03\x0E\x03\x0E\x03\x0E\x03\x0E\x07\x0E\x9F" +
-		"\n\x0E\f\x0E\x0E\x0E\xA2\v\x0E\x05\x0E\xA4\n\x0E\x03\x0F\x03\x0F\x03\x0F" +
-		"\x07\x0F\xA9\n\x0F\f\x0F\x0E\x0F\xAC\v\x0F\x05\x0F\xAE\n\x0F\x03\x10\x03" +
-		"\x10\x05\x10\xB2\n\x10\x03\x10\x07\x10\xB5\n\x10\f\x10\x0E\x10\xB8\v\x10" +
-		"\x03\x11\x03\x11\x03\x11\x03\x11\x05\x11\xBE\n\x11\x05\x11\xC0\n\x11\x03" +
-		"\x12\x03\x12\x03\x12\x03\x12\x05\x12\xC6\n\x12\x03\x13\x07\x13\xC9\n\x13" +
-		"\f\x13\x0E\x13\xCC\v\x13\x03\x14\x03\x14\x03\x14\x03\x14\x05\x14\xD2\n" +
-		"\x14\x03\x14\x03\x14\x03\x14\x03\x14\x05\x14\xD8\n\x14\x05\x14\xDA\n\x14" +
-		"\x03\x15\x03\x15\x03\x15\x03\x15\x03\x15\x03\x15\x03\x15\x05\x15\xE3\n" +
-		"\x15\x07\x15\xE5\n\x15\f\x15\x0E\x15\xE8\v\x15\x03\x15\x03\x15\x03\x16" +
-		"\x03\x16\x03\x16\x03\x16\x07\x16\xF0\n\x16\f\x16\x0E\x16\xF3\v\x16\x03" +
-		"\x16\x03\x16\x03\x17\x03\x17\x03\x17\x03\x17\x07\x17\xFB\n\x17\f\x17\x0E" +
-		"\x17\xFE\v\x17\x03\x17\x03\x17\x03\x18\x03\x18\x03\x18\x03\x18\x07\x18" +
-		"\u0106\n\x18\f\x18\x0E\x18\u0109\v\x18\x05\x18\u010B\n\x18\x03\x19\x03" +
-		"\x19\x03\x19\x05\x19\u0110\n\x19\x03\x1A\x03\x1A\x03\x1A\x03\x1A\x06\x1A" +
-		"\u0116\n\x1A\r\x1A\x0E\x1A\u0117\x03\x1B\x03\x1B\x03\x1B\x03\x1B\x06\x1B" +
-		"\u011E\n\x1B\r\x1B\x0E\x1B\u011F\x03\x1C\x03\x1C\x03\x1C\x03\x1C\x07\x1C" +
-		"\u0126\n\x1C\f\x1C\x0E\x1C\u0129\v\x1C\x03\x1C\x03\x1C\x03\x1D\x03\x1D" +
-		"\x03\x1D\x03\x1D\x05\x1D\u0131\n\x1D\x03\x1D\x03\x1D\x05\x1D\u0135\n\x1D" +
-		"\x03\x1E\x03\x1E\x05\x1E\u0139\n\x1E\x03\x1F\x03\x1F\x05\x1F\u013D\n\x1F" +
-		"\x03 \x03 \x03 \x03 \x03!\x03!\x03!\x03\"\x03\"\x03\"\x05\"\u0149\n\"" +
-		"\x03#\x03#\x03#\x05#\u014E\n#\x03#\x03#\x03$\x06$\u0153\n$\r$\x0E$\u0154" +
-		"\x03%\x03%\x03%\x03%\x03&\x03&\x03\'\x03\'\x03\'\x03\'\x05\'\u0161\n\'" +
-		"\x03(\x03(\x07(\u0165\n(\f(\x0E(\u0168\v(\x03(\x03(\x03)\x03)\x07)\u016E" +
-		"\n)\f)\x0E)\u0171\v)\x03)\x03)\x03*\x03*\x03*\x03*\x03+\x03+\x03,\x03" +
-		",\x03-\x03-\x03.\x03.\x03.\x02\x02\x02/\x02\x02\x04\x02\x06\x02\b\x02" +
-		"\n\x02\f\x02\x0E\x02\x10\x02\x12\x02\x14\x02\x16\x02\x18\x02\x1A\x02\x1C" +
-		"\x02\x1E\x02 \x02\"\x02$\x02&\x02(\x02*\x02,\x02.\x020\x022\x024\x026" +
-		"\x028\x02:\x02<\x02>\x02@\x02B\x02D\x02F\x02H\x02J\x02L\x02N\x02P\x02" +
-		"R\x02T\x02V\x02X\x02Z\x02\x02\x05\x03\x02\x0E\x10\x03\x02#$\x03\x02\x1F" +
-		" \x02\u0187\x02\\\x03\x02\x02\x02\x04d\x03\x02\x02\x02\x06g\x03\x02\x02" +
-		"\x02\bo\x03\x02\x02\x02\nr\x03\x02\x02\x02\fx\x03\x02\x02\x02\x0E~\x03" +
-		"\x02\x02\x02\x10\x83\x03\x02\x02\x02\x12\x88\x03\x02\x02\x02\x14\x8C\x03" +
-		"\x02\x02\x02\x16\x8E\x03\x02\x02\x02\x18\x94\x03\x02\x02\x02\x1A\xA3\x03" +
-		"\x02\x02\x02\x1C\xAD\x03\x02\x02\x02\x1E\xAF\x03\x02\x02\x02 \xB9\x03" +
-		"\x02\x02\x02\"\xC1\x03\x02\x02\x02$\xCA\x03\x02\x02\x02&\xD9\x03\x02\x02" +
-		"\x02(\xDB\x03\x02\x02\x02*\xEB\x03\x02\x02\x02,\xF6\x03\x02\x02\x02.\u010A" +
-		"\x03\x02\x02\x020\u010F\x03\x02\x02\x022\u0111\x03\x02\x02\x024\u0119" +
-		"\x03\x02\x02\x026\u0121\x03\x02\x02\x028\u012C\x03\x02\x02\x02:\u0136" +
-		"\x03\x02\x02\x02<\u013C\x03\x02\x02\x02>\u013E\x03\x02\x02\x02@\u0142" +
-		"\x03\x02\x02\x02B\u0145\x03\x02\x02\x02D\u014A\x03\x02\x02\x02F\u0152" +
-		"\x03\x02\x02\x02H\u0156\x03\x02\x02\x02J\u015A\x03\x02\x02\x02L\u0160" +
-		"\x03\x02\x02\x02N\u0162\x03\x02\x02\x02P\u016B\x03\x02\x02\x02R\u0174" +
-		"\x03\x02\x02\x02T\u0178\x03\x02\x02\x02V\u017A\x03\x02\x02\x02X\u017C" +
-		"\x03\x02\x02\x02Z\u017E\x03\x02\x02\x02\\]\x05\x04\x03\x02]^\x05\b\x05" +
-		"\x02^_\x05\f\x07\x02_`\x07\x02\x02\x03`\x03\x03\x02\x02\x02ac\x05\x06" +
-		"\x04\x02ba\x03\x02\x02\x02cf\x03\x02\x02\x02db\x03\x02\x02\x02de\x03\x02" +
-		"\x02\x02e\x05\x03\x02\x02\x02fd\x03\x02\x02\x02gh\x07\x03\x02\x02hi\x05" +
-		"Z.\x02ij\x07\x18\x02\x02jk\x05L\'\x02k\x07\x03\x02\x02\x02ln\x05\n\x06" +
-		"\x02ml\x03\x02\x02\x02nq\x03\x02\x02\x02om\x03\x02\x02\x02op\x03\x02\x02" +
-		"\x02p\t\x03\x02\x02\x02qo\x03\x02\x02\x02rs\x07\x04\x02\x02st\x05> \x02" +
-		"t\v\x03\x02\x02\x02uw\x05\x0E\b\x02vu\x03\x02\x02\x02wz\x03\x02\x02\x02" +
-		"xv\x03\x02\x02\x02xy\x03\x02\x02\x02y\r\x03\x02\x02\x02zx\x03\x02\x02" +
-		"\x02{}\x05B\"\x02|{\x03\x02\x02\x02}\x80\x03\x02\x02\x02~|\x03\x02\x02" +
-		"\x02~\x7F\x03\x02\x02\x02\x7F\x81\x03\x02\x02\x02\x80~\x03\x02\x02\x02" +
-		"\x81\x82\x05\x10\t\x02\x82\x0F\x03\x02\x02\x02\x83\x84\x05\x12\n\x02\x84" +
-		"\x86\x05Z.\x02\x85\x87\x05\x14\v\x02\x86\x85\x03\x02\x02\x02\x86\x87\x03" +
-		"\x02\x02\x02\x87\x11\x03\x02\x02\x02\x88\x89\t\x02\x02\x02\x89\x13\x03" +
-		"\x02\x02\x02\x8A\x8D\x05\x16\f\x02\x8B\x8D\x05\x18\r\x02\x8C\x8A\x03\x02" +
-		"\x02\x02\x8C\x8B\x03\x02\x02\x02\x8D\x15\x03\x02\x02\x02\x8E\x90\x07\x16" +
-		"\x02\x02\x8F\x91\x05\x1A\x0E\x02\x90\x8F\x03\x02\x02\x02\x90\x91\x03\x02" +
-		"\x02\x02\x91\x92\x03\x02\x02\x02\x92\x93\x07\x17\x02\x02\x93\x17\x03\x02" +
-		"\x02\x02\x94\x96\x07\x16\x02\x02\x95\x97\x05\x1C\x0F\x02\x96\x95\x03\x02" +
-		"\x02\x02\x96\x97\x03\x02\x02\x02\x97\x98\x03\x02\x02\x02\x98\x99\x07\x17" +
-		"\x02\x02\x99\x19\x03\x02\x02\x02\x9A\xA4\x05\x1E\x10\x02\x9B\xA4\x05\"" +
-		"\x12\x02\x9C\xA4\x05$\x13\x02\x9D\x9F\x058\x1D\x02\x9E\x9D\x03\x02\x02" +
-		"\x02\x9F\xA2\x03\x02\x02\x02\xA0\x9E\x03\x02\x02\x02\xA0\xA1\x03\x02\x02" +
-		"\x02\xA1\xA4\x03\x02\x02\x02\xA2\xA0\x03\x02\x02\x02\xA3\x9A\x03\x02\x02" +
-		"\x02\xA3\x9B\x03\x02\x02\x02\xA3\x9C\x03\x02\x02\x02\xA3\xA0\x03\x02\x02" +
-		"\x02\xA4\x1B\x03\x02\x02\x02\xA5\xAE\x05.\x18\x02\xA6\xAE\x050\x19\x02" +
-		"\xA7\xA9\x058\x1D\x02\xA8\xA7\x03\x02\x02\x02\xA9\xAC\x03\x02\x02\x02" +
-		"\xAA\xA8\x03\x02\x02\x02\xAA\xAB\x03\x02\x02\x02\xAB\xAE\x03\x02\x02\x02" +
-		"\xAC\xAA\x03\x02\x02\x02\xAD\xA5\x03\x02\x02\x02\xAD\xA6\x03\x02\x02\x02" +
-		"\xAD\xAA\x03\x02\x02\x02\xAE\x1D\x03\x02\x02\x02\xAF\xB6\x05 \x11\x02" +
-		"\xB0\xB2\x07\x1D\x02\x02\xB1\xB0\x03\x02\x02\x02\xB1\xB2\x03\x02\x02\x02" +
-		"\xB2\xB3\x03\x02\x02\x02\xB3\xB5\x05 \x11\x02\xB4\xB1\x03\x02\x02\x02" +
-		"\xB5\xB8\x03\x02\x02\x02\xB6\xB4\x03\x02\x02\x02\xB6\xB7\x03\x02\x02\x02" +
-		"\xB7\x1F\x03\x02\x02\x02\xB8\xB6\x03\x02\x02\x02\xB9\xBF\x05Z.\x02\xBA" +
-		"\xBD\x07\x18\x02\x02\xBB\xBE\x05T+\x02\xBC\xBE\x07\x1F\x02\x02\xBD\xBB" +
-		"\x03\x02\x02\x02\xBD\xBC\x03\x02\x02\x02\xBE\xC0\x03\x02\x02\x02\xBF\xBA" +
-		"\x03\x02\x02\x02\xBF\xC0\x03\x02\x02\x02\xC0!\x03\x02\x02\x02\xC1\xC2" +
-		"\x07\x05\x02\x02\xC2\xC5\x07\x19\x02\x02\xC3\xC6\x05\x12\n\x02\xC4\xC6" +
-		"\x05Z.\x02\xC5\xC3\x03\x02\x02\x02\xC5\xC4\x03\x02\x02\x02\xC6#\x03\x02" +
-		"\x02\x02\xC7\xC9\x05&\x14\x02\xC8\xC7\x03\x02\x02\x02\xC9\xCC\x03\x02" +
-		"\x02\x02\xCA\xC8\x03\x02\x02\x02\xCA\xCB\x03\x02\x02\x02\xCB%\x03\x02" +
-		"\x02\x02\xCC\xCA\x03\x02\x02\x02\xCD\xCE\x07\x06\x02\x02\xCE\xD1\x07\x19" +
-		"\x02\x02\xCF\xD2\x05\x12\n\x02\xD0\xD2\x05Z.\x02\xD1\xCF\x03\x02\x02\x02" +
-		"\xD1\xD0\x03\x02\x02\x02\xD2\xDA\x03\x02\x02\x02\xD3\xD4\x07\x07\x02\x02" +
-		"\xD4\xD7\x07\x19\x02\x02\xD5\xD8\x05\x12\n\x02\xD6\xD8\x05Z.\x02\xD7\xD5" +
-		"\x03\x02\x02\x02\xD7\xD6\x03\x02\x02\x02\xD8\xDA\x03\x02\x02\x02\xD9\xCD" +
-		"\x03\x02\x02\x02\xD9\xD3\x03\x02\x02\x02\xDA\'\x03\x02\x02\x02\xDB\xDC" +
-		"\x07\b\x02\x02\xDC\xDD\x07\x19\x02\x02\xDD\xE6\x07\x16\x02\x02\xDE\xDF" +
-		"\x05Z.\x02\xDF\xE2\x07\x19\x02\x02\xE0\xE3\x05\x12\n\x02\xE1\xE3\x05Z" +
-		".\x02\xE2\xE0\x03\x02\x02\x02\xE2\xE1\x03\x02\x02\x02\xE3\xE5\x03\x02" +
-		"\x02\x02\xE4\xDE\x03\x02\x02\x02\xE5\xE8\x03\x02\x02\x02\xE6\xE4\x03\x02" +
-		"\x02\x02\xE6\xE7\x03\x02\x02\x02\xE7\xE9\x03\x02\x02\x02\xE8\xE6\x03\x02" +
-		"\x02\x02\xE9\xEA\x07\x17\x02\x02\xEA)\x03\x02\x02\x02\xEB\xEC\x07\t\x02" +
-		"\x02\xEC\xED\x07\x19\x02\x02\xED\xF1\x07\x14\x02\x02\xEE\xF0\x05Z.\x02" +
-		"\xEF\xEE\x03\x02\x02\x02\xF0\xF3\x03\x02\x02\x02\xF1\xEF\x03\x02\x02\x02" +
-		"\xF1\xF2\x03\x02\x02\x02\xF2\xF4\x03\x02\x02\x02\xF3\xF1\x03\x02\x02\x02" +
-		"\xF4\xF5\x07\x15\x02\x02\xF5+\x03\x02\x02\x02\xF6\xF7\x07\n\x02\x02\xF7" +
-		"\xF8\x07\x19\x02\x02\xF8\xFC\x07\x14\x02\x02\xF9\xFB\x05Z.\x02\xFA\xF9" +
-		"\x03\x02\x02\x02\xFB\xFE\x03\x02\x02\x02\xFC\xFA\x03\x02\x02\x02\xFC\xFD" +
-		"\x03\x02\x02\x02\xFD\xFF\x03\x02\x02\x02\xFE\xFC\x03\x02\x02\x02\xFF\u0100" +
-		"\x07\x15\x02\x02\u0100-\x03\x02\x02\x02\u0101\u010B\x05(\x15\x02\u0102" +
-		"\u010B\x05*\x16\x02\u0103\u010B\x05,\x17\x02\u0104\u0106\x058\x1D\x02" +
-		"\u0105\u0104\x03\x02\x02\x02\u0106\u0109\x03\x02\x02\x02\u0107\u0105\x03" +
-		"\x02\x02\x02\u0107\u0108\x03\x02\x02\x02\u0108\u010B\x03\x02\x02\x02\u0109" +
-		"\u0107\x03\x02\x02\x02\u010A\u0101\x03\x02\x02\x02\u010A\u0102\x03\x02" +
-		"\x02\x02\u010A\u0103\x03\x02\x02\x02\u010A\u0107\x03\x02\x02\x02\u010B" +
-		"/\x03\x02\x02\x02\u010C\u0110\x052\x1A\x02\u010D\u0110\x054\x1B\x02\u010E" +
-		"\u0110\x056\x1C\x02\u010F\u010C\x03\x02\x02\x02\u010F\u010D\x03\x02\x02" +
-		"\x02\u010F\u010E\x03\x02\x02\x02\u01101\x03\x02\x02\x02\u0111\u0112\x07" +
-		"\f\x02\x02\u0112\u0115\x07\x19\x02\x02\u0113\u0116\x05\x12\n\x02\u0114" +
-		"\u0116\x05Z.\x02\u0115\u0113\x03\x02\x02\x02\u0115\u0114\x03\x02\x02\x02" +
-		"\u0116\u0117\x03\x02\x02\x02\u0117\u0115\x03\x02\x02\x02\u0117\u0118\x03" +
-		"\x02\x02\x02\u01183\x03\x02\x02\x02\u0119\u011A\x07\r\x02\x02\u011A\u011D" +
-		"\x07\x19\x02\x02\u011B\u011E\x05\x12\n\x02\u011C\u011E\x05Z.\x02\u011D" +
-		"\u011B\x03\x02\x02\x02\u011D\u011C\x03\x02\x02\x02\u011E\u011F\x03\x02" +
-		"\x02\x02\u011F\u011D\x03\x02\x02\x02\u011F\u0120\x03\x02\x02\x02\u0120" +
-		"5\x03\x02\x02\x02\u0121\u0122\x07\v\x02\x02\u0122\u0123\x07\x19\x02\x02" +
-		"\u0123\u0127\x07\x14\x02\x02\u0124\u0126\x05Z.\x02\u0125\u0124\x03\x02" +
-		"\x02\x02\u0126\u0129\x03\x02\x02\x02\u0127\u0125\x03\x02\x02\x02\u0127" +
-		"\u0128\x03\x02\x02\x02\u0128\u012A\x03\x02\x02\x02\u0129\u0127\x03\x02" +
-		"\x02\x02\u012A\u012B\x07\x15\x02\x02\u012B7\x03\x02\x02\x02\u012C\u012D" +
-		"\x05Z.\x02\u012D\u0130\x07\x19\x02\x02\u012E\u0131\x05\x12\n\x02\u012F" +
-		"\u0131\x05Z.\x02\u0130\u012E\x03\x02\x02\x02\u0130\u012F\x03\x02\x02\x02" +
-		"\u0131\u0134\x03\x02\x02\x02\u0132\u0133\x07\x18\x02\x02\u0133\u0135\x05" +
-		"L\'\x02\u0134\u0132\x03\x02\x02\x02\u0134\u0135\x03\x02\x02\x02\u0135" +
-		"9\x03\x02\x02\x02\u0136\u0138\x05<\x1F\x02\u0137\u0139\x05@!\x02\u0138" +
-		"\u0137\x03\x02\x02\x02\u0138\u0139\x03\x02\x02\x02\u0139;\x03\x02\x02" +
-		"\x02\u013A\u013D\x05> \x02\u013B\u013D\x05Z.\x02\u013C\u013A\x03\x02\x02" +
-		"\x02\u013C\u013B\x03\x02\x02\x02\u013D=\x03\x02\x02\x02\u013E\u013F\x05" +
-		"X-\x02\u013F\u0140\x07\x1A\x02\x02\u0140\u0141\x05Z.\x02\u0141?\x03\x02" +
-		"\x02\x02\u0142\u0143\x07\x1B\x02\x02\u0143\u0144\x05Z.\x02\u0144A\x03" +
-		"\x02\x02\x02\u0145\u0146\x07\x11\x02\x02\u0146\u0148\x05Z.\x02\u0147\u0149" +
-		"\x05D#\x02\u0148\u0147\x03\x02\x02\x02\u0148\u0149\x03\x02\x02\x02\u0149" +
-		"C\x03\x02\x02\x02\u014A\u014D\x07\x12\x02\x02\u014B\u014E\x05F$\x02\u014C" +
-		"\u014E\x05J&\x02\u014D\u014B\x03\x02\x02\x02\u014D\u014C\x03\x02\x02\x02" +
-		"\u014D\u014E\x03\x02\x02\x02\u014E\u014F\x03\x02\x02\x02\u014F\u0150\x07" +
-		"\x13\x02\x02\u0150E\x03\x02\x02\x02\u0151\u0153\x05H%\x02\u0152\u0151" +
-		"\x03\x02\x02\x02\u0153\u0154\x03\x02\x02\x02\u0154\u0152\x03\x02\x02\x02" +
-		"\u0154\u0155\x03\x02\x02\x02\u0155G\x03\x02\x02\x02\u0156\u0157\x05Z." +
-		"\x02\u0157\u0158\x07\x18\x02\x02\u0158\u0159\x05L\'\x02\u0159I\x03\x02" +
-		"\x02\x02\u015A\u015B\x05L\'\x02\u015BK\x03\x02\x02\x02\u015C\u0161\x05" +
-		"T+\x02\u015D\u0161\x05V,\x02\u015E\u0161\x05N(\x02\u015F\u0161\x05P)\x02" +
-		"\u0160\u015C\x03\x02\x02\x02\u0160\u015D\x03\x02\x02\x02\u0160\u015E\x03" +
-		"\x02\x02\x02\u0160\u015F\x03\x02\x02\x02\u0161M\x03\x02\x02\x02\u0162" +
-		"\u0166\x07\x14\x02\x02\u0163\u0165\x05L\'\x02\u0164\u0163\x03\x02\x02" +
-		"\x02\u0165\u0168\x03\x02\x02\x02\u0166\u0164\x03\x02\x02\x02\u0166\u0167" +
-		"\x03\x02\x02\x02\u0167\u0169\x03\x02\x02\x02\u0168\u0166\x03\x02\x02\x02" +
-		"\u0169\u016A\x07\x15\x02\x02\u016AO\x03\x02\x02\x02\u016B\u016F\x07\x16" +
-		"\x02\x02\u016C\u016E\x05R*\x02\u016D\u016C\x03\x02\x02\x02\u016E\u0171" +
-		"\x03\x02\x02\x02\u016F\u016D\x03\x02\x02\x02\u016F\u0170\x03\x02\x02\x02" +
-		"\u0170\u0172\x03\x02\x02\x02\u0171\u016F\x03\x02\x02\x02\u0172\u0173\x07" +
-		"\x17\x02\x02\u0173Q\x03\x02\x02\x02\u0174\u0175\x05Z.\x02\u0175\u0176" +
-		"\x07\x19\x02\x02\u0176\u0177\x05L\'\x02\u0177S\x03\x02\x02\x02\u0178\u0179" +
-		"\t\x03\x02\x02\u0179U\x03\x02\x02\x02\u017A\u017B\t\x04\x02\x02\u017B" +
-		"W\x03\x02\x02\x02\u017C\u017D\x07\"\x02\x02\u017DY\x03\x02\x02\x02\u017E" +
-		"\u017F\x07!\x02\x02\u017F[\x03\x02\x02\x02-dox~\x86\x8C\x90\x96\xA0\xA3" +
-		"\xAA\xAD\xB1\xB6\xBD\xBF\xC5\xCA\xD1\xD7\xD9\xE2\xE6\xF1\xFC\u0107\u010A" +
-		"\u010F\u0115\u0117\u011D\u011F\u0127\u0130\u0134\u0138\u013C\u0148\u014D" +
-		"\u0154\u0160\u0166\u016F";
+		"\r\x06\r\x97\n\r\r\r\x0E\r\x98\x03\r\x03\r\x03\x0E\x03\x0E\x03\x0E\x03" +
+		"\x0E\x07\x0E\xA1\n\x0E\f\x0E\x0E\x0E\xA4\v\x0E\x05\x0E\xA6\n\x0E\x03\x0F" +
+		"\x03\x0F\x05\x0F\xAA\n\x0F\x03\x10\x03\x10\x05\x10\xAE\n\x10\x03\x10\x07" +
+		"\x10\xB1\n\x10\f\x10\x0E\x10\xB4\v\x10\x03\x11\x03\x11\x03\x11\x03\x11" +
+		"\x05\x11\xBA\n\x11\x05\x11\xBC\n\x11\x03\x12\x03\x12\x03\x12\x03\x12\x05" +
+		"\x12\xC2\n\x12\x03\x13\x07\x13\xC5\n\x13\f\x13\x0E\x13\xC8\v\x13\x03\x14" +
+		"\x03\x14\x03\x14\x03\x14\x05\x14\xCE\n\x14\x03\x14\x03\x14\x03\x14\x03" +
+		"\x14\x05\x14\xD4\n\x14\x05\x14\xD6\n\x14\x03\x15\x03\x15\x03\x15\x05\x15" +
+		"\xDB\n\x15\x03\x16\x03\x16\x03\x16\x05\x16\xE0\n\x16\x03\x17\x03\x17\x03" +
+		"\x17\x03\x17\x06\x17\xE6\n\x17\r\x17\x0E\x17\xE7\x03\x17\x03\x17\x03\x18" +
+		"\x03\x18\x03\x18\x03\x18\x07\x18\xF0\n\x18\f\x18\x0E\x18\xF3\v\x18\x03" +
+		"\x18\x03\x18\x03\x19\x03\x19\x03\x19\x03\x19\x07\x19\xFB\n\x19\f\x19\x0E" +
+		"\x19\xFE\v\x19\x03\x19\x03\x19\x03\x1A\x03\x1A\x03\x1A\x03\x1A\x05\x1A" +
+		"\u0106\n\x1A\x03\x1B\x03\x1B\x03\x1B\x03\x1B\x05\x1B\u010C\n\x1B\x03\x1C" +
+		"\x03\x1C\x03\x1C\x03\x1C\x07\x1C\u0112\n\x1C\f\x1C\x0E\x1C\u0115\v\x1C" +
+		"\x03\x1C\x03\x1C\x03\x1D\x03\x1D\x03\x1D\x03\x1D\x05\x1D\u011D\n\x1D\x03" +
+		"\x1E\x03\x1E\x05\x1E\u0121\n\x1E\x03\x1F\x03\x1F\x05\x1F\u0125\n\x1F\x03" +
+		" \x03 \x03 \x03 \x03!\x03!\x03!\x03\"\x03\"\x03\"\x05\"\u0131\n\"\x03" +
+		"#\x03#\x03#\x05#\u0136\n#\x03#\x03#\x03$\x06$\u013B\n$\r$\x0E$\u013C\x03" +
+		"%\x03%\x03%\x03%\x03&\x03&\x03\'\x03\'\x03\'\x03\'\x05\'\u0149\n\'\x03" +
+		"(\x03(\x07(\u014D\n(\f(\x0E(\u0150\v(\x03(\x03(\x03)\x03)\x07)\u0156\n" +
+		")\f)\x0E)\u0159\v)\x03)\x03)\x03*\x03*\x03*\x03*\x03+\x03+\x03,\x03,\x03" +
+		"-\x03-\x03.\x03.\x03.\x02\x02\x02/\x02\x02\x04\x02\x06\x02\b\x02\n\x02" +
+		"\f\x02\x0E\x02\x10\x02\x12\x02\x14\x02\x16\x02\x18\x02\x1A\x02\x1C\x02" +
+		"\x1E\x02 \x02\"\x02$\x02&\x02(\x02*\x02,\x02.\x020\x022\x024\x026\x02" +
+		"8\x02:\x02<\x02>\x02@\x02B\x02D\x02F\x02H\x02J\x02L\x02N\x02P\x02R\x02" +
+		"T\x02V\x02X\x02Z\x02\x02\x05\x03\x02\x0E\x10\x03\x02#$\x03\x02\x1F \x02" +
+		"\u0167\x02\\\x03\x02\x02\x02\x04d\x03\x02\x02\x02\x06g\x03\x02\x02\x02" +
+		"\bo\x03\x02\x02\x02\nr\x03\x02\x02\x02\fx\x03\x02\x02\x02\x0E~\x03\x02" +
+		"\x02\x02\x10\x83\x03\x02\x02\x02\x12\x88\x03\x02\x02\x02\x14\x8C\x03\x02" +
+		"\x02\x02\x16\x8E\x03\x02\x02\x02\x18\x94\x03\x02\x02\x02\x1A\xA5\x03\x02" +
+		"\x02\x02\x1C\xA9\x03\x02\x02\x02\x1E\xAB\x03\x02\x02\x02 \xB5\x03\x02" +
+		"\x02\x02\"\xBD\x03\x02\x02\x02$\xC6\x03\x02\x02\x02&\xD5\x03\x02\x02\x02" +
+		"(\xDA\x03\x02\x02\x02*\xDF\x03\x02\x02\x02,\xE1\x03\x02\x02\x02.\xEB\x03" +
+		"\x02\x02\x020\xF6\x03\x02\x02\x022\u0101\x03\x02\x02\x024\u0107\x03\x02" +
+		"\x02\x026\u010D\x03\x02\x02\x028\u0118\x03\x02\x02\x02:\u011E\x03\x02" +
+		"\x02\x02<\u0124\x03\x02\x02\x02>\u0126\x03\x02\x02\x02@\u012A\x03\x02" +
+		"\x02\x02B\u012D\x03\x02\x02\x02D\u0132\x03\x02\x02\x02F\u013A\x03\x02" +
+		"\x02\x02H\u013E\x03\x02\x02\x02J\u0142\x03\x02\x02\x02L\u0148\x03\x02" +
+		"\x02\x02N\u014A\x03\x02\x02\x02P\u0153\x03\x02\x02\x02R\u015C\x03\x02" +
+		"\x02\x02T\u0160\x03\x02\x02\x02V\u0162\x03\x02\x02\x02X\u0164\x03\x02" +
+		"\x02\x02Z\u0166\x03\x02\x02\x02\\]\x05\x04\x03\x02]^\x05\b\x05\x02^_\x05" +
+		"\f\x07\x02_`\x07\x02\x02\x03`\x03\x03\x02\x02\x02ac\x05\x06\x04\x02ba" +
+		"\x03\x02\x02\x02cf\x03\x02\x02\x02db\x03\x02\x02\x02de\x03\x02\x02\x02" +
+		"e\x05\x03\x02\x02\x02fd\x03\x02\x02\x02gh\x07\x03\x02\x02hi\x05Z.\x02" +
+		"ij\x07\x18\x02\x02jk\x05L\'\x02k\x07\x03\x02\x02\x02ln\x05\n\x06\x02m" +
+		"l\x03\x02\x02\x02nq\x03\x02\x02\x02om\x03\x02\x02\x02op\x03\x02\x02\x02" +
+		"p\t\x03\x02\x02\x02qo\x03\x02\x02\x02rs\x07\x04\x02\x02st\x05> \x02t\v" +
+		"\x03\x02\x02\x02uw\x05\x0E\b\x02vu\x03\x02\x02\x02wz\x03\x02\x02\x02x" +
+		"v\x03\x02\x02\x02xy\x03\x02\x02\x02y\r\x03\x02\x02\x02zx\x03\x02\x02\x02" +
+		"{}\x05B\"\x02|{\x03\x02\x02\x02}\x80\x03\x02\x02\x02~|\x03\x02\x02\x02" +
+		"~\x7F\x03\x02\x02\x02\x7F\x81\x03\x02\x02\x02\x80~\x03\x02\x02\x02\x81" +
+		"\x82\x05\x10\t\x02\x82\x0F\x03\x02\x02\x02\x83\x84\x05\x12\n\x02\x84\x86" +
+		"\x05Z.\x02\x85\x87\x05\x14\v\x02\x86\x85\x03\x02\x02\x02\x86\x87\x03\x02" +
+		"\x02\x02\x87\x11\x03\x02\x02\x02\x88\x89\t\x02\x02\x02\x89\x13\x03\x02" +
+		"\x02\x02\x8A\x8D\x05\x16\f\x02\x8B\x8D\x05\x18\r\x02\x8C\x8A\x03\x02\x02" +
+		"\x02\x8C\x8B\x03\x02\x02\x02\x8D\x15\x03\x02\x02\x02\x8E\x90\x07\x16\x02" +
+		"\x02\x8F\x91\x05\x1A\x0E\x02\x90\x8F\x03\x02\x02\x02\x90\x91\x03\x02\x02" +
+		"\x02\x91\x92\x03\x02\x02\x02\x92\x93\x07\x17\x02\x02\x93\x17\x03\x02\x02" +
+		"\x02\x94\x96\x07\x16\x02\x02\x95\x97\x05\x1C\x0F\x02\x96\x95\x03\x02\x02" +
+		"\x02\x97\x98\x03\x02\x02\x02\x98\x96\x03\x02\x02\x02\x98\x99\x03\x02\x02" +
+		"\x02\x99\x9A\x03\x02\x02\x02\x9A\x9B\x07\x17\x02\x02\x9B\x19\x03\x02\x02" +
+		"\x02\x9C\xA6\x05\x1E\x10\x02\x9D\xA6\x05\"\x12\x02\x9E\xA6\x05$\x13\x02" +
+		"\x9F\xA1\x058\x1D\x02\xA0\x9F\x03\x02\x02\x02\xA1\xA4\x03\x02\x02\x02" +
+		"\xA2\xA0\x03\x02\x02\x02\xA2\xA3\x03\x02\x02\x02\xA3\xA6\x03\x02\x02\x02" +
+		"\xA4\xA2\x03\x02\x02\x02\xA5\x9C\x03\x02\x02\x02\xA5\x9D\x03\x02\x02\x02" +
+		"\xA5\x9E\x03\x02\x02\x02\xA5\xA2\x03\x02\x02\x02\xA6\x1B\x03\x02\x02\x02" +
+		"\xA7\xAA\x05(\x15\x02\xA8\xAA\x05*\x16\x02\xA9\xA7\x03\x02\x02\x02\xA9" +
+		"\xA8\x03\x02\x02\x02\xAA\x1D\x03\x02\x02\x02\xAB\xB2\x05 \x11\x02\xAC" +
+		"\xAE\x07\x1D\x02\x02\xAD\xAC\x03\x02\x02\x02\xAD\xAE\x03\x02\x02\x02\xAE" +
+		"\xAF\x03\x02\x02\x02\xAF\xB1\x05 \x11\x02\xB0\xAD\x03\x02\x02\x02\xB1" +
+		"\xB4\x03\x02\x02\x02\xB2\xB0\x03\x02\x02\x02\xB2\xB3\x03\x02\x02\x02\xB3" +
+		"\x1F\x03\x02\x02\x02\xB4\xB2\x03\x02\x02\x02\xB5\xBB\x05Z.\x02\xB6\xB9" +
+		"\x07\x18\x02\x02\xB7\xBA\x05T+\x02\xB8\xBA\x07\x1F\x02\x02\xB9\xB7\x03" +
+		"\x02\x02\x02\xB9\xB8\x03\x02\x02\x02\xBA\xBC\x03\x02\x02\x02\xBB\xB6\x03" +
+		"\x02\x02\x02\xBB\xBC\x03\x02\x02\x02\xBC!\x03\x02\x02\x02\xBD\xBE\x07" +
+		"\x05\x02\x02\xBE\xC1\x07\x19\x02\x02\xBF\xC2\x05\x12\n\x02\xC0\xC2\x05" +
+		"Z.\x02\xC1\xBF\x03\x02\x02\x02\xC1\xC0\x03\x02\x02\x02\xC2#\x03\x02\x02" +
+		"\x02\xC3\xC5\x05&\x14\x02\xC4\xC3\x03\x02\x02\x02\xC5\xC8\x03\x02\x02" +
+		"\x02\xC6\xC4\x03\x02\x02\x02\xC6\xC7\x03\x02\x02\x02\xC7%\x03\x02\x02" +
+		"\x02\xC8\xC6\x03\x02\x02\x02\xC9\xCA\x07\x06\x02\x02\xCA\xCD\x07\x19\x02" +
+		"\x02\xCB\xCE\x05\x12\n\x02\xCC\xCE\x05Z.\x02\xCD\xCB\x03\x02\x02\x02\xCD" +
+		"\xCC\x03\x02\x02\x02\xCE\xD6\x03\x02\x02\x02\xCF\xD0\x07\x07\x02\x02\xD0" +
+		"\xD3\x07\x19\x02\x02\xD1\xD4\x05\x12\n\x02\xD2\xD4\x05Z.\x02\xD3\xD1\x03" +
+		"\x02\x02\x02\xD3\xD2\x03\x02\x02\x02\xD4\xD6\x03\x02\x02\x02\xD5\xC9\x03" +
+		"\x02\x02\x02\xD5\xCF\x03\x02\x02\x02\xD6\'\x03\x02\x02\x02\xD7\xDB\x05" +
+		",\x17\x02\xD8\xDB\x05.\x18\x02\xD9\xDB\x050\x19\x02\xDA\xD7\x03\x02\x02" +
+		"\x02\xDA\xD8\x03\x02\x02\x02\xDA\xD9\x03\x02\x02\x02\xDB)\x03\x02\x02" +
+		"\x02\xDC\xE0\x052\x1A\x02\xDD\xE0\x054\x1B\x02\xDE\xE0\x056\x1C\x02\xDF" +
+		"\xDC\x03\x02\x02\x02\xDF\xDD\x03\x02\x02\x02\xDF\xDE\x03\x02\x02\x02\xE0" +
+		"+\x03\x02\x02\x02\xE1\xE2\x07\b\x02\x02\xE2\xE3\x07\x19\x02\x02\xE3\xE5" +
+		"\x07\x16\x02\x02\xE4\xE6\x058\x1D\x02\xE5\xE4\x03\x02\x02\x02\xE6\xE7" +
+		"\x03\x02\x02\x02\xE7\xE5\x03\x02\x02\x02\xE7\xE8\x03\x02\x02\x02\xE8\xE9" +
+		"\x03\x02\x02\x02\xE9\xEA\x07\x17\x02\x02\xEA-\x03\x02\x02\x02\xEB\xEC" +
+		"\x07\t\x02\x02\xEC\xED\x07\x19\x02\x02\xED\xF1\x07\x14\x02\x02\xEE\xF0" +
+		"\x05Z.\x02\xEF\xEE\x03\x02\x02\x02\xF0\xF3\x03\x02\x02\x02\xF1\xEF\x03" +
+		"\x02\x02\x02\xF1\xF2\x03\x02\x02\x02\xF2\xF4\x03\x02\x02\x02\xF3\xF1\x03" +
+		"\x02\x02\x02\xF4\xF5\x07\x15\x02\x02\xF5/\x03\x02\x02\x02\xF6\xF7\x07" +
+		"\n\x02\x02\xF7\xF8\x07\x19\x02\x02\xF8\xFC\x07\x14\x02\x02\xF9\xFB\x05" +
+		"Z.\x02\xFA\xF9\x03\x02\x02\x02\xFB\xFE\x03\x02\x02\x02\xFC\xFA\x03\x02" +
+		"\x02\x02\xFC\xFD\x03\x02\x02\x02\xFD\xFF\x03\x02\x02\x02\xFE\xFC\x03\x02" +
+		"\x02\x02\xFF\u0100\x07\x15\x02\x02\u01001\x03\x02\x02\x02\u0101\u0102" +
+		"\x07\f\x02\x02\u0102\u0105\x07\x19\x02\x02\u0103\u0106\x05\x12\n\x02\u0104" +
+		"\u0106\x05Z.\x02\u0105\u0103\x03\x02\x02\x02\u0105\u0104\x03\x02\x02\x02" +
+		"\u01063\x03\x02\x02\x02\u0107\u0108\x07\r\x02\x02\u0108\u010B\x07\x19" +
+		"\x02\x02\u0109\u010C\x05\x12\n\x02\u010A\u010C\x05Z.\x02\u010B\u0109\x03" +
+		"\x02\x02\x02\u010B\u010A\x03\x02\x02\x02\u010C5\x03\x02\x02\x02\u010D" +
+		"\u010E\x07\v\x02\x02\u010E\u010F\x07\x19\x02\x02\u010F\u0113\x07\x14\x02" +
+		"\x02\u0110\u0112\x05Z.\x02\u0111\u0110\x03\x02\x02\x02\u0112\u0115\x03" +
+		"\x02\x02\x02\u0113\u0111\x03\x02\x02\x02\u0113\u0114\x03\x02\x02\x02\u0114" +
+		"\u0116\x03\x02\x02\x02\u0115\u0113\x03\x02\x02\x02\u0116\u0117\x07\x15" +
+		"\x02\x02\u01177\x03\x02\x02\x02\u0118\u0119\x05Z.\x02\u0119\u011C\x07" +
+		"\x19\x02\x02\u011A\u011D\x05\x12\n\x02\u011B\u011D\x05Z.\x02\u011C\u011A" +
+		"\x03\x02\x02\x02\u011C\u011B\x03\x02\x02\x02\u011D9\x03\x02\x02\x02\u011E" +
+		"\u0120\x05<\x1F\x02\u011F\u0121\x05@!\x02\u0120\u011F\x03\x02\x02\x02" +
+		"\u0120\u0121\x03\x02\x02\x02\u0121;\x03\x02\x02\x02\u0122\u0125\x05> " +
+		"\x02\u0123\u0125\x05Z.\x02\u0124\u0122\x03\x02\x02\x02\u0124\u0123\x03" +
+		"\x02\x02\x02\u0125=\x03\x02\x02\x02\u0126\u0127\x05X-\x02\u0127\u0128" +
+		"\x07\x1A\x02\x02\u0128\u0129\x05Z.\x02\u0129?\x03\x02\x02\x02\u012A\u012B" +
+		"\x07\x1B\x02\x02\u012B\u012C\x05Z.\x02\u012CA\x03\x02\x02\x02\u012D\u012E" +
+		"\x07\x11\x02\x02\u012E\u0130\x05Z.\x02\u012F\u0131\x05D#\x02\u0130\u012F" +
+		"\x03\x02\x02\x02\u0130\u0131\x03\x02\x02\x02\u0131C\x03\x02\x02\x02\u0132" +
+		"\u0135\x07\x12\x02\x02\u0133\u0136\x05F$\x02\u0134\u0136\x05J&\x02\u0135" +
+		"\u0133\x03\x02\x02\x02\u0135\u0134\x03\x02\x02\x02\u0135\u0136\x03\x02" +
+		"\x02\x02\u0136\u0137\x03\x02\x02\x02\u0137\u0138\x07\x13\x02\x02\u0138" +
+		"E\x03\x02\x02\x02\u0139\u013B\x05H%\x02\u013A\u0139\x03\x02\x02\x02\u013B" +
+		"\u013C\x03\x02\x02\x02\u013C\u013A\x03\x02\x02\x02\u013C\u013D\x03\x02" +
+		"\x02\x02\u013DG\x03\x02\x02\x02\u013E\u013F\x05Z.\x02\u013F\u0140\x07" +
+		"\x18\x02\x02\u0140\u0141\x05L\'\x02\u0141I\x03\x02\x02\x02\u0142\u0143" +
+		"\x05L\'\x02\u0143K\x03\x02\x02\x02\u0144\u0149\x05T+\x02\u0145\u0149\x05" +
+		"V,\x02\u0146\u0149\x05N(\x02\u0147\u0149\x05P)\x02\u0148\u0144\x03\x02" +
+		"\x02\x02\u0148\u0145\x03\x02\x02\x02\u0148\u0146\x03\x02\x02\x02\u0148" +
+		"\u0147\x03\x02\x02\x02\u0149M\x03\x02\x02\x02\u014A\u014E\x07\x14\x02" +
+		"\x02\u014B\u014D\x05L\'\x02\u014C\u014B\x03\x02\x02\x02\u014D\u0150\x03" +
+		"\x02\x02\x02\u014E\u014C\x03\x02\x02\x02\u014E\u014F\x03\x02\x02\x02\u014F" +
+		"\u0151\x03\x02\x02\x02\u0150\u014E\x03\x02\x02\x02\u0151\u0152\x07\x15" +
+		"\x02\x02\u0152O\x03\x02\x02\x02\u0153\u0157\x07\x16\x02\x02\u0154\u0156" +
+		"\x05R*\x02\u0155\u0154\x03\x02\x02\x02\u0156\u0159\x03\x02\x02\x02\u0157" +
+		"\u0155\x03\x02\x02\x02\u0157\u0158\x03\x02\x02\x02\u0158\u015A\x03\x02" +
+		"\x02\x02\u0159\u0157\x03\x02\x02\x02\u015A\u015B\x07\x17\x02\x02\u015B" +
+		"Q\x03\x02\x02\x02\u015C\u015D\x05Z.\x02\u015D\u015E\x07\x19\x02\x02\u015E" +
+		"\u015F\x05L\'\x02\u015FS\x03\x02\x02\x02\u0160\u0161\t\x03\x02\x02\u0161" +
+		"U\x03\x02\x02\x02\u0162\u0163\t\x04\x02\x02\u0163W\x03\x02\x02\x02\u0164" +
+		"\u0165\x07\"\x02\x02\u0165Y\x03\x02\x02\x02\u0166\u0167\x07!\x02\x02\u0167" +
+		"[\x03\x02\x02\x02\'dox~\x86\x8C\x90\x98\xA2\xA5\xA9\xAD\xB2\xB9\xBB\xC1" +
+		"\xC6\xCD\xD3\xD5\xDA\xDF\xE7\xF1\xFC\u0105\u010B\u0113\u011C\u0120\u0124" +
+		"\u0130\u0135\u013C\u0148\u014E\u0157";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!SubjektParser.__ATN) {
@@ -2694,8 +2589,14 @@ export class AggregateShapeTypeDefinitionContext extends ParserRuleContext {
 export class SubjectShapeTypeDefinitionContext extends ParserRuleContext {
 	public LCURLY(): TerminalNode { return this.getToken(SubjektParser.LCURLY, 0); }
 	public RCURLY(): TerminalNode { return this.getToken(SubjektParser.RCURLY, 0); }
-	public subjectShapeMembers(): SubjectShapeMembersContext | undefined {
-		return this.tryGetRuleContext(0, SubjectShapeMembersContext);
+	public subjectShapeMembers(): SubjectShapeMembersContext[];
+	public subjectShapeMembers(i: number): SubjectShapeMembersContext;
+	public subjectShapeMembers(i?: number): SubjectShapeMembersContext | SubjectShapeMembersContext[] {
+		if (i === undefined) {
+			return this.getRuleContexts(SubjectShapeMembersContext);
+		} else {
+			return this.getRuleContext(i, SubjectShapeMembersContext);
+		}
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
@@ -2778,15 +2679,6 @@ export class SubjectShapeMembersContext extends ParserRuleContext {
 	}
 	public behaviorMembers(): BehaviorMembersContext | undefined {
 		return this.tryGetRuleContext(0, BehaviorMembersContext);
-	}
-	public member(): MemberContext[];
-	public member(i: number): MemberContext;
-	public member(i?: number): MemberContext | MemberContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(MemberContext);
-		} else {
-			return this.getRuleContext(i, MemberContext);
-		}
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
@@ -3013,35 +2905,94 @@ export class KeyValuePairContext extends ParserRuleContext {
 }
 
 
+export class SubjectMembersContext extends ParserRuleContext {
+	public stateReference(): StateReferenceContext | undefined {
+		return this.tryGetRuleContext(0, StateReferenceContext);
+	}
+	public behaviorReference(): BehaviorReferenceContext | undefined {
+		return this.tryGetRuleContext(0, BehaviorReferenceContext);
+	}
+	public eventReference(): EventReferenceContext | undefined {
+		return this.tryGetRuleContext(0, EventReferenceContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return SubjektParser.RULE_subjectMembers; }
+	// @Override
+	public enterRule(listener: SubjektListener): void {
+		if (listener.enterSubjectMembers) {
+			listener.enterSubjectMembers(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: SubjektListener): void {
+		if (listener.exitSubjectMembers) {
+			listener.exitSubjectMembers(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: SubjektVisitor<Result>): Result {
+		if (visitor.visitSubjectMembers) {
+			return visitor.visitSubjectMembers(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class BehaviorMembersContext extends ParserRuleContext {
+	public inputReference(): InputReferenceContext | undefined {
+		return this.tryGetRuleContext(0, InputReferenceContext);
+	}
+	public outputReference(): OutputReferenceContext | undefined {
+		return this.tryGetRuleContext(0, OutputReferenceContext);
+	}
+	public errorReference(): ErrorReferenceContext | undefined {
+		return this.tryGetRuleContext(0, ErrorReferenceContext);
+	}
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return SubjektParser.RULE_behaviorMembers; }
+	// @Override
+	public enterRule(listener: SubjektListener): void {
+		if (listener.enterBehaviorMembers) {
+			listener.enterBehaviorMembers(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: SubjektListener): void {
+		if (listener.exitBehaviorMembers) {
+			listener.exitBehaviorMembers(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: SubjektVisitor<Result>): Result {
+		if (visitor.visitBehaviorMembers) {
+			return visitor.visitBehaviorMembers(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
 export class StateReferenceContext extends ParserRuleContext {
 	public STATE(): TerminalNode { return this.getToken(SubjektParser.STATE, 0); }
-	public COLON(): TerminalNode[];
-	public COLON(i: number): TerminalNode;
-	public COLON(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(SubjektParser.COLON);
-		} else {
-			return this.getToken(SubjektParser.COLON, i);
-		}
-	}
+	public COLON(): TerminalNode { return this.getToken(SubjektParser.COLON, 0); }
 	public LCURLY(): TerminalNode { return this.getToken(SubjektParser.LCURLY, 0); }
 	public RCURLY(): TerminalNode { return this.getToken(SubjektParser.RCURLY, 0); }
-	public identifier(): IdentifierContext[];
-	public identifier(i: number): IdentifierContext;
-	public identifier(i?: number): IdentifierContext | IdentifierContext[] {
+	public member(): MemberContext[];
+	public member(i: number): MemberContext;
+	public member(i?: number): MemberContext | MemberContext[] {
 		if (i === undefined) {
-			return this.getRuleContexts(IdentifierContext);
+			return this.getRuleContexts(MemberContext);
 		} else {
-			return this.getRuleContext(i, IdentifierContext);
-		}
-	}
-	public shapeType(): ShapeTypeContext[];
-	public shapeType(i: number): ShapeTypeContext;
-	public shapeType(i?: number): ShapeTypeContext | ShapeTypeContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ShapeTypeContext);
-		} else {
-			return this.getRuleContext(i, ShapeTypeContext);
+			return this.getRuleContext(i, MemberContext);
 		}
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
@@ -3156,111 +3107,14 @@ export class EventReferenceContext extends ParserRuleContext {
 }
 
 
-export class SubjectMembersContext extends ParserRuleContext {
-	public stateReference(): StateReferenceContext | undefined {
-		return this.tryGetRuleContext(0, StateReferenceContext);
-	}
-	public behaviorReference(): BehaviorReferenceContext | undefined {
-		return this.tryGetRuleContext(0, BehaviorReferenceContext);
-	}
-	public eventReference(): EventReferenceContext | undefined {
-		return this.tryGetRuleContext(0, EventReferenceContext);
-	}
-	public member(): MemberContext[];
-	public member(i: number): MemberContext;
-	public member(i?: number): MemberContext | MemberContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(MemberContext);
-		} else {
-			return this.getRuleContext(i, MemberContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return SubjektParser.RULE_subjectMembers; }
-	// @Override
-	public enterRule(listener: SubjektListener): void {
-		if (listener.enterSubjectMembers) {
-			listener.enterSubjectMembers(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: SubjektListener): void {
-		if (listener.exitSubjectMembers) {
-			listener.exitSubjectMembers(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: SubjektVisitor<Result>): Result {
-		if (visitor.visitSubjectMembers) {
-			return visitor.visitSubjectMembers(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
-export class BehaviorMembersContext extends ParserRuleContext {
-	public inputReference(): InputReferenceContext | undefined {
-		return this.tryGetRuleContext(0, InputReferenceContext);
-	}
-	public outputReference(): OutputReferenceContext | undefined {
-		return this.tryGetRuleContext(0, OutputReferenceContext);
-	}
-	public errorReference(): ErrorReferenceContext | undefined {
-		return this.tryGetRuleContext(0, ErrorReferenceContext);
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
-		super(parent, invokingState);
-	}
-	// @Override
-	public get ruleIndex(): number { return SubjektParser.RULE_behaviorMembers; }
-	// @Override
-	public enterRule(listener: SubjektListener): void {
-		if (listener.enterBehaviorMembers) {
-			listener.enterBehaviorMembers(this);
-		}
-	}
-	// @Override
-	public exitRule(listener: SubjektListener): void {
-		if (listener.exitBehaviorMembers) {
-			listener.exitBehaviorMembers(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: SubjektVisitor<Result>): Result {
-		if (visitor.visitBehaviorMembers) {
-			return visitor.visitBehaviorMembers(this);
-		} else {
-			return visitor.visitChildren(this);
-		}
-	}
-}
-
-
 export class InputReferenceContext extends ParserRuleContext {
 	public INPUT(): TerminalNode { return this.getToken(SubjektParser.INPUT, 0); }
 	public COLON(): TerminalNode { return this.getToken(SubjektParser.COLON, 0); }
-	public shapeType(): ShapeTypeContext[];
-	public shapeType(i: number): ShapeTypeContext;
-	public shapeType(i?: number): ShapeTypeContext | ShapeTypeContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ShapeTypeContext);
-		} else {
-			return this.getRuleContext(i, ShapeTypeContext);
-		}
+	public shapeType(): ShapeTypeContext | undefined {
+		return this.tryGetRuleContext(0, ShapeTypeContext);
 	}
-	public identifier(): IdentifierContext[];
-	public identifier(i: number): IdentifierContext;
-	public identifier(i?: number): IdentifierContext | IdentifierContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(IdentifierContext);
-		} else {
-			return this.getRuleContext(i, IdentifierContext);
-		}
+	public identifier(): IdentifierContext | undefined {
+		return this.tryGetRuleContext(0, IdentifierContext);
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
@@ -3293,23 +3147,11 @@ export class InputReferenceContext extends ParserRuleContext {
 export class OutputReferenceContext extends ParserRuleContext {
 	public OUTPUT(): TerminalNode { return this.getToken(SubjektParser.OUTPUT, 0); }
 	public COLON(): TerminalNode { return this.getToken(SubjektParser.COLON, 0); }
-	public shapeType(): ShapeTypeContext[];
-	public shapeType(i: number): ShapeTypeContext;
-	public shapeType(i?: number): ShapeTypeContext | ShapeTypeContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(ShapeTypeContext);
-		} else {
-			return this.getRuleContext(i, ShapeTypeContext);
-		}
+	public shapeType(): ShapeTypeContext | undefined {
+		return this.tryGetRuleContext(0, ShapeTypeContext);
 	}
-	public identifier(): IdentifierContext[];
-	public identifier(i: number): IdentifierContext;
-	public identifier(i?: number): IdentifierContext | IdentifierContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(IdentifierContext);
-		} else {
-			return this.getRuleContext(i, IdentifierContext);
-		}
+	public identifier(): IdentifierContext | undefined {
+		return this.tryGetRuleContext(0, IdentifierContext);
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
@@ -3394,10 +3236,6 @@ export class MemberContext extends ParserRuleContext {
 	public COLON(): TerminalNode { return this.getToken(SubjektParser.COLON, 0); }
 	public shapeType(): ShapeTypeContext | undefined {
 		return this.tryGetRuleContext(0, ShapeTypeContext);
-	}
-	public ASSIGNMENT(): TerminalNode | undefined { return this.tryGetToken(SubjektParser.ASSIGNMENT, 0); }
-	public value(): ValueContext | undefined {
-		return this.tryGetRuleContext(0, ValueContext);
 	}
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);

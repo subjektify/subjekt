@@ -2,7 +2,7 @@ import { ListShape, MapShape, StructureShape, ASTModel, EnumShape } from "../../
 import { ASTParser } from "../../../parse";
 import { ShapeIDUtil } from "../../../util";
 
-describe('parseAggregateShapes', () => {
+describe('parseAstAggregateShapes', () => {
 
     const namespace = 'my-namespace';
     const parser = new ASTParser();

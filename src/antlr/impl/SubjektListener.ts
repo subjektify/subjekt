@@ -22,11 +22,11 @@ import { EnumMemberContext } from "./SubjektParser";
 import { ListMemberContext } from "./SubjektParser";
 import { MapMembersContext } from "./SubjektParser";
 import { KeyValuePairContext } from "./SubjektParser";
+import { SubjectMembersContext } from "./SubjektParser";
+import { BehaviorMembersContext } from "./SubjektParser";
 import { StateReferenceContext } from "./SubjektParser";
 import { BehaviorReferenceContext } from "./SubjektParser";
 import { EventReferenceContext } from "./SubjektParser";
-import { SubjectMembersContext } from "./SubjektParser";
-import { BehaviorMembersContext } from "./SubjektParser";
 import { InputReferenceContext } from "./SubjektParser";
 import { OutputReferenceContext } from "./SubjektParser";
 import { ErrorReferenceContext } from "./SubjektParser";
@@ -265,6 +265,28 @@ export interface SubjektListener extends ParseTreeListener {
 	exitKeyValuePair?: (ctx: KeyValuePairContext) => void;
 
 	/**
+	 * Enter a parse tree produced by `SubjektParser.subjectMembers`.
+	 * @param ctx the parse tree
+	 */
+	enterSubjectMembers?: (ctx: SubjectMembersContext) => void;
+	/**
+	 * Exit a parse tree produced by `SubjektParser.subjectMembers`.
+	 * @param ctx the parse tree
+	 */
+	exitSubjectMembers?: (ctx: SubjectMembersContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SubjektParser.behaviorMembers`.
+	 * @param ctx the parse tree
+	 */
+	enterBehaviorMembers?: (ctx: BehaviorMembersContext) => void;
+	/**
+	 * Exit a parse tree produced by `SubjektParser.behaviorMembers`.
+	 * @param ctx the parse tree
+	 */
+	exitBehaviorMembers?: (ctx: BehaviorMembersContext) => void;
+
+	/**
 	 * Enter a parse tree produced by `SubjektParser.stateReference`.
 	 * @param ctx the parse tree
 	 */
@@ -296,28 +318,6 @@ export interface SubjektListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitEventReference?: (ctx: EventReferenceContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `SubjektParser.subjectMembers`.
-	 * @param ctx the parse tree
-	 */
-	enterSubjectMembers?: (ctx: SubjectMembersContext) => void;
-	/**
-	 * Exit a parse tree produced by `SubjektParser.subjectMembers`.
-	 * @param ctx the parse tree
-	 */
-	exitSubjectMembers?: (ctx: SubjectMembersContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `SubjektParser.behaviorMembers`.
-	 * @param ctx the parse tree
-	 */
-	enterBehaviorMembers?: (ctx: BehaviorMembersContext) => void;
-	/**
-	 * Exit a parse tree produced by `SubjektParser.behaviorMembers`.
-	 * @param ctx the parse tree
-	 */
-	exitBehaviorMembers?: (ctx: BehaviorMembersContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SubjektParser.inputReference`.

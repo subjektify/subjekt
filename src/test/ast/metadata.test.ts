@@ -1,7 +1,7 @@
 import { ASTModel } from "../../types";
 import { ASTParser } from "../../parse";
 
-describe('parseMetadata', () => {
+describe('parseAstMetadata', () => {
 
     const namespace = 'my-namespace';
     const parser = new ASTParser();

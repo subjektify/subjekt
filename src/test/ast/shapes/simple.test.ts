@@ -1,7 +1,7 @@
 import { SimpleShapeType, ASTModel } from "../../../types";
 import { ASTParser } from "../../../parse";
 
-describe('parseSimpleShapes', () => {
+describe('parseAstSimpleShapes', () => {
 
     const namespace = 'my-namespace';
     const parser = new ASTParser();

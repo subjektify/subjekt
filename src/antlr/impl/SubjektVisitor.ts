@@ -22,11 +22,11 @@ import { EnumMemberContext } from "./SubjektParser";
 import { ListMemberContext } from "./SubjektParser";
 import { MapMembersContext } from "./SubjektParser";
 import { KeyValuePairContext } from "./SubjektParser";
+import { SubjectMembersContext } from "./SubjektParser";
+import { BehaviorMembersContext } from "./SubjektParser";
 import { StateReferenceContext } from "./SubjektParser";
 import { BehaviorReferenceContext } from "./SubjektParser";
 import { EventReferenceContext } from "./SubjektParser";
-import { SubjectMembersContext } from "./SubjektParser";
-import { BehaviorMembersContext } from "./SubjektParser";
 import { InputReferenceContext } from "./SubjektParser";
 import { OutputReferenceContext } from "./SubjektParser";
 import { ErrorReferenceContext } from "./SubjektParser";
@@ -192,6 +192,20 @@ export interface SubjektVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitKeyValuePair?: (ctx: KeyValuePairContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by `SubjektParser.subjectMembers`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitSubjectMembers?: (ctx: SubjectMembersContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SubjektParser.behaviorMembers`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitBehaviorMembers?: (ctx: BehaviorMembersContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by `SubjektParser.stateReference`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -211,20 +225,6 @@ export interface SubjektVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitEventReference?: (ctx: EventReferenceContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `SubjektParser.subjectMembers`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitSubjectMembers?: (ctx: SubjectMembersContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `SubjektParser.behaviorMembers`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitBehaviorMembers?: (ctx: BehaviorMembersContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SubjektParser.inputReference`.

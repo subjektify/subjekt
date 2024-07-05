@@ -31,7 +31,7 @@ shapeTypeDefinition:
 // Shape type definitions
 aggregateShapeTypeDefinition:
 	LCURLY aggregateShapeMembers? RCURLY;
-subjectShapeTypeDefinition: LCURLY subjectShapeMembers? RCURLY;
+subjectShapeTypeDefinition: LCURLY subjectShapeMembers+ RCURLY;
 
 // Shape members
 aggregateShapeMembers:
@@ -41,8 +41,7 @@ aggregateShapeMembers:
 	| member*;
 subjectShapeMembers:
 	subjectMembers
-	| behaviorMembers
-	| member*;
+	| behaviorMembers;
 
 // Aggregate shape members
 enumMembers: enumMember (COMMA? enumMember)*;
@@ -53,28 +52,25 @@ keyValuePair:
 	KEY COLON (shapeType | identifier)
 	| VALUE COLON (shapeType | identifier);
 
-// Subject shape members
-stateReference:
-	STATE COLON LCURLY (
-		identifier COLON (shapeType | identifier)
-	)* RCURLY;
-behaviorReference: BEHAVIORS COLON LBRACK identifier* RBRACK;
-eventReference: EVENTS COLON LBRACK identifier* RBRACK;
-
 subjectMembers:
 	stateReference
 	| behaviorReference
-	| eventReference
-	| member*;
+	| eventReference;
 behaviorMembers:
 	inputReference
 	| outputReference
 	| errorReference;
-inputReference: INPUT COLON (shapeType | identifier)+;
-outputReference: OUTPUT COLON (shapeType | identifier)+;
+
+// Subject shape members
+stateReference:
+	STATE COLON LCURLY member+ RCURLY;
+behaviorReference: BEHAVIORS COLON LBRACK identifier* RBRACK;
+eventReference: EVENTS COLON LBRACK identifier* RBRACK;
+
+inputReference: INPUT COLON (shapeType | identifier);
+outputReference: OUTPUT COLON (shapeType | identifier);
 errorReference: ERRORS COLON LBRACK identifier* RBRACK;
-member:
-	identifier COLON (shapeType | identifier) (ASSIGNMENT value)?;
+member: identifier COLON (shapeType | identifier);
 
 // ShapeID
 shapeId: rootShapeId shapeIdMember?;
@@ -145,7 +141,6 @@ SIMPLE_SHAPE_TYPE:
 	| 'uint64'
 	| 'uint128'
 	| 'uint256';
-
 SUBJECT_SHAPE_TYPE: 'subject' | 'behavior' | 'event' | 'error';
 
 // Symbols

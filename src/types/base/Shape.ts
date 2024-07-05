@@ -38,21 +38,21 @@ export interface StructureShape extends AggregateShape {
 
 export interface SubjectShape extends Shape {
     state: Record<string, Target>;
-    behaviors: BehaviorShape[];
-    events: EventShape[];
+    behaviors: Target[];
+    events: Target[];
 };
 
-export interface BehaviorShape extends SubjectShape {
+export interface BehaviorShape extends Shape {
     input: Target;
     output: Target;
     errors: Target[];
 };
 
-export interface EventShape extends SubjectShape {
+export interface EventShape extends Shape {
     members: Record<string, Target>;
 };
 
-export interface ErrorShape extends SubjectShape {
+export interface ErrorShape extends Shape {
     members: Record<string, Target>;
 };
 
