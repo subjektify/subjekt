@@ -3,6 +3,7 @@ import { ShapeDefinitionContext, ShapeStatementContext, ShapeTypeDefinitionConte
 import { AggregateShape, BehaviorShape, EnumMember, EnumShape, ErrorShape, EventShape, ListShape, MapShape, Shape, ShapeID, ShapeType, Shapes, StructureShape, SubjectShape, SubjektModelContext, Target } from '../../types';
 import { ShapeIDVisitor } from './ShapeIDVisitor';
 import { ShapeIDUtil, ShapeTypeUtil } from '../../util';
+import { TraitVisitor } from './TraitVisitor';
 
 export class ShapeVisitor
     extends AbstractParseTreeVisitor<Shapes>
@@ -10,12 +11,14 @@ export class ShapeVisitor
 
         modelContext: SubjektModelContext;
         shapeIdVisitor: ShapeIDVisitor;
+        traitVisitor: TraitVisitor;
         _uses: ShapeID[];
 
     constructor(modelContext: SubjektModelContext) {
         super();
         this.modelContext = modelContext;
         this.shapeIdVisitor = new ShapeIDVisitor(modelContext);
+        this.traitVisitor = new TraitVisitor(modelContext);
         this._uses = [];
     }
 
