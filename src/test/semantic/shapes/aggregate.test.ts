@@ -1,122 +1,130 @@
-import { EnumShape, ListShape, MapShape, StructureShape, SubjektModel } from "../../../types";
+import {
+  EnumShape,
+  ListShape,
+  MapShape,
+  StructureShape,
+  SubjektModel,
+} from "../../../types";
 import { SubjektParser } from "../../../parse";
 import { ShapeIDUtil } from "../../../util";
 
-describe('parseAggregateShapes', () => {
+describe("parseAggregateShapes", () => {
+  const namespace = "my-namespace";
+  const parser = new SubjektParser();
 
-    const namespace = 'my-namespace';
-    const parser = new SubjektParser();
+  it("should parse valid enum shape", () => {
+    // Setup
+    const source = "enum MyEnum { VALUE1, VALUE2 }";
 
-    it('should parse valid enum shape', () => {
-        // Setup
-        const source = 'enum MyEnum { VALUE1, VALUE2 }';
+    const expectedMember: EnumShape = {
+      type: "enum",
+      members: {
+        VALUE1: {
+          value: "VALUE1",
+          target: ShapeIDUtil.fromString("subjekt#string"),
+        },
+        VALUE2: {
+          value: "VALUE2",
+          target: ShapeIDUtil.fromString("subjekt#string"),
+        },
+      },
+      traits: {},
+    };
+    const expected: SubjektModel = {
+      metadata: {},
+      uses: [],
+      shapes: {
+        [`${namespace}#MyEnum`]: expectedMember,
+      },
+    };
 
-        const expectedMember: EnumShape = {
-            type: 'enum',
-            members: {
-                VALUE1: {
-                    value: 'VALUE1',
-                    target: ShapeIDUtil.fromString('subjekt#string')
-                },
-                VALUE2: {
-                    value: 'VALUE2',
-                    target: ShapeIDUtil.fromString('subjekt#string')
-                }
-            }
-        };
-        const expected: SubjektModel = {
-            metadata: {},
-            uses: [],
-            shapes: {
-                [`${namespace}#MyEnum`]: expectedMember
-            }
-        };
+    // Execute
+    const result = parser.parse(namespace, source);
 
-        // Execute
-        const result = parser.parse(namespace, source);
+    // Verify
+    expect(result).toEqual(expected);
+  });
 
-        // Verify
-        expect(result).toEqual(expected);
-    });
+  it("should parse valid list shape", () => {
+    // Setup
+    const source = "list MyList { member: string }";
 
+    const expectedMember: ListShape = {
+      type: "list",
+      member: {
+        target: ShapeIDUtil.fromString("subjekt#string"),
+      },
+      traits: {},
+    };
+    const expected: SubjektModel = {
+      metadata: {},
+      uses: [],
+      shapes: {
+        [`${namespace}#MyList`]: expectedMember,
+      },
+    };
 
-    it('should parse valid list shape', () => {
-        // Setup
-        const source = 'list MyList { member: string }';
+    // Execute
+    const result = parser.parse(namespace, source);
 
-        const expectedMember: ListShape = {
-            type: 'list',
-            member: {
-                target: ShapeIDUtil.fromString('subjekt#string')
-            }
-        };
-        const expected: SubjektModel = {
-            metadata: {},
-            uses: [],
-            shapes: {
-                [`${namespace}#MyList`]: expectedMember
-            }
-        };
+    // Verify
+    expect(result).toEqual(expected);
+  });
 
-        // Execute
-        const result = parser.parse(namespace, source);
+  it("should parse valid map shape", () => {
+    // Setup
+    const source = "map MyMap { key: string, value: string }";
 
-        // Verify
-        expect(result).toEqual(expected);
-    });
+    const expectedMember: MapShape = {
+      type: "map",
+      key: {
+        target: ShapeIDUtil.fromString("subjekt#string"),
+      },
+      value: {
+        target: ShapeIDUtil.fromString("subjekt#string"),
+      },
+      traits: {},
+    };
+    const expected: SubjektModel = {
+      metadata: {},
+      uses: [],
+      shapes: {
+        [`${namespace}#MyMap`]: expectedMember,
+      },
+    };
 
-    it('should parse valid map shape', () => {
-        // Setup
-        const source = 'map MyMap { key: string, value: string }';
+    // Execute
+    const result = parser.parse(namespace, source);
 
-        const expectedMember: MapShape = {
-            type: 'map',
-            key: {
-                target: ShapeIDUtil.fromString('subjekt#string')
-            },
-            value: {
-                target: ShapeIDUtil.fromString('subjekt#string')
-            }
-        };
-        const expected: SubjektModel = {
-            metadata: {},
-            uses: [],
-            shapes: {
-                [`${namespace}#MyMap`]: expectedMember
-            }
-        };
+    // Verify
+    expect(result).toEqual(expected);
+  });
 
-        // Execute
-        const result = parser.parse(namespace, source);
+  it("should parse valid structure shape", () => {
+    // Setup
+    const source = "structure MyStructure { myMember: string }";
 
-        // Verify
-        expect(result).toEqual(expected);
-    });
+    const expectedMember: StructureShape = {
+      type: "structure",
+      members: {
+        myMember: {
+          target: ShapeIDUtil.fromString("subjekt#string"),
+        },
+      },
+      traits: {},
+    };
+    const expected: SubjektModel = {
+      metadata: {},
+      uses: [],
+      shapes: {
+        [`${namespace}#MyStructure`]: expectedMember,
+      },
+    };
 
-    it('should parse valid structure shape', () => {
-        // Setup
-        const source = 'structure MyStructure { myMember: string }';
+    // Execute
+    const result = parser.parse(namespace, source);
 
-        const expectedMember: StructureShape = {
-            type: 'structure',
-            members: {
-                myMember: {
-                    target: ShapeIDUtil.fromString('subjekt#string')
-                }
-            }
-        };
-        const expected: SubjektModel = {
-            metadata: {},
-            uses: [],
-            shapes: {
-                [`${namespace}#MyStructure`]: expectedMember
-            }
-        };
-
-        // Execute
-        const result = parser.parse(namespace, source);
-
-        // Verify
-        expect(result).toEqual(expected);
-    });
+    // Verify
+    expect(result).toEqual(expected);
+  });
 });

@@ -24,24 +24,16 @@ shapeType:
 	AGGREGATE_SHAPE_TYPE
 	| SIMPLE_SHAPE_TYPE
 	| SUBJECT_SHAPE_TYPE;
-shapeTypeDefinition:
-	aggregateShapeTypeDefinition
-	| subjectShapeTypeDefinition;
-
-// Shape type definitions
-aggregateShapeTypeDefinition:
-	LCURLY aggregateShapeMembers? RCURLY;
-subjectShapeTypeDefinition: LCURLY subjectShapeMembers+ RCURLY;
+shapeTypeDefinition: LCURLY shapeMembers RCURLY;
 
 // Shape members
-aggregateShapeMembers:
+shapeMembers:
 	enumMembers
 	| listMember
 	| mapMembers
+	| subjectMembers*
+	| behaviorMembers*
 	| member*;
-subjectShapeMembers:
-	subjectMembers
-	| behaviorMembers;
 
 // Aggregate shape members
 enumMembers: enumMember (COMMA? enumMember)*;
@@ -80,10 +72,7 @@ shapeIdMember: DOLLAR_SIGN identifier;
 
 // Traits
 trait: AT_SIGN identifier traitBody?;
-traitBody: LPAREN (traitStructureList | traitNode)? RPAREN;
-traitStructureList: traitStructure+;
-traitStructure: identifier ASSIGNMENT value;
-traitNode: value;
+traitBody: LPAREN (value || kvp*)? RPAREN;
 
 // Values
 value: string | number | listValue | objectValue;

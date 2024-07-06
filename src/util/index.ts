@@ -1,2 +1,2 @@
-export * from './ShapeIDUtil';
-export * from './ShapeTypeUtil';
+export * from "./ShapeIDUtil";
+export * from "./ShapeTypeUtil";

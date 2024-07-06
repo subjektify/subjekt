@@ -17,6 +17,8 @@
     "antlr:generate": "antlr4ts -visitor src/grammar/Subjekt.g4 -o src/antlr/impl",
     "patch": "npm version patch && npm publish",
     "prepublishOnly": "npm run build",
+    "prettier": "prettier . --write",
+    "prettier:check": "prettier . --check",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -31,6 +33,7 @@
     "@types/node": "^20.8.6",
     "antlr4ts-cli": "^0.5.0-alpha.4",
     "jest": "^29.7.0",
+    "prettier": "3.3.2",
     "rimraf": "^5.0.5",
     "ts-jest": "^29.1.1",
     "typescript": "^5.2.2"

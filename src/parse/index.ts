@@ -1,3 +1,2 @@
-export * from './ast';
-export * from './base';
-export * from './subjekt';
+export * from "./ast";
+export * from "./subjekt";

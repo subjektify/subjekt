@@ -1,14 +1,19 @@
-import { BehaviorShape, ErrorShape, EventShape, SubjectShape, ASTModel } from "../../../types";
-import { ASTParser } from "../../../parse";
+import {
+  AstBehaviorShape,
+  AstErrorShape,
+  AstEventShape,
+  AstSubjectShape,
+  AstModel,
+} from "../../../types";
+import { AstParser } from "../../../parse";
 
-describe('parseAstSubjectShapes', () => {
+describe("parseAstSubjectShapes", () => {
+  const namespace = "my-namespace";
+  const parser = new AstParser();
 
-    const namespace = 'my-namespace';
-    const parser = new ASTParser();
-
-    it('should parse valid subject shape', () => {
-        // Setup
-        const source = `subject MySubject { 
+  it("should parse valid subject shape", () => {
+    // Setup
+    const source = `subject MySubject { 
     state: {
         id: string
     }
@@ -16,136 +21,141 @@ describe('parseAstSubjectShapes', () => {
     events: [MyEvent]
 }`;
 
-        const expectedMember: SubjectShape = {
-            type: 'subject',
-            state: {
-                id: {
-                    target: {
-                        namespace: 'subjekt',
-                        identifier: 'string'
-                    }
-                }
-            },
-            behaviors: [ { target: { namespace: namespace, identifier: 'MyBehavior' } } ],
-            events: [ { target: { namespace: namespace, identifier: 'MyEvent' } } ]
-        };
-        const expected: ASTModel = {
-            metadata: {},
-            shapes: {
-                [`${namespace}#MySubject`]: expectedMember
-            }
-        };
+    const expectedMember: AstSubjectShape = {
+      type: "subject",
+      state: {
+        id: {
+          target: {
+            namespace: "subjekt",
+            identifier: "string",
+          },
+        },
+      },
+      behaviors: [
+        { target: { namespace: namespace, identifier: "MyBehavior" } },
+      ],
+      events: [{ target: { namespace: namespace, identifier: "MyEvent" } }],
+      traits: {},
+    };
+    const expected: AstModel = {
+      metadata: {},
+      shapes: {
+        [`${namespace}#MySubject`]: expectedMember,
+      },
+    };
 
-        // Execute
-        const result = parser.parse(namespace, source);
+    // Execute
+    const result = parser.parse(namespace, source);
 
-        // Verify
-        expect(result).toEqual(expected);
-    });
+    // Verify
+    expect(result).toEqual(expected);
+  });
 
-    it('should parse valid behavior shape', () => {
-        // Setup
-        const source = `behavior MyBehavior {
+  it("should parse valid behavior shape", () => {
+    // Setup
+    const source = `behavior MyBehavior {
     input: string
     output: string
     errors: [MyError]
 }`;
 
-        const expectedMember: BehaviorShape = {
-            type: 'behavior',
-            input: {
-                target: {
-                    namespace: 'subjekt',
-                    identifier: 'string'
-                }
-            },
-            output: {
-                target: {
-                    namespace: 'subjekt',
-                    identifier: 'string'
-                }
-            },
-            errors: [ { target: { namespace: namespace, identifier: 'MyError' } } ]
-        };
-        const expected: ASTModel = {
-            metadata: {},
-            shapes: {
-                [`${namespace}#MyBehavior`]: expectedMember
-            }
-        };
+    const expectedMember: AstBehaviorShape = {
+      type: "behavior",
+      input: {
+        target: {
+          namespace: "subjekt",
+          identifier: "string",
+        },
+      },
+      output: {
+        target: {
+          namespace: "subjekt",
+          identifier: "string",
+        },
+      },
+      errors: [{ target: { namespace: namespace, identifier: "MyError" } }],
+      traits: {},
+    };
+    const expected: AstModel = {
+      metadata: {},
+      shapes: {
+        [`${namespace}#MyBehavior`]: expectedMember,
+      },
+    };
 
-        // Execute
-        const result = parser.parse(namespace, source);
+    // Execute
+    const result = parser.parse(namespace, source);
 
-        // Verify
-        expect(result).toEqual(expected);
-    });
+    // Verify
+    expect(result).toEqual(expected);
+  });
 
-    it('should parse valid event shape', () => {
-        // Setup
-        const source = `event MyEvent { id: string }`;
+  it("should parse valid event shape", () => {
+    // Setup
+    const source = `event MyEvent { id: string }`;
 
-        const expectedMember: EventShape = {
-            type: 'event',
-            members: {
-                id: {
-                    target: {
-                        namespace: 'subjekt',
-                        identifier: 'string'
-                    }
-                }
-            }
-        };
-        const expected: ASTModel = {
-            metadata: {},
-            shapes: {
-                [`${namespace}#MyEvent`]: expectedMember
-            }
-        };
+    const expectedMember: AstEventShape = {
+      type: "event",
+      members: {
+        id: {
+          target: {
+            namespace: "subjekt",
+            identifier: "string",
+          },
+        },
+      },
+      traits: {},
+    };
+    const expected: AstModel = {
+      metadata: {},
+      shapes: {
+        [`${namespace}#MyEvent`]: expectedMember,
+      },
+    };
 
-        // Execute
-        const result = parser.parse(namespace, source);
+    // Execute
+    const result = parser.parse(namespace, source);
 
-        // Verify
-        expect(result).toEqual(expected);
-    });
+    // Verify
+    expect(result).toEqual(expected);
+  });
 
-    it('should parse valid error shape', () => {
-        // Setup
-        const source = `error MyError {
+  it("should parse valid error shape", () => {
+    // Setup
+    const source = `error MyError {
     code: string
     message: string
 }`;
 
-        const expectedMember: ErrorShape = {
-            type: 'error',
-            members: {
-                code: {
-                    target: {
-                        namespace: 'subjekt',
-                        identifier: 'string'
-                    }
-                },
-                message: {
-                    target: {
-                        namespace: 'subjekt',
-                        identifier: 'string'
-                    }
-                }
-            }
-        };
-        const expected: ASTModel = {
-            metadata: {},
-            shapes: {
-                [`${namespace}#MyError`]: expectedMember
-            }
-        };
+    const expectedMember: AstErrorShape = {
+      type: "error",
+      members: {
+        code: {
+          target: {
+            namespace: "subjekt",
+            identifier: "string",
+          },
+        },
+        message: {
+          target: {
+            namespace: "subjekt",
+            identifier: "string",
+          },
+        },
+      },
+      traits: {},
+    };
+    const expected: AstModel = {
+      metadata: {},
+      shapes: {
+        [`${namespace}#MyError`]: expectedMember,
+      },
+    };
 
-        // Execute
-        const result = parser.parse(namespace, source);
+    // Execute
+    const result = parser.parse(namespace, source);
 
-        // Verify
-        expect(result).toEqual(expected);
-    });
-
+    // Verify
+    expect(result).toEqual(expected);
+  });
 });
