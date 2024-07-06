@@ -47,8 +47,8 @@ export class ShapeVisitor
   private _visitTraits(ctx: TraitContext[]): AppliedTraits {
     const traits: AppliedTraits = {};
     ctx.forEach((trait) => {
-      const appliedTraits = this.traitVisitor.visit(trait);
-      Object.assign(traits, appliedTraits);
+      const [id, value] = this.traitVisitor.visit(trait);
+      traits[id] = value;
     });
     return traits;
   }
