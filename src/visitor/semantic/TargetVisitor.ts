@@ -20,7 +20,7 @@ export class TargetVisitor {
           namespace: "subjekt",
           identifier: value,
         },
-        traits
+        traits,
       };
     }
     for (const use of this.modelContext.uses) {
@@ -36,7 +36,7 @@ export class TargetVisitor {
         namespace: this.modelContext.namespace,
         identifier: value,
       },
-      traits
+      traits,
     };
   }
 

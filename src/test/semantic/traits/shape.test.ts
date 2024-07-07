@@ -16,7 +16,7 @@ structure MyShape {
       members: {
         myField: {
           target: {
-            namespace: 'subjekt',
+            namespace: "subjekt",
             identifier: "string",
           },
           traits: {},
@@ -27,8 +27,8 @@ structure MyShape {
       },
     };
     const expected: SubjektModel = {
-      metadata: { },
-      uses: [ ],
+      metadata: {},
+      uses: [],
       shapes: {
         [`${namespace}#MyShape`]: myShape,
       },
@@ -52,7 +52,7 @@ structure MyShape {
       members: {
         myField: {
           target: {
-            namespace: 'subjekt',
+            namespace: "subjekt",
             identifier: "string",
           },
           traits: {},
@@ -63,8 +63,8 @@ structure MyShape {
       },
     };
     const expected: SubjektModel = {
-      metadata: { },
-      uses: [ ],
+      metadata: {},
+      uses: [],
       shapes: {
         [`${namespace}#MyShape`]: myShape,
       },
@@ -88,7 +88,7 @@ structure MyShape {
       members: {
         myField: {
           target: {
-            namespace: 'subjekt',
+            namespace: "subjekt",
             identifier: "string",
           },
           traits: {},
@@ -96,13 +96,13 @@ structure MyShape {
       },
       traits: {
         foo: {
-            bar: "baz",
+          bar: "baz",
         },
       },
     };
     const expected: SubjektModel = {
-      metadata: { },
-      uses: [ ],
+      metadata: {},
+      uses: [],
       shapes: {
         [`${namespace}#MyShape`]: myShape,
       },

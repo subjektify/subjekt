@@ -106,7 +106,7 @@ export class ShapeDefinitionVisitor
         : this.targetVisitor.visit("int", member.trait()).target;
       members[memberName] = {
         value: memberValue,
-        target
+        target,
       };
     });
     return {
@@ -125,7 +125,7 @@ export class ShapeDefinitionVisitor
     const member = this.targetVisitor.visit(memberValue, listMember?.trait());
     return {
       type: "list",
-      member
+      member,
     };
   }
 
@@ -140,13 +140,14 @@ export class ShapeDefinitionVisitor
     keyValuePairs.forEach((keyValuePair) => {
       const traitsContext = keyValuePair.trait();
       if (keyValuePair.KEY()) {
-        const _key = keyValuePair.shapeType()?.text || keyValuePair.identifier()?.text;
+        const _key =
+          keyValuePair.shapeType()?.text || keyValuePair.identifier()?.text;
         if (!_key) {
           throw new Error("Map key is required");
         }
         key = {
           target: this.targetVisitor.visit(_key, traitsContext).target,
-        }
+        };
       } else if (keyValuePair.VALUE()) {
         const _value =
           keyValuePair.shapeType()?.text || keyValuePair.identifier()?.text;
@@ -155,7 +156,7 @@ export class ShapeDefinitionVisitor
         }
         value = {
           target: this.targetVisitor.visit(_value, traitsContext).target,
-        }
+        };
       }
     });
     if (!key || !value) {
@@ -164,7 +165,7 @@ export class ShapeDefinitionVisitor
     return {
       type: "map",
       key,
-      value
+      value,
     };
   }
 
@@ -209,7 +210,9 @@ export class ShapeDefinitionVisitor
       } else if (behaviorReference) {
         const identifiers = behaviorReference?.identifier();
         identifiers?.forEach((identifier) => {
-          behaviors.push(this.targetVisitor.visit(identifier.text, traitsContext));
+          behaviors.push(
+            this.targetVisitor.visit(identifier.text, traitsContext),
+          );
         });
       } else if (eventReference) {
         const identifiers = eventReference?.identifier();
@@ -288,7 +291,10 @@ export class ShapeDefinitionVisitor
       const memberName = member.identifier()[0].text;
       const memberValue =
         member.shapeType()?.text || member.identifier()[1]?.text;
-      members[memberName] = this.targetVisitor.visit(memberValue, member.trait());
+      members[memberName] = this.targetVisitor.visit(
+        memberValue,
+        member.trait(),
+      );
     });
     return members;
   }

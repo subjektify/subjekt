@@ -33,11 +33,14 @@ describe("Parse Subject Shapes", () => {
         },
       },
       behaviors: [
-        { target: { namespace: namespace, identifier: "MyBehavior" },
-        traits: {}, },
+        {
+          target: { namespace: namespace, identifier: "MyBehavior" },
+          traits: {},
+        },
       ],
-      events: [{ target: { namespace: namespace, identifier: "MyEvent" },
-        traits: {}, }],
+      events: [
+        { target: { namespace: namespace, identifier: "MyEvent" }, traits: {} },
+      ],
       traits: {},
     };
     const expected: SubjektModel = {
@@ -79,8 +82,9 @@ describe("Parse Subject Shapes", () => {
         },
         traits: {},
       },
-      errors: [{ target: { namespace: namespace, identifier: "MyError" },
-        traits: {}, }],
+      errors: [
+        { target: { namespace: namespace, identifier: "MyError" }, traits: {} },
+      ],
       traits: {},
     };
     const expected: SubjektModel = {
