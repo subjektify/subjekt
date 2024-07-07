@@ -1,6 +1,6 @@
 import { AbstractParseTreeVisitor } from "antlr4ts/tree/AbstractParseTreeVisitor";
 import { SubjektVisitor, TraitBodyContext, TraitContext } from "../../antlr";
-import { NodeValue, SubjektModelContext } from "../../types";
+import { NodeObject, NodeValue, SubjektModelContext } from "../../types";
 import { NodeValueVisitor } from "../core";
 
 export class TraitVisitor
@@ -27,7 +27,6 @@ export class TraitVisitor
   }
 
   private _visitTraitBody(ctx?: TraitBodyContext): NodeValue {
-    let nodeValue: NodeValue = {};
     const value = ctx?.value();
     const kvp = ctx?.kvp();
     if (value) {
@@ -35,13 +34,15 @@ export class TraitVisitor
     }
 
     if (kvp) {
+      let nodeValue: NodeObject = {};
       kvp.forEach((kvp) => {
         const key = kvp.identifier().text;
         const value = kvp.value();
         nodeValue[key] = this.nodeValueVisitor.visitValue(value);
       });
+      return nodeValue;
     }
 
-    return nodeValue;
+    return true;
   }
 }

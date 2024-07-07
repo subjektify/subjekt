@@ -6,7 +6,7 @@ export type Metadata = Record<string, NodeValue>;
 /**
  * NodeValue is a type that represents the possible values of a node in a JSON object.
  */
-export type NodeValue = String | Number | Boolean | NodeObject | NodeArray;
+export type NodeValue = string | number | boolean | NodeObject | NodeArray;
 
 export interface NodeObject {
   [key: string]: NodeValue;
