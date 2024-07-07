@@ -1,7 +1,7 @@
 import { SimpleShapeType, SubjektModel } from "../../../types";
 import { SubjektParser } from "../../../parse";
 
-describe("parseSimpleShapes", () => {
+describe("Parse Simple Shapes", () => {
   const namespace = "my-namespace";
   const parser = new SubjektParser();
 

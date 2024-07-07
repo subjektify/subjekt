@@ -1,7 +1,7 @@
 import { StructureShape, SubjektModel } from "../../types";
 import { SubjektParser } from "../../parse";
 
-describe("parseModel", () => {
+describe("Parse Complex Model", () => {
   const namespace = "my-namespace";
   const otherNamespace = "other-namespace";
   const parser = new SubjektParser();
@@ -22,6 +22,7 @@ structure MyShape {
             namespace: otherNamespace,
             identifier: "OtherShape",
           },
+          traits: {},
         },
       },
       traits: {},

@@ -7,7 +7,7 @@ import {
 } from "../../../types";
 import { SubjektParser } from "../../../parse";
 
-describe("parseSubjectShapes", () => {
+describe("Parse Subject Shapes", () => {
   const namespace = "my-namespace";
   const parser = new SubjektParser();
 
@@ -29,12 +29,15 @@ describe("parseSubjectShapes", () => {
             namespace: "subjekt",
             identifier: "string",
           },
+          traits: {},
         },
       },
       behaviors: [
-        { target: { namespace: namespace, identifier: "MyBehavior" } },
+        { target: { namespace: namespace, identifier: "MyBehavior" },
+        traits: {}, },
       ],
-      events: [{ target: { namespace: namespace, identifier: "MyEvent" } }],
+      events: [{ target: { namespace: namespace, identifier: "MyEvent" },
+        traits: {}, }],
       traits: {},
     };
     const expected: SubjektModel = {
@@ -67,14 +70,17 @@ describe("parseSubjectShapes", () => {
           namespace: "subjekt",
           identifier: "string",
         },
+        traits: {},
       },
       output: {
         target: {
           namespace: "subjekt",
           identifier: "string",
         },
+        traits: {},
       },
-      errors: [{ target: { namespace: namespace, identifier: "MyError" } }],
+      errors: [{ target: { namespace: namespace, identifier: "MyError" },
+        traits: {}, }],
       traits: {},
     };
     const expected: SubjektModel = {
@@ -104,6 +110,7 @@ describe("parseSubjectShapes", () => {
             namespace: "subjekt",
             identifier: "string",
           },
+          traits: {},
         },
       },
       traits: {},
@@ -138,12 +145,14 @@ describe("parseSubjectShapes", () => {
             namespace: "subjekt",
             identifier: "string",
           },
+          traits: {},
         },
         message: {
           target: {
             namespace: "subjekt",
             identifier: "string",
           },
+          traits: {},
         },
       },
       traits: {},

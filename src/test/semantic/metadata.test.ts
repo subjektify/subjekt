@@ -1,7 +1,7 @@
 import { SubjektModel } from "../../types";
 import { SubjektParser } from "../../parse";
 
-describe("parseMetadata", () => {
+describe("Parse Metadata", () => {
   const namespace = "my-namespace";
   const parser = new SubjektParser();
 

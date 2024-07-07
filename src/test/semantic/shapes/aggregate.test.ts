@@ -8,7 +8,7 @@ import {
 import { SubjektParser } from "../../../parse";
 import { ShapeIDUtil } from "../../../util";
 
-describe("parseAggregateShapes", () => {
+describe("Parse Aggregate Shapes", () => {
   const namespace = "my-namespace";
   const parser = new SubjektParser();
 
@@ -53,6 +53,7 @@ describe("parseAggregateShapes", () => {
       type: "list",
       member: {
         target: ShapeIDUtil.fromString("subjekt#string"),
+        traits: {},
       },
       traits: {},
     };
@@ -109,6 +110,7 @@ describe("parseAggregateShapes", () => {
       members: {
         myMember: {
           target: ShapeIDUtil.fromString("subjekt#string"),
+          traits: {},
         },
       },
       traits: {},

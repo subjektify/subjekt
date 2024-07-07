@@ -19,6 +19,7 @@ structure MyShape {
             namespace: 'subjekt',
             identifier: "string",
           },
+          traits: {},
         },
       },
       traits: {
@@ -54,6 +55,7 @@ structure MyShape {
             namespace: 'subjekt',
             identifier: "string",
           },
+          traits: {},
         },
       },
       traits: {
@@ -89,6 +91,7 @@ structure MyShape {
             namespace: 'subjekt',
             identifier: "string",
           },
+          traits: {},
         },
       },
       traits: {

@@ -37,32 +37,29 @@ shapeMembers:
 
 // Aggregate shape members
 enumMembers: enumMember (COMMA? enumMember)*;
-enumMember: identifier (ASSIGNMENT (string | INTEGER))?;
-listMember: MEMBER COLON (shapeType | identifier);
+enumMember: trait* identifier (ASSIGNMENT (string | INTEGER))?;
+listMember: trait* MEMBER COLON (shapeType | identifier);
 mapMembers: keyValuePair*;
 keyValuePair:
-	KEY COLON (shapeType | identifier)
-	| VALUE COLON (shapeType | identifier);
+	trait* (
+		KEY COLON (shapeType | identifier)
+		| VALUE COLON (shapeType | identifier)
+	);
 
 subjectMembers:
-	stateReference
-	| behaviorReference
-	| eventReference;
+	trait* (stateReference | behaviorReference | eventReference);
 behaviorMembers:
-	inputReference
-	| outputReference
-	| errorReference;
+	trait* (inputReference | outputReference | errorReference);
 
 // Subject shape members
-stateReference:
-	STATE COLON LCURLY member+ RCURLY;
+stateReference: STATE COLON LCURLY member+ RCURLY;
 behaviorReference: BEHAVIORS COLON LBRACK identifier* RBRACK;
 eventReference: EVENTS COLON LBRACK identifier* RBRACK;
 
 inputReference: INPUT COLON (shapeType | identifier);
 outputReference: OUTPUT COLON (shapeType | identifier);
 errorReference: ERRORS COLON LBRACK identifier* RBRACK;
-member: identifier COLON (shapeType | identifier);
+member: trait* identifier COLON (shapeType | identifier);
 
 // ShapeID
 shapeId: rootShapeId shapeIdMember?;
@@ -72,7 +69,7 @@ shapeIdMember: DOLLAR_SIGN identifier;
 
 // Traits
 trait: AT_SIGN identifier traitBody?;
-traitBody: LPAREN (value || kvp*)? RPAREN;
+traitBody: LPAREN (value | | kvp*)? RPAREN;
 
 // Values
 value: string | number | listValue | objectValue;

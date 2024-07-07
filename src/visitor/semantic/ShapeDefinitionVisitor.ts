@@ -102,11 +102,11 @@ export class ShapeDefinitionVisitor
       const memberValue =
         member.INTEGER()?.text || member.string()?.text || memberName;
       const target = isNaN(+Number(memberValue))
-        ? this.targetVisitor.visit("string").target
-        : this.targetVisitor.visit("int").target;
+        ? this.targetVisitor.visit("string", member.trait()).target
+        : this.targetVisitor.visit("int", member.trait()).target;
       members[memberName] = {
         value: memberValue,
-        target,
+        target
       };
     });
     return {
@@ -122,36 +122,49 @@ export class ShapeDefinitionVisitor
     if (!memberValue) {
       throw new Error("List member value is required");
     }
-    const member = this.targetVisitor.visit(memberValue);
+    const member = this.targetVisitor.visit(memberValue, listMember?.trait());
     return {
       type: "list",
-      member,
+      member
     };
   }
 
   private _visitMapShape(ctx?: ShapeMembersContext): MapShape {
-    const keyValuePairs = ctx?.mapMembers()?.keyValuePair();
+    const mapMembers = ctx?.mapMembers();
+    const keyValuePairs = mapMembers?.keyValuePair();
     if (!keyValuePairs) {
       throw new Error("Map shape must have a key and value");
     }
-    let _key: string | undefined;
-    let _value: string | undefined;
+    let key: Target | undefined;
+    let value: Target | undefined;
     keyValuePairs.forEach((keyValuePair) => {
+      const traitsContext = keyValuePair.trait();
       if (keyValuePair.KEY()) {
-        _key =
-          keyValuePair.shapeType()?.text || keyValuePair.identifier()?.text;
+        const _key = keyValuePair.shapeType()?.text || keyValuePair.identifier()?.text;
+        if (!_key) {
+          throw new Error("Map key is required");
+        }
+        key = {
+          target: this.targetVisitor.visit(_key, traitsContext).target,
+        }
       } else if (keyValuePair.VALUE()) {
-        _value =
+        const _value =
           keyValuePair.shapeType()?.text || keyValuePair.identifier()?.text;
+        if (!_value) {
+          throw new Error("Map value is required");
+        }
+        value = {
+          target: this.targetVisitor.visit(_value, traitsContext).target,
+        }
       }
     });
-    if (!_key || !_value) {
+    if (!key || !value) {
       throw new Error("Map shape must have a key and value");
     }
     return {
       type: "map",
-      key: this.targetVisitor.visit(_key),
-      value: this.targetVisitor.visit(_value),
+      key,
+      value
     };
   }
 
@@ -190,17 +203,18 @@ export class ShapeDefinitionVisitor
       const stateReference = subjectMember.stateReference();
       const behaviorReference = subjectMember.behaviorReference();
       const eventReference = subjectMember.eventReference();
+      const traitsContext = subjectMember.trait();
       if (stateReference) {
         state = this._members(stateReference?.member());
       } else if (behaviorReference) {
         const identifiers = behaviorReference?.identifier();
         identifiers?.forEach((identifier) => {
-          behaviors.push(this.targetVisitor.visit(identifier.text));
+          behaviors.push(this.targetVisitor.visit(identifier.text, traitsContext));
         });
       } else if (eventReference) {
         const identifiers = eventReference?.identifier();
         identifiers?.forEach((identifier) => {
-          events.push(this.targetVisitor.visit(identifier.text));
+          events.push(this.targetVisitor.visit(identifier.text, traitsContext));
         });
       }
     });
@@ -221,13 +235,14 @@ export class ShapeDefinitionVisitor
       const inputReference = behaviorMember.inputReference();
       const outputReference = behaviorMember.outputReference();
       const errorReference = behaviorMember.errorReference();
+      const traitsContext = behaviorMember?.trait();
       if (inputReference) {
         const inputIdentifier =
           inputReference.shapeType()?.text || inputReference.identifier()?.text;
         if (!inputIdentifier) {
           throw new Error("Behavior input is required");
         }
-        input = this.targetVisitor.visit(inputIdentifier);
+        input = this.targetVisitor.visit(inputIdentifier, traitsContext);
       } else if (outputReference) {
         const outputIdentifier =
           outputReference.shapeType()?.text ||
@@ -235,11 +250,11 @@ export class ShapeDefinitionVisitor
         if (!outputIdentifier) {
           throw new Error("Behavior output is required");
         }
-        output = this.targetVisitor.visit(outputIdentifier);
+        output = this.targetVisitor.visit(outputIdentifier, traitsContext);
       } else if (errorReference) {
         const identifiers = errorReference.identifier();
         identifiers?.forEach((identifier) => {
-          errors.push(this.targetVisitor.visit(identifier.text));
+          errors.push(this.targetVisitor.visit(identifier.text, traitsContext));
         });
       }
     });
@@ -273,7 +288,7 @@ export class ShapeDefinitionVisitor
       const memberName = member.identifier()[0].text;
       const memberValue =
         member.shapeType()?.text || member.identifier()[1]?.text;
-      members[memberName] = this.targetVisitor.visit(memberValue);
+      members[memberName] = this.targetVisitor.visit(memberValue, member.trait());
     });
     return members;
   }
