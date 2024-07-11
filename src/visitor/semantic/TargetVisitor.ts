@@ -14,7 +14,7 @@ export class TargetVisitor {
 
   public visit(value: string, traitsContext: TraitContext[]): Target {
     const traits = this._visitTraits(traitsContext);
-    if (ShapeTypeUtil.isShapeType(value)) {
+    if (ShapeTypeUtil.isShapeType(value) || ShapeTypeUtil.isPreludeType(value)) {
       return {
         target: {
           namespace: "subjekt",

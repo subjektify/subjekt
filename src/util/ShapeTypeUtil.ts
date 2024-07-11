@@ -1,4 +1,11 @@
+import { prelude } from "../types";
+
 export class ShapeTypeUtil {
+  
+  static isPreludeType(type: string): boolean {
+    return Object.keys(prelude).includes(`subjekt#${type}`);
+  }
+
   static isShapeType(type: string): boolean {
     return (
       this.isSimpleShapeType(type) ||

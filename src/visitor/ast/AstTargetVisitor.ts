@@ -9,7 +9,7 @@ export class AstTargetVisitor {
   }
 
   public visit(value: string): AstTarget {
-    if (ShapeTypeUtil.isShapeType(value)) {
+    if (ShapeTypeUtil.isShapeType(value) || ShapeTypeUtil.isPreludeType(value)) {
       return {
         target: {
           namespace: "subjekt",
