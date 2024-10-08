@@ -34,7 +34,6 @@ export class SubjektModelVisitor
     const uses = this.usesVisitor.visit(ctx.useBlock());
     this.modelContext.uses = uses;
 
-    // We initialize the shapes visitor here because we need the imported shapes
     const shapesVisitor: ShapesVisitor = new ShapesVisitor(this.modelContext);
     const shapes = shapesVisitor.visit(ctx.shapeBlock());
 
